@@ -1,0 +1,5 @@
+/* para centrar o div container dentro do header tem de se fazer display+justify+align */
+.baseHeader{
+  background-color: hsl(130, 93%, 32%);
+  height: 150px;
+}

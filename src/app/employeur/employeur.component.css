@@ -1,0 +1,28 @@
+
+/*Big_photos*/
+.parc_photos{
+  height: 350px;
+  overflow:hidden;
+}
+
+.img_caroussel{
+  min-height: 350px;
+}
+
+
+/*gallery des buttons avec les images: evenements */
+
+#program_title{
+  border-top: 1px solid #24150E;
+  background: rgb(217,75,43);
+  /*background: linear-gradient(180deg, rgba(217,75,43,1) 4%, rgba(218,83,52,1) 85%, rgba(237,227,210,1) 100%);*/
+  color: #EDE3D2;
+  font-size: 1em;
+  padding: 0.2em;
+}
+
+
+.button_img{
+  margin-top: 20px;
+
+}

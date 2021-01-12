@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "lt-app"
+    }
+  },
+  "defaultProject": "lt-app",
+  "cli": {
+    "analytics": "a525aa7d-fc94-4e98-b08c-906ad1c24d4a"
+  }
 }
