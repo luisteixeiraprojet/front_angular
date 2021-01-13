@@ -10,7 +10,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class EmployeesService {
 
-  employees : Employee[];
+ // employees : Employee[];
   constructor(private http:HttpClient) { }
 
   /* com mock
@@ -19,8 +19,8 @@ export class EmployeesService {
     return of(this.employees);
   }*/
 
-  getAllEmployees(){
-   return this.http.get("https://jsonplaceholder.typicode.com/users");
+  getAllEmployees(): Observable<any>{
+   return this.http.get("http://localhost:3000/employees");
   }
 
 
