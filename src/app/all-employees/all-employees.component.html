@@ -1,1 +1,8 @@
-<p>all-employees works!</p>
+<h1>Empregados da mock: </h1>
+<ul>
+  <li *ngFor="let empl of employees">
+      <span>{{empl.firstName}}</span>
+      <span>{{empl.lastName}}</span>
+      <span>{{empl.mobilePhone}}</span>
+  </li>
+</ul>
