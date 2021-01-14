@@ -1,12 +1,13 @@
 <h1>Empregados getall</h1>
+<button (click)="goBack()" >Retour</button>
 <ul>
-  <a routerLink="/employees/id">
   <li *ngFor="let empl of employees">
+    <a [routerLink]="['/employees', empl.Id_employee]">
       <span> {{empl.firstName}},{{empl.lastName}},{{empl.mobilePhone}}</span>
        <span> {{empl.lastName}}, </span>
        <span> {{empl.mobilePhone}}</span>
+    </a>
   </li>
-</a>
-</ul>
 
+</ul>
 

@@ -14,7 +14,7 @@ import { catchError, retry } from 'rxjs/operators';
 export class EmployeesService {
 
  //employees : Employee[];
- employees: any;
+ employee:{};
   constructor(private http:HttpClient) { }
 
   /* com mock
@@ -23,15 +23,21 @@ export class EmployeesService {
     return of(this.employees);
   }*/
 
+//______________________________________________________
   getAllEmployees(){
-    console.log("dentro de getAll em service.ts")
    return this.http.get("http://luisteixeiraprojet.herokuapp.com/employees");
-   //
   }
 
-  getEmployeeById(){
-    console.log("dentro funçao employeeById");
-    return this.http.get("http://luisteixeiraprojet.herokuapp.com/employees");
+//_______________________________________________________
+  getEmployeeById(id){
+    //console.log("dentro funçao employeeById em employees.service com id passado: " + id);
+    return this.http.get("http://luisteixeiraprojet.herokuapp.com/employees/" + id);
+  }
+
+//_______________________________________________________
+
+  deleteEmployee(id){
+    return this.http.delete("http://luisteixeiraprojet.herokuapp.com/employees/" + id);
   }
 
 

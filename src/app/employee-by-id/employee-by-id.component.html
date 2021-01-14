@@ -1,25 +1,75 @@
-<h1>Empregados ById</h1>
-<ul>
-  <li *ngFor="let info of employeeByid">
-    <span> {{info.firstName}}</span>
-    <span> {{info.lastName}}</span>
-    <span> {{info.mobilePhone}}</span>
-    <span> {{info.firstName}}</span>
-    <span> {{info.lastName}}</span>
-    <span> {{info.mobilePhone}}</span>
-    <span> {{info.homePhone}}</span>
-    <span> {{info.email}}</span>
-    <span> {{info.address}}</span>
-    <span> {{info.zipCode}}</span>
-    <span> {{info.nationality}}</span>
-    <span> {{info.identityNumber}}</span>
-    <span> {{info.socialNumber}}</span>
-    <span> {{info.birthdayDate}}</span>
-    <span> {{info.age}}</span>
-    <span> {{info.iban}}</span>
-    <span> {{info.typeContract}}</span>
-    <span> {{info.joinDate}}</span>
-    <span> {{info.hourlyPrice}}</span>
+<div *ngIf="selectedEmployee" class="container">
+  <h1>{{selectedEmployee.firstName}}</h1>
+  <button (click)="goBack()" >Retour</button>
+
+
+<div class="container w-50" >
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" [destroyOnHide]="false" class="nav-tabs">
+  <li [ngbNavItem]="1" [destroyOnHide]="true">
+    <a ngbNavLink>Coordonées</a>
+    <ng-template ngbNavContent>
+      <ngb-alert [dismissible]="false" class="d-block mt-3" type="danger">
+        Justificatif de domicile ou Attestation d'hebergement (moins de 3 mois)
+      </ngb-alert>
+
+      <p>Prénom: {{selectedEmployee.firstName}} </p>
+      <p>Nom: {{selectedEmployee.lastName}} </p>
+      <p>Portable: {{selectedEmployee.mobilePhone}} </p>
+      <p>Email: {{selectedEmployee.email}} </p>
+      <p>Domicile: {{selectedEmployee.homePhone}} </p>
+
+      <p>Adresse:{{selectedEmployee.address}}</p>
+      <p>Complément d'adresse: {{selectedEmployee.addressComplement}}</p>
+      <p>Code Postale: {{selectedEmployee.zipCode}}</p>
+    </ng-template>
+
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink>Identité</a>
+    <ng-template ngbNavContent>
+      <ngb-alert [dismissible]="false" class="d-block mt-3" type="success">
+        Pièce d'ientité, Passport, Titre de Séjour, Carte Vitale, Attestation Securité Social et Mutuelle
+      </ngb-alert>
+
+      <p>Pièce d'Identité n°: {{selectedEmployee.identityNumber}} </p>
+      <p>Nacionalité: {{selectedEmployee.nationality}}</p>
+      <p>Numéro Sécurité Sociale: {{selectedEmployee.socialNumber}}</p>
+      <p>Date de Naissance: {{selectedEmployee.birthdayDate}}</p>
+      <p>Age: {{selectedEmployee.age}}</p>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="3">
+    <a ngbNavLink>Contrat</a>
+    <ng-template ngbNavContent let-active>
+      <ngb-alert *ngIf="active" [dismissible]="false" class="d-block mt-3">
+        Informations contractuelles
+      </ngb-alert>
+
+      <p>Type de Contrat:{{selectedEmployee.typeContract}} </p>
+      <p>Depuis: {{selectedEmployee.joinDate}} </p>
+      <p>Prix de l'heure: {{selectedEmployee.hourlyPrice}}</p>
+
+    </ng-template>
   </li>
 
+  <li [ngbNavItem]="4">
+    <a ngbNavLink>Compta</a>
+    <ng-template ngbNavContent let-active>
+      <ngb-alert *ngIf="active" [dismissible]="false" class="d-block mt-3" type="info">
+        Informations Bancaires: RIB
+      </ngb-alert>
+      <p>IBAN:{{selectedEmployee.homePhone}}  </p>
+    </ng-template>
+  </li>
 </ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+<button>Editer </button>
+
+</div>
+<div class="container">
+<button (click)="toDelete()">Supprimer</button>
+</div>
+</div>
+

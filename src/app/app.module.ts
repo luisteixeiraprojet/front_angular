@@ -9,6 +9,7 @@ import { EmployeurComponent } from './employeur/employeur.component';
 import { AllEmployeesComponent } from './all-employees/all-employees.component';
 import { FooterComponent } from './footer/footer.component';
 import { EmployeeByIdComponent } from './employee-by-id/employee-by-id.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { EmployeeByIdComponent } from './employee-by-id/employee-by-id.component
   imports: [
     BrowserModule,
     HttpClientModule, //always after BrowserModule
-    AppRoutingModule
+    AppRoutingModule, NgbModule
   ],
 
   providers: [],
