@@ -1,14 +1,12 @@
 <h1>Empregados getall</h1>
 <ul>
+  <a routerLink="/employees/id">
   <li *ngFor="let empl of employees">
       <span> {{empl.firstName}},{{empl.lastName}},{{empl.mobilePhone}}</span>
        <span> {{empl.lastName}}, </span>
        <span> {{empl.mobilePhone}}</span>
-
   </li>
+</a>
 </ul>
 
-<!--{{empl.name}},{{empl.username}},{{empl.email}}
 
-{{empl.Id_employee}},{{empl.firstName}},{{empl.lastName}},{{empl.mobilePhone}}
--->

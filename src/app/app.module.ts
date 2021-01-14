@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { EmployeurComponent } from './employeur/employeur.component';
 import { AllEmployeesComponent } from './all-employees/all-employees.component';
 import { FooterComponent } from './footer/footer.component';
+import { EmployeeByIdComponent } from './employee-by-id/employee-by-id.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FooterComponent } from './footer/footer.component';
     HeaderComponent,
     EmployeurComponent,
     AllEmployeesComponent,
-    FooterComponent
+    FooterComponent,
+    EmployeeByIdComponent
   ],
   imports: [
     BrowserModule,

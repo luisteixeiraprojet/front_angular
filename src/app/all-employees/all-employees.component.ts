@@ -1,6 +1,8 @@
-import { EmployeesService } from './../employees.service';
+
 import { Component, OnInit } from '@angular/core';
 
+//import Service to comunication
+import { EmployeesService } from './../employees.service';
 import { Employee } from '../employeeInterface';
 
 @Component({
@@ -15,9 +17,7 @@ export class AllEmployeesComponent implements OnInit {
 
   constructor(private employeesService : EmployeesService ) { }
 
-  getAllEmployees(): void {
-   // this.employeesService.getAllEmployees().subscribe(employees => this.employees = employees)
-  }
+
 
   ngOnInit(): void {
      this.employeesService.getAllEmployees().subscribe((e) =>{

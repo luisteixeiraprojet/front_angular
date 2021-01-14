@@ -29,7 +29,10 @@ export class EmployeesService {
    //
   }
 
-
+  getEmployeeById(){
+    console.log("dentro funçao employeeById");
+    return this.http.get("http://luisteixeiraprojet.herokuapp.com/employees");
+  }
 
 
 }
