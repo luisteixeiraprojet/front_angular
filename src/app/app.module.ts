@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { EmployeurComponent } from './employeur/employeur.component';
 import { AllEmployeesComponent } from './all-employees/all-employees.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     EmployeurComponent,
-    AllEmployeesComponent
+    AllEmployeesComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

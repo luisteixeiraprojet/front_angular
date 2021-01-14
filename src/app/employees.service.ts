@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+
 
 import { EMPLOYEES } from './mock-employees';
 import { Employee } from './employeeInterface';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeesService {
 
- // employees : Employee[];
+ //employees : Employee[];
+ employees: any;
   constructor(private http:HttpClient) { }
 
   /* com mock
@@ -19,8 +23,10 @@ export class EmployeesService {
     return of(this.employees);
   }*/
 
-  getAllEmployees(): Observable<any>{
-   return this.http.get("http://localhost:3000/employees");
+  getAllEmployees(){
+    console.log("dentro de getAll em service.ts")
+   return this.http.get("http://luisteixeiraprojet.herokuapp.com/employees");
+   //
   }
 
 

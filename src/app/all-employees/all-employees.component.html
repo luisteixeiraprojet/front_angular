@@ -1,8 +1,14 @@
-<h1>Empregados da mock: </h1>
+<h1>Empregados getall</h1>
 <ul>
   <li *ngFor="let empl of employees">
-      <span>{{empl.firstName}}</span>
-      <span>{{empl.lastName}}</span>
-      <span>{{empl.mobilePhone}}</span>
+      <span> {{empl.firstName}},{{empl.lastName}},{{empl.mobilePhone}}</span>
+       <span> {{empl.lastName}}, </span>
+       <span> {{empl.mobilePhone}}</span>
+
   </li>
 </ul>
+
+<!--{{empl.name}},{{empl.username}},{{empl.email}}
+
+{{empl.Id_employee}},{{empl.firstName}},{{empl.lastName}},{{empl.mobilePhone}}
+-->

@@ -1,8 +1,6 @@
 import { EmployeesService } from './../employees.service';
 import { Component, OnInit } from '@angular/core';
 
-
-
 import { Employee } from '../employeeInterface';
 
 @Component({
@@ -22,9 +20,12 @@ export class AllEmployeesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.employeesService.getAllEmployees().subscribe((data)=>{
-      this.employees = data;
-    });
+     this.employeesService.getAllEmployees().subscribe((e) =>{
+       this.employees = e;
+       console.log("----------os employees sao: " + this.employees);
+     });
+
+
 
   }
 
