@@ -17,9 +17,9 @@ export class EmployeeByIdComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.employeesService.getEmployeeById().subscribe((e) =>{
-    this.employeeByid = e;
-    console.log("dentro de employeeById " + this.employeeByid);
+    this.employeesService.getEmployeeById().subscribe((info) =>{
+    this.employeeByid.firstname = info.firstName;
+    console.log("dentro de employeeById " + this.employeeByid.firstName);
   });
   }
 
