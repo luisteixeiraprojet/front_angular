@@ -33,8 +33,10 @@ export class EmployeeByIdComponent implements OnInit {
   });
 
     //EBI: get the employee with that id
-    this.selectedEmployee = await this.employeesService.getEmployeeById(this.idEmployee).toPromise();
-
+    //this.selectedEmployee = await this.employeesService.getEmployeeById(this.idEmployee).toPromise();
+    this.employeesService.getEmployeeById(this.idEmployee).subscribe( resultGetEmplById=>{
+      this.selectedEmployee = resultGetEmplById;
+    })
 
 
 
@@ -42,22 +44,12 @@ export class EmployeeByIdComponent implements OnInit {
   }//closes ngOnInit
 
 //_______________________________________
-  toDelete(){
-    console.log("funçao delete chamada!");
+   toDelete(){
+   this.employeesService.deleteEmployee(this.idEmployee).subscribe(result =>{
+    console.log("todelete: " + JSON.stringify(result))
+   });
 
   }
-
-  /*
-  console.log("delete");
-    //get id from url
-    this._Activatedroute.paramMap.subscribe(params => {
-      idToDelete = params.get('id');
-    //call delete function
-    this.employeesService.deleteEmployee(idToDelete);
-    console.log("Delete the employee  with the id: " + idToDelete);
-  }
-}
-  */
 
 //________________________________________________
 //button back

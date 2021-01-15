@@ -39,6 +39,11 @@ export class EmployeesService {
   deleteEmployee(id){
     return this.http.delete("http://luisteixeiraprojet.herokuapp.com/employees/" + id);
   }
+//http://luisteixeiraprojet.herokuapp.com/employees/" + id
+//http://localhost:3000
+
+
+
 
 
 }

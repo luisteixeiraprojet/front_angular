@@ -17,21 +17,14 @@ export class AllEmployeesComponent implements OnInit {
   //employees: Employee[]; //com mock
   employees:any;
 
-
-
   constructor(private employeesService : EmployeesService, private _Activatedroute:ActivatedRoute, private _location: Location ) { }
-
-
 
   ngOnInit(): void {
      this.employeesService.getAllEmployees().subscribe((e) =>{
        this.employees = e;
        //console.log("----------os employees sao: " + JSON.stringify(this.employees));
      });
-
-
-
-  }
+  }//closes ngOnInit
 
   //________________________________________________
   //button back
@@ -39,6 +32,6 @@ export class AllEmployeesComponent implements OnInit {
     this._location.back();
   }
 
-};
+}; //closes class
 
 
