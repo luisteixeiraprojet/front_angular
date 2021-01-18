@@ -26,7 +26,10 @@ export class AllEmployeesComponent implements OnInit {
      });
   }//closes ngOnInit
 
-  //________________________________________________
+
+
+
+//________________________________________________
   //button back
   goBack(){
     this._location.back();

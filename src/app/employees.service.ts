@@ -34,6 +34,15 @@ export class EmployeesService {
     return this.http.get("http://luisteixeiraprojet.herokuapp.com/employees/" + id);
   }
 
+
+//_______________________________________________________
+createEmployee(){
+  console.log("funcao create chamada no botao");
+  //console.log("dentro funçao employeeById em employees.service com id passado: " + id);
+  //return this.http.post("http://luisteixeiraprojet.herokuapp.com/employees");
+}
+
+
 //_______________________________________________________
 
   deleteEmployee(id){

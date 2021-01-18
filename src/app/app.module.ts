@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +10,9 @@ import { AllEmployeesComponent } from './all-employees/all-employees.component';
 import { FooterComponent } from './footer/footer.component';
 import { EmployeeByIdComponent } from './employee-by-id/employee-by-id.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormNewEmployeeComponent } from './form-new-employee/form-new-employee.component';
+import {FormsModule} from '@angular/forms';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -18,12 +21,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     EmployeurComponent,
     AllEmployeesComponent,
     FooterComponent,
-    EmployeeByIdComponent
+    EmployeeByIdComponent,
+    FormNewEmployeeComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule, //always after BrowserModule
-    AppRoutingModule, NgbModule
+    AppRoutingModule,
+    NgbModule,
+    FormsModule
   ],
 
   providers: [],

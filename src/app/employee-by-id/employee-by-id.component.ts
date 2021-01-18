@@ -37,10 +37,6 @@ export class EmployeeByIdComponent implements OnInit {
     this.employeesService.getEmployeeById(this.idEmployee).subscribe( resultGetEmplById=>{
       this.selectedEmployee = resultGetEmplById;
     })
-
-
-
-
   }//closes ngOnInit
 
 //_______________________________________
