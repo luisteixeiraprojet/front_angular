@@ -5,6 +5,9 @@ import { EmployeesService } from './../employees.service';
 import { ActivatedRoute } from '@angular/router';
 import { promise } from 'protractor';
 import {Location} from '@angular/common';
+import { stringify } from '@angular/compiler/src/util';
+import { Router } from '@angular/router';
+import {BetweenComponentsService} from './../between-components.service';
 
 @Component({
   selector: 'app-employee-by-id',
@@ -21,8 +24,7 @@ export class EmployeeByIdComponent implements OnInit {
   selectedEmployee;
 
 
-
-  constructor(private employeesService : EmployeesService, private _Activatedroute:ActivatedRoute, private _location: Location) { }
+  constructor(private employeesService : EmployeesService, private betweenComponents: BetweenComponentsService, private _Activatedroute:ActivatedRoute,private router: Router, private _location: Location) { }
 
   async ngOnInit(): Promise<void> {
 
@@ -44,8 +46,19 @@ export class EmployeeByIdComponent implements OnInit {
    this.employeesService.deleteEmployee(this.idEmployee).subscribe(result =>{
     console.log("todelete: " + JSON.stringify(result))
    });
-
   }
+
+//_______________________________________
+  toUpdate(): void {
+    console.log("UPDATE: do componente para o servico");
+    this.router.navigate(['/formUpdate']);
+    this.betweenComponents.receiveEmployeeToUpdate(this.selectedEmployee);
+
+    }
+
+
+
+
 
 //________________________________________________
 //button back

@@ -1,268 +1,262 @@
+<div class="container">
+  <form>
+  <!--Ver na net este link p submissao de forms: https://www.sitepoint.com/angular-forms/-->
+  <h1>Coordonnées:</h1>
+  <div class="box">
+  <div class="container form-row">
 
-<form>
-<!--Ver na net este link p submissao de forms: https://www.sitepoint.com/angular-forms/-->
-   <h1>o nome é  {{employee.firstName}}</h1>
+      <!--PRENOM-->
+      <div class="form-group">
+      <label for="firstName">Prénom</label>
+      <input
+        required
+        minlength="2"
+        [(ngModel)] = "employee.firstName"
+        name="firstName"
+        #firstName="ngModel"
+        id="firstName" type="text"
+        class="form-control">
+      <div
+        class="alert alert-danger"
+        *ngIf= "firstName.touched && !firstName.valid">
+        <div *ngIf= "firstName.errors.required" >
+          Le prénom est obligatoire
+        </div>
+        <div *ngIf= "firstName.errors.minlength">
+          Le prénom doit avoir au moins {{firstName.errors.minlength.requiredLength}} lettres.
+        </div>
+      </div>
+      </div>
 
-   <button class="btn btn-primary" (click)="teste()">teste</button>
-<div class="container form-row">
-
-    <!--PRENOM-->
-    <div class="form-group">
-    <label for="firstName">Prénom</label>
-    <input
+      <!--NOM-->
+      <div class = "form-group">
+      <label for = "lastName">Nom</label>
+      <input
       required
       minlength="2"
-      [(ngModel)] = "employee.firstName"
-      name="firstName"
-      #firstName="ngModel"
-      id="firstName" type="text"
+      [(ngModel)] = "employee.lastName"
+      name="lastName"
+      #lastName="ngModel"
+      id="lastName" type="text"
       class="form-control">
-    <div
+      <div
       class="alert alert-danger"
-      *ngIf= "firstName.touched && !firstName.valid">
-      <div *ngIf= "firstName.errors.required" >
-        Le prénom est obligatoire
+      *ngIf= "lastName.touched && !lastName.valid">
+      <div *ngIf= "lastName.errors.required" >
+        Le nom est obligatoire
       </div>
-      <div *ngIf= "firstName.errors.minlength">
-        Le prénom doit avoir au moins {{firstName.errors.minlength.requiredLength}} lettres.
+      <div *ngIf= "lastName.errors.minlength">
+        Le nom doit avoir au moins {{lastName.errors.minlength.requiredLength}} lettres.
       </div>
-    </div>
-    </div>
+      </div>
+      </div>
+  </div>
 
-    <!--NOM-->
-    <div   class = "form-group">
-    <label for   = "lastName">Nom</label>
-    <input
-    required
-    minlength="2"
-    [(ngModel)] = "employee.lastName"
-    name="lastName"
-    #lastName="ngModel"
-    id="lastName" type="text"
-    class="form-control">
-    <div
-    class="alert alert-danger"
-    *ngIf= "lastName.touched && !lastName.valid">
-    <div *ngIf= "lastName.errors.required" >
-      Le nom est obligatoire
-    </div>
-    <div *ngIf= "lastName.errors.minlength">
-      Le nom doit avoir au moins {{lastName.errors.minlength.requiredLength}} lettres.
-    </div>
-    </div>
-    </div>
-</div>
-
-
-<div class="container form-row">
-      <!--Num Téléphone-->
-      <div class="form-group">
-        <label for="mobilePhone">Portable</label>
-        <input
-          required
-          minlength="9"
-          [(ngModel)] = "employee.mobilePhone"
-          name="mobilePhone"
-          #mobilePhone="ngModel"
-          id="mobilePhone" type="text"
-          class="form-control">
-        <div
-          class="alert alert-danger"
-          *ngIf= "mobilePhone.touched && !mobilePhone.valid">
-          <div *ngIf= "mobilePhone.errors.required" >
-            Le numéro portable est obligatoire
-          </div>
-          <div *ngIf= "mobilePhone.errors.minlength">
-            Le numéro de portable doit avoir au moins {{mobilePhone.errors.minlength.requiredLength}} chiffres .
+  <div class="container form-row ">
+        <!--Num Téléphone-->
+        <div class="form-group">
+          <label for="mobilePhone">Portable</label>
+          <input
+            required
+            minlength="9"
+            [(ngModel)] = "employee.mobilePhone"
+            name="mobilePhone"
+            #mobilePhone="ngModel"
+            id="mobilePhone" type="text"
+            class="form-control">
+          <div
+            class="alert alert-danger"
+            *ngIf= "mobilePhone.touched && !mobilePhone.valid">
+            <div *ngIf= "mobilePhone.errors.required">
+              Le numéro portable est obligatoire
+            </div>
+            <div *ngIf= "mobilePhone.errors.minlength">
+              Le numéro de portable doit avoir au moins {{mobilePhone.errors.minlength.requiredLength}} chiffres.
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Téléphone Fixe-->
-      <div class="form-group">
-        <label for="homePhone">Téléphone Fixe</label>
+        <!-- Téléphone Fixe-->
+        <div class="form-group">
+          <label for="homePhone">Téléphone Fixe</label>
+          <input
+
+            [(ngModel)] = "employee.homePhone"
+            name="homePhone"
+            #homePhone="ngModel"
+            id="homePhone" type="text"
+            class="form-control">
+
+        </div>
+
+        <!-- Email-->
+        <div class="form-group">
+          <label for="email">Addresse mail</label>
+          <input
+          type="email"
+          name="email"
+          [(ngModel)] = "employee.email"
+          #email="ngModel"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
+          <div
+            class="alert alert-danger"
+            *ngIf="email.errors?.pattern">
+              L'adresse mail n'est pas valide.
+          </div>
+        </div>
+  </div>
+
+  <div class="container form-row">
+        <!--Address-->
+        <div class="form-group">
+        <label for="address">Adresse</label>
         <input
-          minlength="9"
-          ngModel
-          name="homePhone"
-          #homePhone="ngModel"
-          id="homePhone" type="text"
-          class="form-control">
-        <div
-          class="alert alert-danger"
-          *ngIf= "homePhone.errors.minlength">
-            Le numéro de téléphone doit avoir au moins {{homePhone.errors.minlength.requiredLength}} chiffres .
-        </div>
-      </div>
-
-      <!-- Email-->
-      <div class="form-group">
-        <label for="email">Addresse mail</label>
-        <input
-        type="email"
-        name="email"
-        ngModel
-        #email="ngModel"
-        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
-        <div
-          class="alert alert-danger"
-          *ngIf="email.errors?.pattern">
-            L'adresse mail n'est pas valide.
-        </div>
-      </div>
-</div>
-
-
-<div class="container form-row">
-      <!--Address-->
-      <div class="form-group">
-      <label for="address">Adresse</label>
-      <input
-      ngModel
-      name="address"
-      #addresse="ngModel"
-      id="address" type="text"
-      class="form-control">
-      </div>
-
-      <!--Complement dAdresse-->
-      <div class="form-group">
-      <label for="address">Complément d'Adresse</label>
-      <input
-      ngModel
-      name="adressComplement"
-      #adressComplement="ngModel"
-      id="adressComplement" type="text"
-      class="form-control">
-      </div>
-
-      <!--Code Postale-->
-      <div class="form-group">
-      <label for="zipCode">Code Postale</label>
-      <input
-      ngModel
-      name="zipCode"
-      #zipCode="ngModel"
-      id="zipCode" type="text"
-      class="form-control">
-      </div>
-</div>
-
-<div class="container form-row">
-        <!--nationality-->
-        <div class="form-group">
-          <label for="nationality">Nationalité</label>
-          <input
-            ngModel
-            name="nationality"
-            #nationality="ngModel"
-            id="nationality" type="text"
-            class="form-control">
-        </div>
-
-        <!--identityNumber-->
-        <div class="form-group">
-          <label for="identityNumber">Numéro Pièce d'Identité</label>
-          <input
-            ngModel
-            name="identityNumber"
-            #identityNumber="ngModel"
-            id="identityNumber" type="text"
-            class="form-control">
-        </div>
-
-        <!--socialNumber-->
-        <div class="form-group">
-          <label for="socialNumber">Numéro Sécurité Sociale</label>
-          <input
-            ngModel
-            name="socialNumber"
-            #socialNumber="ngModel"
-            id="socialNumber" type="text"
-            class="form-control">
-        </div>
-</div>
-
-
-<div class="container form-row">
-      <!--birthdayDate-->
-      <div class="form-group">
-      <label for="socialNumber">Date de Naissance</label>
-      <input
-      ngModel
-      name="socialNumber"
-      #socialNumber="ngModel"
-      id="socialNumber" type="date"
-      class="form-control">
-      </div>
-
-      <!--Ver com o ne: https://stackoverflow.com/questions/47521396/validate-if-age-is-over-18-years-old-with-angular-reactive-forms-->
-      <!--Age-->
-      <div class="form-group">
-      <label for="age">Age</label>
-      <input
-      ngModel
-      maxlength="2"
-      name="age"
-      #age="ngModel"
-      id="age" type="text"
-      class="form-control">
-      </div>
-</div>
-
-
-<div class="container form-row">
-    <!--iban-->
-    <div class="form-group">
-      <label for="age">IBAN</label>
-      <input
-        ngModel
-        name="iban"
-        #iban="ngModel"
-        id="iban" type="text"
+        [(ngModel)] = "employee.address"
+        name="address"
+        #addresse="ngModel"
+        id="address" type="text"
         class="form-control">
-    </div>
+        </div>
+
+        <!--Complement dAdresse-->
+        <div class="form-group">
+        <label for="addressComplement ">Complément d'Adresse</label>
+        <input
+        [(ngModel)] = "employee.addressComplement"
+        name="addressComplement"
+        #addressComplement="ngModel"
+        id="addressComplement" type="text"
+        class="form-control">
+        </div>
+
+        <!--Code Postale-->
+        <div class="form-group">
+        <label for="zipCode">Code Postale</label>
+        <input
+        [(ngModel)] = "employee.zipCode"
+        name="zipCode"
+        #zipCode="ngModel"
+        id="zipCode" type="text"
+        class="form-control">
+        </div>
+  </div>
 </div>
 
+  <h1>Identité</h1>
+  <div class="box">
+  <div class="container form-row">
+          <!--nationality-->
+          <div class="form-group">
+            <label for="nationality">Nationalité</label>
+            <input
+            [(ngModel)] = "employee.nationality"
+              name="nationality"
+              #nationality="ngModel"
+              id="nationality" type="text"
+              class="form-control">
+          </div>
 
-<div class="container form-row">
-      <!--typeContract-->
-      <div class="form-group">
-        <label for="age">Type Contrat</label>
-        <input
-          ngModel
-          name="typeContract"
-          #typeContract="ngModel"
-          id="typeContract" type="text"
-          class="form-control">
-      </div>
+          <!--identityNumber-->
+          <div class="form-group">
+            <label for="identityNumber">Numéro Pièce d'Identité</label>
+            <input
+              [(ngModel)] = "employee.identityNumber"
+              name="identityNumber"
+              #identityNumber="ngModel"
+              id="identityNumber" type="text"
+              class="form-control">
+          </div>
 
-      <!--joinDate-->
-      <div class="form-group">
-        <label for="joinDate">Date de Début</label>
-        <input
-          ngModel
-          name="joinDate"
-          #joinDate="ngModel"
-          id="joinDate" type="date"
-          class="form-control">
-      </div>
+          <!--socialNumber-->
+          <div class="form-group">
+            <label for="socialNumber">Numéro Sécurité Sociale</label>
+            <input
+            [(ngModel)] = "employee.socialNumber"
+              name="socialNumber"
+              #socialNumber="ngModel"
+              id="socialNumber" type="text"
+              class="form-control">
+          </div>
+  </div>
 
-      <!--hourlyPrice-->
-      <div class="form-group">
-        <label for="hourlyPrice">Prix de l'Heure</label>
+  <div class="container form-row">
+        <!--birthdayDate-->
+        <div class="form-group">
+        <label for="birthdayDate">Date de Naissance</label>
         <input
-          ngModel
-          name="hourlyPrice"
-          #hourlyPrice="ngModel"
-          id="hourlyPrice" type="text"
-          class="form-control">
-      </div>
+        [(ngModel)] = "employee.birthdayDate"
+        name="birthdayDate"
+        #birthdayDate="ngModel"
+        id="birthdayDate" type="date"
+        class="form-control">
+        </div>
+
+        <!--Ver com o ne: https://stackoverflow.com/questions/47521396/validate-if-age-is-over-18-years-old-with-angular-reactive-forms-->
+        <!--Age-->
+        <div class="form-group">
+        <label for="age">Age</label>
+        <input
+        [(ngModel)] = "employee.age"
+        maxlength="2"
+        name="age"
+        #age="ngModel"
+        id="age" type="text"
+        class="form-control">
+        </div>
+  </div>
 </div>
+  <h1>Iban</h1>
+  <div class="container form-row box">
+      <!--iban-->
+      <div class="form-group">
+        <label for="iban">IBAN</label>
+        <input
+        [(ngModel)] = "employee.iban"
+          name="iban"
+          #iban="ngModel"
+          id="iban" type="text"
+          class="form-control">
+      </div>
+  </div>
 
+  <h1>Informations contractuelles</h1>
+  <div class="container form-row box">
+        <!--typeContract-->
+        <div class="form-group">
+          <label for="typeContract">Type Contrat</label>
+          <input
+          [(ngModel)] = "employee.typeContract"
+            name="typeContract"
+            #typeContract="ngModel"
+            id="typeContract" type="text"
+            class="form-control">
+        </div>
 
-<button class="btn btn-primary" (click)="createEmployee()">Ajouter</button>
+        <!--joinDate-->
+        <div class="form-group">
+          <label for="joinDate">Date de Début</label>
+          <input
+          [(ngModel)] = "employee.joinDate"
+            name="joinDate"
+            #joinDate="ngModel"
+            id="joinDate" type="date"
+            class="form-control">
+        </div>
 
-</form>
+        <!--hourlyPrice-->
+        <div class="form-group">
+          <label for="hourlyPrice">Prix de l'Heure</label>
+          <input
+          [(ngModel)] = "employee.hourlyPrice"
+            name="hourlyPrice"
+            #hourlyPrice="ngModel"
+            id="hourlyPrice" type="text"
+            class="form-control">
+        </div>
+  </div>
 
+  <button class="btn btn-primary" (click)="createEmployee()">Ajouter</button>
+
+  </form>
+</div>
 

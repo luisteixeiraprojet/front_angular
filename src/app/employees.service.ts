@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-
-
 import { EMPLOYEES } from './mock-employees';
 import { Employee } from './employeeInterface';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
@@ -17,12 +14,6 @@ export class EmployeesService {
  employee:{};
   constructor(private http:HttpClient) { }
 
-  /* com mock
-  getAllEmployees():Observable<Employee[]> {
-    this.employees = EMPLOYEES;
-    return of(this.employees);
-  }*/
-
 //______________________________________________________
   getAllEmployees(){
    return this.http.get("http://luisteixeiraprojet.herokuapp.com/employees");
@@ -34,25 +25,27 @@ export class EmployeesService {
     return this.http.get("http://luisteixeiraprojet.herokuapp.com/employees/" + id);
   }
 
-
 //_______________________________________________________
-createEmployee(employeeObj){
+async createEmployee(employeeObj){
   console.log("funcao create ja no serviço chamada pelo componente com employeeObj " + JSON.stringify(employeeObj));
-
-  return this.http.post("http://luisteixeiraprojet.herokuapp.com/employees", employeeObj);
+  try {
+    const objectInfos =  await this.http.post("http://luisteixeiraprojet.herokuapp.com/employees/", employeeObj).toPromise();
+    console.log(objectInfos);
+    return objectInfos;
+  } catch (error) {
+    console.log(JSON.stringify(error));
+    console.log("error details: \n" + error.message + "\n" + error.error);
+  }
 }
-
 
 //_______________________________________________________
 
   deleteEmployee(id){
     return this.http.delete("http://luisteixeiraprojet.herokuapp.com/employees/" + id);
   }
+
 //http://luisteixeiraprojet.herokuapp.com/employees/" + id
 //http://localhost:3000
-
-
-
 
 
 }

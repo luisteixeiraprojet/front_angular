@@ -1,7 +1,7 @@
 <h1>Empregados getall</h1>
 <button (click)="goBack()" >Retour</button>
 
-<button [routerLink]="['/createEmployee']" >Ajouter Salarie</button>
+<button [routerLink]="['/createEmployee']" (click)="addButtonClick()" >Ajouter Salarie</button>
 
 <ul>
   <li *ngFor="let empl of employees">
