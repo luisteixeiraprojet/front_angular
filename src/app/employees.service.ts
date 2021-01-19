@@ -36,10 +36,10 @@ export class EmployeesService {
 
 
 //_______________________________________________________
-createEmployee(){
-  console.log("funcao create chamada no botao");
-  //console.log("dentro funçao employeeById em employees.service com id passado: " + id);
-  //return this.http.post("http://luisteixeiraprojet.herokuapp.com/employees");
+createEmployee(employeeObj){
+  console.log("funcao create ja no serviço chamada pelo componente com employeeObj " + JSON.stringify(employeeObj));
+
+  return this.http.post("http://luisteixeiraprojet.herokuapp.com/employees", employeeObj);
 }
 
 
