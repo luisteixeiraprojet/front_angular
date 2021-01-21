@@ -30,10 +30,8 @@ export class AllEmployeesComponent implements OnInit {
 //_______________________________________________
 
 addButtonClick(){
-  console.log("Button click");
   this.betweenComponents.removeEmployeeToUpdate();
 }
-
 
 //________________________________________________
   //button back

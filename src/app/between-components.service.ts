@@ -12,15 +12,17 @@ export class BetweenComponentsService {
 
   receiveEmployeeToUpdate(employeeObj){
     localStorage.setItem('currentEmployee', JSON.stringify(employeeObj));
-    console.log("dentro de receiveEmployee em between service");
+   // console.log("service: localstorage esta guardado o employee a editar " +JSON.stringify(employeeObj));
   }
 
   getEmployeeToUpdate(){
     const employee = localStorage.getItem('currentEmployee');
-    console.log("localstorage employee is" , JSON.parse(employee));
+    console.log("em getEmployee em between services, o employee é : " , employee);
+    console.log("em getEmployee em between services, o employee é e em JSON.parse fica: " , JSON.parse(employee));
     return JSON.parse(employee); //transform the string in an object
-
   }
+
+
 
   removeEmployeeToUpdate(){
     localStorage.removeItem('currentEmployee');

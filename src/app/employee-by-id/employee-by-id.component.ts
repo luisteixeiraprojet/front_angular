@@ -35,9 +35,9 @@ export class EmployeeByIdComponent implements OnInit {
   });
 
     //EBI: get the employee with that id
-    //this.selectedEmployee = await this.employeesService.getEmployeeById(this.idEmployee).toPromise();
-    this.employeesService.getEmployeeById(this.idEmployee).subscribe( resultGetEmplById=>{
+    this.employeesService.getEmployeeById(this.idEmployee).subscribe(resultGetEmplById=>{
       this.selectedEmployee = resultGetEmplById;
+      console.log("no back esta o selectedEmmployee ", this.selectedEmployee);
     })
   }//closes ngOnInit
 
@@ -50,15 +50,11 @@ export class EmployeeByIdComponent implements OnInit {
 
 //_______________________________________
   toUpdate(): void {
-    console.log("UPDATE: do componente para o servico");
-    this.router.navigate(['/formUpdate']);
+   console.log("UPDATE: do componente para o servico,/formUpdate/ " + this.idEmployee);
+    this.router.navigate(['/formUpdate/'+ this.idEmployee]);
     this.betweenComponents.receiveEmployeeToUpdate(this.selectedEmployee);
-
+    console.log("Do componente chama-se receiveEmployeeToUpdate do servico : " + this.selectedEmployee + " em string fica: " + JSON.stringify(this.selectedEmployee));
     }
-
-
-
-
 
 //________________________________________________
 //button back
