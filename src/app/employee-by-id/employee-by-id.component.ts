@@ -1,19 +1,23 @@
+import { ConfirmationDialogComponent } from './../confirmation-dialog/confirmation-dialog.component';
+
 import { Component, OnInit } from '@angular/core';
 
 //import Service
 import { EmployeesService } from './../employees.service';
 import { ActivatedRoute } from '@angular/router';
-import { promise } from 'protractor';
+
 import {Location} from '@angular/common';
-import { stringify } from '@angular/compiler/src/util';
+
 import { Router } from '@angular/router';
 import {BetweenComponentsService} from './../between-components.service';
+
 
 @Component({
   selector: 'app-employee-by-id',
   templateUrl: './employee-by-id.component.html',
   styleUrls: ['./employee-by-id.component.css']
 })
+
 export class EmployeeByIdComponent implements OnInit {
 
   //to the nav
@@ -22,7 +26,6 @@ export class EmployeeByIdComponent implements OnInit {
   //EBI: Employee BY id
   idEmployee;
   selectedEmployee;
-
 
   constructor(private employeesService : EmployeesService, private betweenComponents: BetweenComponentsService, private _Activatedroute:ActivatedRoute,private router: Router, private _location: Location) { }
 
@@ -42,10 +45,14 @@ export class EmployeeByIdComponent implements OnInit {
   }//closes ngOnInit
 
 //_______________________________________
-   toDelete(){
+
+toDelete(){
    this.employeesService.deleteEmployee(this.idEmployee).subscribe(result =>{
     console.log("todelete: " + JSON.stringify(result))
    });
+   setTimeout(() => {
+    this.router.navigate(['/employees']);
+}, 500);
   }
 
 //_______________________________________

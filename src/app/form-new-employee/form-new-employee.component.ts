@@ -60,14 +60,15 @@ export class FormNewEmployeeComponent implements OnInit {
     this.employee.nationality = this.employeeObject.nationality;
     this.employee.identityNumber = this.employeeObject.identityNumber;
     this.employee.socialNumber = this.employeeObject.socialNumber;
-    this.employee.birthdayDate = this.employeeObject.birthdayDate;
+    this.employee.birthdayDate = this.employeeObject.birthdayDate.split("T")[0];
     this.employee.age = this.employeeObject.age;
     this.employee.iban = this.employeeObject.iban;
     this.employee.typeContract = this.employeeObject.typeContract;
-    this.employee.joinDate = this.employeeObject.joinDate;
+    this.employee.joinDate = this.employeeObject.joinDate.split("T")[0];
     this.employee.hourlyPrice = this.employeeObject.hourlyPrice;
 
    console.log("FORM NEW EMPLOYEE LINHA 52: ficando igual ao getEmployee to update " + this.employee.firstName + " e o do get e " + this.employeeObject.firstName);
+  console.log("a data nascimento : " + this.employee.birthdayDate + "data de joindate: " + this.employee.joinDate );
   }
   }//closes ng
 

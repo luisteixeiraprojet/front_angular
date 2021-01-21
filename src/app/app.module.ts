@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -11,8 +9,18 @@ import { FooterComponent } from './footer/footer.component';
 import { EmployeeByIdComponent } from './employee-by-id/employee-by-id.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormNewEmployeeComponent } from './form-new-employee/form-new-employee.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgModule } from '@angular/core';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModalComponent as ModalComponent } from './modal/modal.component';
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -22,17 +30,23 @@ import { NgModule } from '@angular/core';
     AllEmployeesComponent,
     FooterComponent,
     EmployeeByIdComponent,
-    FormNewEmployeeComponent
+    FormNewEmployeeComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule, //always after BrowserModule
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule
   ],
 
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ModalComponent]
+
 })
 export class AppModule { }

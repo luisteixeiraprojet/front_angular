@@ -31,17 +31,14 @@ async createEmployee(employeeObj){
 
   try {
     const objectInfos =  await this.http.post("http://luisteixeiraprojet.herokuapp.com/employees/", employeeObj).toPromise();
-
     return objectInfos;
   } catch (error) {
     console.log(JSON.stringify(error));
     console.log("error details: \n" + error.message + "\n" + error.error);
   }
-
 }
 
 //_______________________________________________________
-
 updateEmployee(id, obj){
   try {
   //  console.log("UPDATE: Employee.service dentro da funçao updateEmployee com o id e o obj a passar ao heroku", id, JSON.stringify(obj));
@@ -54,8 +51,6 @@ updateEmployee(id, obj){
     console.log(JSON.stringify(error));
     console.log("error details: \n" + error.message + "\n" + error.error);
   }
-
-
 }
 
 

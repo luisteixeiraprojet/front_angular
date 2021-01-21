@@ -6,9 +6,7 @@
 <ul>
   <li *ngFor="let empl of employees">
     <a [routerLink]="['/employees', empl.Id_employee]">
-      <span> {{empl.firstName}},{{empl.lastName}},{{empl.mobilePhone}}</span>
-       <span> {{empl.lastName}}, </span>
-       <span> {{empl.mobilePhone}}</span>
+      <span> {{empl.firstName}}, {{empl.lastName}}, {{empl.mobilePhone}}</span>
     </a>
   </li>
 

@@ -1,7 +1,9 @@
 .form-control.ng-touched.ng-invalid{
   border: 2px solid red
 }
-
+.invalid{
+  border: 2px solid red
+}
 .box{
   border: 2px solid green;
 }
