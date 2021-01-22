@@ -17,6 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent as ModalComponent } from './modal/modal.component';
 
+import { MatDialogRef} from '@angular/material/dialog';
+
 
 
 
@@ -44,7 +46,14 @@ import { ModalComponent as ModalComponent } from './modal/modal.component';
     MatDialogModule
   ],
 
-  providers: [],
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    },
+
+
+  ],
   bootstrap: [AppComponent],
   entryComponents: [ModalComponent]
 

@@ -63,14 +63,39 @@
   </li>
 </ul>
 
-<div [ngbNavOutlet]="nav" class="mt-2"></div>
 
-<button (click)="toUpdate()"> Editer </button>
-<button (click)="toUpdate()"> supprimer/open modal </button>
+
+
+
+
+<!--
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+<button (click)="openModal()"> supprimer/open modal </button>
+<button (click)="actionFunction()"> supprimer/open modal </button>
+
+
+<main id="logout-button-holder">
+  <button mat-raised-button id="logout-button" (click)="openModal()">Logout</button>
+</main>
+
+
+<div id="modal-content-wrapper">
+  <header id="modal-header">
+      <h1 id="modal-title">Are you sure you want to logout?</h1>
+  </header>
+  <section id="modal-body">
+      <p>If you logout bad things might happen, but don't mind me, I'm just the description in a modal...</p>
+  </section>
+  <footer id="modal-footer">
+      <button mat-raised-button id="modal-action-button" (click)="actionFunction()">Logout</button>
+      <button mat-raised-button id="modal-cancel-button" (click)="closeModal()">Go back</button>
+  </footer>
+</div> -->
 
 </div>
 <div class="container">
 <button (click)="toDelete()">Supprimer</button>
+<button (click)="toUpdate()"> Editer </button>
 </div>
 </div>
 
