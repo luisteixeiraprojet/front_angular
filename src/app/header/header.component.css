@@ -9,20 +9,32 @@
   background-color:#A2BD99;
   border: 3px solid #6EAF59;
   height:10em;
-  margin-top:5em;;
+  margin-top:5em;
+  border-top-left-radius: 2em;
+  border-top-right-radius: 2em;
+
 }
 
 .div_red{
-  border: 10px solid red;q
-  position:absolute; 
-  bottom:0;
 
+  margin-top: 2.5em;
 }
 
 .div_orange{
-  border: 10px solid orange;
+
 }
 
 .div_yellow{
-  border: 10px solid yellow;
+
+}
+
+.info-btn{
+  float:right;
+  background-color:#6EAF59 ;
+  color: #FFFFFF;
+}
+
+.userN{
+  color: #FFFFFF;
+  margin-left: 5em;
 }
