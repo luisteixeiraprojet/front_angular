@@ -62,14 +62,11 @@
     </ng-template>
   </li>
 </ul>
-
-
-
-
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
 
 
 <!--
-  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
 <button (click)="openModal()"> supprimer/open modal </button>
 <button (click)="actionFunction()"> supprimer/open modal </button>
 
@@ -93,10 +90,14 @@
 </div> -->
 
 </div>
+
+
 <div class="container">
 <button (click)="toDelete()">Supprimer</button>
 <button (click)="toUpdate()"> Editer </button>
 </div>
+
+
 </div>
 
 

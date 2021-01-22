@@ -1,10 +1,28 @@
 /* para centrar o div container dentro do header tem de se fazer display+justify+align */
 .baseHeader{
-  background-color: hsl(130, 93%, 32%);
-  height: 150px;
+  background-color: #6EAF59;
+  border: 0.05em solid #707070;
+  height: 10em;
 }
 
 .upHeader{
-  background-color: greenyellow;
-  margin-top:20px;
+  background-color:#A2BD99;
+  border: 3px solid #6EAF59;
+  height:10em;
+  margin-top:5em;;
+}
+
+.div_red{
+  border: 10px solid red;q
+  position:absolute; 
+  bottom:0;
+
+}
+
+.div_orange{
+  border: 10px solid orange;
+}
+
+.div_yellow{
+  border: 10px solid yellow;
 }
