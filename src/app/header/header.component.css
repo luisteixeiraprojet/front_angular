@@ -16,25 +16,24 @@
 }
 
 .div_red{
-
-  margin-top: 2.5em;
+  margin-top: 4em;
 }
 
-.div_orange{
 
-}
-
-.div_yellow{
-
-}
 
 .info-btn{
   float:right;
   background-color:#6EAF59 ;
   color: #FFFFFF;
+  width:10em;
+  height:2em;
+  text-align:center;
+  font-size:1.1em;
+  border-radius:0.5em;
 }
 
 .userN{
   color: #FFFFFF;
-  margin-left: 5em;
+  margin-left: 19em;
+
 }
