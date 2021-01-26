@@ -1,22 +1,22 @@
-<h1>Empregados getall</h1>
 
 <div class=" div_red container">
 
   <div class="row div_black">
-  <div class= "div_orange col-md-2">
+  <div class= "div_orange col-12 col-md-2">
   <button class="button mt-1" (click)="goBack()"> Retour <br /> au <br /> Menu </button>
-  <button  class="button" [routerLink]="['/createEmployee']" (click)="addButtonClick()"> Ajouter  <br /> un  <br /> Salarie</button>
+  <button  class="button mt-3" [routerLink]="['/createEmployee']" (click)="addButtonClick()"> Ajouter  <br /> un  <br /> Salarie</button>
 </div>
 
-<div class="div_yellow col-md-10">
+<div class="div_yellow col-12 col-md-10">
   <ul>
-    <li class="eachEmployee" *ngFor="let empl of employees" [routerLink]="['/employees', empl.Id_employee]">
-
-        <span> Prénom: {{empl.firstName}} Nom: {{empl.lastName}}, Portable: {{empl.mobilePhone}}</span>
-
+    <li class="eachEmployee d-flex justify-content-around flex-column flex-md-row " *ngFor="let empl of employees" [routerLink]="['/employees', empl.Id_employee]">
+        <span> Prénom: {{empl.firstName}} </span>
+        <span> Nom: {{empl.lastName}} </span>
+        <span> Portable: {{empl.mobilePhone}}</span>
     </li>
   </ul>
 </div>
 </div>
 
 </div>
+

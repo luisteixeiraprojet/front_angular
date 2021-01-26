@@ -3,37 +3,66 @@
   background-color: #6EAF59;
   border: 0.05em solid #707070;
   height: 10em;
+  margin-bottom:3em;
+}
+
+.logo{
+  height: 8em;
 }
 
 .upHeader{
   background-color:#A2BD99;
   border: 3px solid #6EAF59;
-  height:10em;
-  margin-top:5em;
-  border-top-left-radius: 2em;
-  border-top-right-radius: 2em;
-
-}
-
-.div_red{
-  margin-top: 4em;
+  height:9em;
+  margin-top:-10em;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
 }
 
 
-
+/*phone*/
 .info-btn{
-  float:right;
-  background-color:#6EAF59 ;
+  background-color: #6EAF59;
   color: #FFFFFF;
-  width:10em;
   height:2em;
-  text-align:center;
-  font-size:1.1em;
-  border-radius:0.5em;
+  border-radius:0.3em;
+  margin:0;
+}
+
+.info-btn:hover{
+  background-color:  #FFFFFF;
+  color: #6EAF59;
+  border-color: #6EAF59;
 }
 
 .userN{
   color: #FFFFFF;
-  margin-left: 19em;
+  text-align: right;
+  float:right;
+}
+
+/*mudar header p tlm
+
+barra horizontal em cima com botoes profil e deconnexion + retour e ajouert os
+dois numa row e mais pequenos*/
+
+/*Change header to small devices */
+@media (max-width: 768px) {
+  .baseHeader{
+    display:none;
+  }
+
+  .upHeader{
+    margin:0;
+    max-width: 100%;
+  }
+  .info-btn{
+    height: 3em;
+  }
+  .userN{
+    display:none;
+  }
+
+
 
 }

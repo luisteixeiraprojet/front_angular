@@ -1,10 +1,7 @@
 footer{
-
   bottom: 0;
-
-  background-color: hsl(130, 93%, 32%);;
-  height: 150px;
-
-
+  background-color: #6EAF59;
+  height: 8em;
+  margin-top:1em;
 }
 
