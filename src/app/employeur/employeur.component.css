@@ -12,7 +12,7 @@
 .btn:hover{
   background-color:#6faf59;
   color: white;
-  box-shadow: 0 12px 16px 0 #631f5a7c;
+  box-shadow: -5px 12px 19px 0px #631f5a7c;
   transition:0.5s;
 }
 

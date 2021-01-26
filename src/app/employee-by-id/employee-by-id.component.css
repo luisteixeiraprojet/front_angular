@@ -1,0 +1,29 @@
+button{
+  height: 3em;
+  margin-bottom: 0.5em;
+}
+
+a{
+  color:  #6EAF59;
+}
+
+.nav-link.active{
+  color: #3f6832;
+  background-color:#A2BD99;
+  border-color: #6EAF59;
+}
+
+.nav-tabs .nav-link{
+  border: 1px solid #6EAF59;
+}
+
+.nav-tabs{
+  border-bottom: 1px solid #6EAF59;
+  margin-bottom: 2.5em;
+
+}
+
+p{
+  margin-bottom: 1em;
+
+}

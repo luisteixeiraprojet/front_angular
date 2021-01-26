@@ -22,17 +22,9 @@
 
 /*phone*/
 .info-btn{
-  background-color: #6EAF59;
-  color: #FFFFFF;
   height:2em;
   border-radius:0.3em;
   margin:0;
-}
-
-.info-btn:hover{
-  background-color:  #FFFFFF;
-  color: #6EAF59;
-  border-color: #6EAF59;
 }
 
 .userN{

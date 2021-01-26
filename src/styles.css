@@ -11,3 +11,12 @@ button{
   font-size:1.1em;
   border-radius:0.5em;
 }
+
+button:hover{
+    background-color:  #ebfae6;
+    color: #6EAF59;
+    border-color: #6EAF59;
+    box-shadow: 0 6px 8px 0 #631f5a7c;
+    transition: 0.5s;
+
+}
