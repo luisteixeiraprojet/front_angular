@@ -1,21 +1,35 @@
 .form-control.ng-touched.ng-invalid{
-  border: 2px solid red;
+  border: 2px solid  #631f5a7c;
 }
+
 .invalid{
-  border: 2px solid red;
-}
-.box{
-  border: 2px solid green;
+  border: 3px solid  #631f5a7c;
 }
 
 .title{
   font-size:2em;
   color:#6EAF59;
-  margin:1em;
-
+  margin:0.5em;
 }
 
 .form-items{
   margin-top:1em;
+}
 
+.firstButton{
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+.row{
+  margin-bottom: 2.5em ;
+}
+
+
+/*buttons*/
+@media (max-width: 768px) {
+  .firstButton{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 }

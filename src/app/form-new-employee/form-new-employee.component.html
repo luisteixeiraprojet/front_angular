@@ -1,15 +1,34 @@
 <div class="container">
-  <form name="createEmployeeForm">
-    <!--Ver na net este link p submissao de forms: https://www.sitepoint.com/angular-forms/-->
-    <div class=" title d-flex justify-content-center">
-      <hr class="  w-25 mt-2 mr-2" />
-      Coordonnées
-      <hr class="w-25 mt-2 ml-2" />
+  <div class="d-flex flex-column flex-md-row">
+    <div class="d-flex flex-row flex-md-column col-12 col-md-2">
+      <button [routerLink]="['/']" class="firstButton">
+        Retour <br />
+        au <br />
+        Menu
+      </button>
+      <button
+        [routerLink]="['/employees']">
+        Retour <br />
+        à la <br />
+        Liste
+      </button>
     </div>
 
-        <div class="d-flex flex-column flex-md-row ">
+    <div class="box col-12 col-md-10">
+      <form
+        #createEmployeeForm="ngForm"
+        (ngSubmit)="submitOnClick(createEmployeeForm.form)">
+
+        <!--Ver na net este link p submissao de forms: https://www.sitepoint.com/angular-forms/-->
+        <div class="title d-flex justify-content-center">
+          <hr class="w-25 mt-2 mr-2" />
+          Coordonnées
+          <hr class="w-25 mt-2 ml-2" />
+        </div>
+
+        <div class="row">
           <!--PRENOM-->
-          <div class="form-items col-12 col-md-4 ">
+          <div class="form-items col-12 col-md-6">
             <label for="firstName">Prénom</label>
             <input
               required
@@ -19,13 +38,13 @@
               #firstName="ngModel"
               id="firstName"
               type="text"
-              class="form-control"
+              class="form-control" [disabled]="isSubmiting"
               [ngClass]="{ invalid: firstName.invalid }"
             />
           </div>
 
           <!--NOM-->
-          <div class=" form-items col-12 col-md-4 ">
+          <div class="form-items col-12 col-md-6">
             <label for="lastName">Nom</label>
             <input
               required
@@ -35,13 +54,13 @@
               #lastName="ngModel"
               id="lastName"
               type="text"
-              class="form-control"
+              class="form-control" [disabled]="isSubmiting"
               [ngClass]="{ invalid: lastName.invalid }"
             />
           </div>
 
           <!--Num Téléphone-->
-          <div class="form-items col-12 col-md-4 ">
+          <div class="form-items col-12 col-md-4">
             <label for="mobilePhone">Portable</label>
             <input
               required
@@ -50,51 +69,47 @@
               name="mobilePhone"
               #mobilePhone="ngModel"
               id="mobilePhone"
-              type="text"
-              class="form-control"
+              type="tel"
+              class="form-control" [disabled]="isSubmiting"
               [ngClass]="{ invalid: mobilePhone.invalid }"
             />
           </div>
-        </div>
 
-
-        <div class="d-flex flex-column flex-md-row " >
-        <!-- Téléphone Fixe-->
-        <div class="form-items col-12 col-md-4 ">
-          <label for="homePhone">Téléphone Fixe</label>
-          <input
-            [(ngModel)]="employee.homePhone"
-            name="homePhone"
-            #homePhone="ngModel"
-            id="homePhone"
-            type="text"
-            class="form-control"
-          />
-        </div>
-
-          <!-- Email-->
-          <div class="form-items col-12 col-md-4 ">
-            <label for="email">Addresse mail</label>
+           <!-- Email-->
+           <div class="form-items col-12 col-md-4">
+            <label for="email">Adresse Mail</label>
             <input
+              required
               [(ngModel)]="employee.email"
               name="email"
               #email="ngModel"
               id="email"
               type="email"
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-              class="form-control"
+              class="form-control" [disabled]="isSubmiting"
+              [ngClass]="{ invalid: email.invalid }"
             />
             <div class="alert alert-danger" *ngIf="email.errors?.pattern">
               L'adresse mail n'est pas valide.
             </div>
           </div>
-        </div>
+
+          <!-- Téléphone Fixe-->
+          <div class="form-items col-12 col-md-4">
+            <label for="homePhone">Téléphone Fixe</label>
+            <input
+              [(ngModel)]="employee.homePhone"
+              name="homePhone"
+              #homePhone="ngModel"
+              id="homePhone"
+              type="text"
+              class="form-control" [disabled]="isSubmiting"
+            />
+          </div>
 
 
-        <div class="d-flex flex-column flex-md-row  mb-5" >
-        <!--Address-->
-
-          <div class="form-items col-12 col-md-5 ">
+          <!--Address-->
+          <div class="form-items col-12 col-md-12">
             <label for="address">Adresse</label>
             <input
               [(ngModel)]="employee.address"
@@ -102,12 +117,12 @@
               #addresse="ngModel"
               id="address"
               type="text"
-              class="form-control"
+              class="form-control" [disabled]="isSubmiting"
             />
           </div>
 
           <!--Complement dAdresse-->
-          <div class="form-items col-12 col-md-4 ">
+          <div class="form-items col-12 col-md-6">
             <label for="addressComplement ">Complément d'Adresse</label>
             <input
               [(ngModel)]="employee.addressComplement"
@@ -115,12 +130,12 @@
               #addressComplement="ngModel"
               id="addressComplement"
               type="text"
-              class="form-control"
+              class="form-control" [disabled]="isSubmiting"
             />
           </div>
 
           <!--Code Postale-->
-          <div class="form-items col-12 col-md-3 ">
+          <div class="form-items col-12 col-md-6">
             <label for="zipCode">Code Postale</label>
             <input
               [(ngModel)]="employee.zipCode"
@@ -128,145 +143,141 @@
               #zipCode="ngModel"
               id="zipCode"
               type="text"
-              class="form-control"
+              class="form-control" [disabled]="isSubmiting"
+            />
+          </div>
+        </div>
+
+        <div class="title d-flex justify-content-center">
+          <hr class="w-25 mt-2 mr-2" />
+          Identité
+          <hr class="w-25 mt-2 ml-2" />
+        </div>
+
+        <div class="row">
+          <!--nationality-->
+          <div class="form-items col-12 col-md-6">
+            <label for="nationality">Nationalité</label>
+            <input
+              [(ngModel)]="employee.nationality"
+              name="nationality"
+              #nationality="ngModel"
+              id="nationality"
+              type="text"
+              class="form-control" [disabled]="isSubmiting"
             />
           </div>
 
+          <!--identityNumber-->
+          <div class="form-items col-12 col-md-6">
+            <label for="identityNumber">Numéro Pièce d'Identité</label>
+            <input
+              [(ngModel)]="employee.identityNumber"
+              name="identityNumber"
+              #identityNumber="ngModel"
+              id="identityNumber"
+              type="text"
+              class="form-control" [disabled]="isSubmiting"
+            />
+          </div>
+
+          <!--socialNumber-->
+          <div class="form-items col-12 col-md-6">
+            <label for="socialNumber">Numéro Sécurité Sociale</label>
+            <input
+              [(ngModel)]="employee.socialNumber"
+              name="socialNumber"
+              #socialNumber="ngModel"
+              id="socialNumber"
+              type="text"
+              class="form-control" [disabled]="isSubmiting"
+            />
+          </div>
+
+          <!--birthdayDate-->
+          <div class="form-items col-12 col-md-6">
+            <label for="birthdayDate">Date de Naissance</label>
+            <input
+              [(ngModel)]="employee.birthdayDate"
+              name="birthdayDate"
+              #birthdayDate="ngModel"
+              id="birthdayDate"
+              type="date"
+              class="form-control" [disabled]="isSubmiting"
+            />
+          </div>
         </div>
 
 
+        <div class="title d-flex justify-content-center">
+          <hr class="w-25 mt-2 mr-2" />
+          Contrat
+          <hr class="w-25 mt-2 ml-2" />
+        </div>
+        <div class="row">
+          <!--typeContract-->
+          <div class="form-items col-6 col-md-4">
+            <label for="typeContract">Type Contrat</label>
+            <input
+              [(ngModel)]="employee.typeContract"
+              name="typeContract"
+              #typeContract="ngModel"
+              id="typeContract"
+              type="text"
+              class="form-control" [disabled]="isSubmiting"
+            />
+          </div>
 
-      <div class=" title d-flex justify-content-center">
-        <hr class=" w-25 mt-2 mr-2" />
-        Identité
-        <hr class="w-25 mt-2 ml-2" />
-      </div>
 
-      <div class="d-flex flex-column flex-md-row  mb-3">
-        <!--nationality-->
-        <div class="form-items col-12 col-md-4 ">
-          <label for="nationality">Nationalité</label>
-          <input
-            [(ngModel)]="employee.nationality"
-            name="nationality"
-            #nationality="ngModel"
-            id="nationality"
-            type="text"
-            class="form-control"
-          />
+          <!--hourlyPrice-->
+          <div class="form-items col-6 col-md-4">
+            <label for="hourlyPrice">Prix de l'Heure</label>
+            <input
+              [(ngModel)]="employee.hourlyPrice"
+              name="hourlyPrice"
+              #hourlyPrice="ngModel"
+              id="hourlyPrice"
+              type="number"
+              class="form-control" [disabled]="isSubmiting"
+            />
+          </div>
+
+          <!--joinDate-->
+          <div class="form-items col-12 col-md-4">
+            <label for="joinDate">Date de Début</label>
+            <input
+              [(ngModel)]="employee.joinDate"
+              name="joinDate"
+              #joinDate="ngModel"
+              id="joinDate"
+              type="date"
+              class="form-control" [disabled]="isSubmiting"
+            />
+          </div>
+          <!--| date:"MM/dd/yyyy'-->
+
+
+             <!--iban-->
+             <div class="form-items col-12">
+              <label for="iban">IBAN</label>
+              <input
+                [(ngModel)]="employee.iban"
+                name="iban"
+                #iban="ngModel"
+                id="iban"
+                type="text"
+                class="form-control" [disabled]="isSubmiting"
+              />
+            </div>
         </div>
 
-        <!--identityNumber-->
-        <div class="form-items col-12 col-md-4 ">
-          <label for="identityNumber">Numéro Pièce d'Identité</label>
-          <input
-            [(ngModel)]="employee.identityNumber"
-            name="identityNumber"
-            #identityNumber="ngModel"
-            id="identityNumber"
-            type="text"
-            class="form-control"
-          />
-        </div>
-
-        <!--socialNumber-->
-        <div class="form-items col-12 col-md-4 ">
-          <label for="socialNumber">Numéro Sécurité Sociale</label>
-          <input
-            [(ngModel)]="employee.socialNumber"
-            name="socialNumber"
-            #socialNumber="ngModel"
-            id="socialNumber"
-            type="text"
-            class="form-control"
-          />
-        </div>
-      </div>
-
-      <div class="d-flex flex-column flex-md-row  mb-5">
-        <!--birthdayDate-->
-        <div class="form-items col-6 col-md-4 ">
-          <label for="birthdayDate">Date de Naissance</label>
-          <input
-            [(ngModel)]="employee.birthdayDate"
-            name="birthdayDate"
-            #birthdayDate="ngModel"
-            id="birthdayDate"
-            type="date"
-            class="form-control"
-          />
-        </div>
-      </div>
-
-
-      <div class=" title d-flex justify-content-center">
-        <hr class="  w-25 mt-2 mr-2" />
-        Iban
-        <hr class="w-25 mt-2 ml-2" />
-      </div>
-    <div class="d-flex flex-column flex-md-row  mb-5">
-      <!--iban-->
-      <div class="form-items col-12 col-md-6">
-        <label for="iban">IBAN</label>
-        <input
-          [(ngModel)]="employee.iban"
-          name="iban"
-          #iban="ngModel"
-          id="iban"
-          type="text"
-          class="form-control"
-        />
-      </div>
+        <input type="submit" value="submit" [disabled]="isSubmiting"/>
+      </form>
     </div>
-
-    <div class=" title d-flex  justify-content-center">
-      <hr class="  w-25 mt-2 mr-2" />
-      Contrat
-      <hr class="w-25 mt-2 ml-2" />
-    </div>
-    <div class="d-flex flex-column flex-md-row  mb-5">
-      <!--typeContract-->
-      <div class="form-items col-6 col-md-4  ">
-        <label for="typeContract">Type Contrat</label>
-        <input
-          [(ngModel)]="employee.typeContract"
-          name="typeContract"
-          #typeContract="ngModel"
-          id="typeContract"
-          type="text"
-          class="form-control"
-        />
-      </div>
-
-      <!--joinDate-->
-      <div class="form-items col-6 col-md-4 ">
-        <label for="joinDate">Date de Début</label>
-        <input
-          [(ngModel)]="employee.joinDate"
-          name="joinDate"
-          #joinDate="ngModel"
-          id="joinDate"
-          type="date"
-          class="form-control"
-        />
-      </div>
-      <!--| date:"MM/dd/yyyy'-->
-      <!--hourlyPrice-->
-      <div class="form-items col-6 col-md-4  ">
-        <label for="hourlyPrice">Prix de l'Heure</label>
-        <input
-          [(ngModel)]="employee.hourlyPrice"
-          name="hourlyPrice"
-          #hourlyPrice="ngModel"
-          id="hourlyPrice"
-          type="text"
-          class="form-control"
-        />
-      </div>
-    </div>
-
-    <button type="submit" class="btn btn-primary" (click)="createOrUpdate()">
-      Enregistrer
-    </button>
-  </form>
+  </div>
 </div>
+
+<!--
+    <button type="submit" class="btn btn-primary"(click)="createOrUpdate()" >
+      Enregistrer
+  </button>-->

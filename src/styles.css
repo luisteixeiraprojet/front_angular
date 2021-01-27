@@ -2,6 +2,12 @@
 
 html, body { height: 100%;  background:#ebfae6; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-body,
+.mat-body-1,
+.mat-typography {
+  font: 400 16px/20px Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: normal;
+}
 button{
   background-color:#6EAF59 ;
   color: #FFFFFF;
@@ -18,5 +24,26 @@ button:hover{
     border-color: #6EAF59;
     box-shadow: 0 6px 8px 0 #631f5a7c;
     transition: 0.5s;
+}
+
+.box{
+  border: 3.5px solid #6EAF59;
+  border-radius:0.5em;
+  padding: 2em;
+  margin-left:0;
+  margin-right: 0;
+  margin-bottom: 0.5em;
+  background-color:#fff;
+}
+
+hr{
+  border:1px solid #6EAF59;
+  border-radius: 0.5em;
+  opacity: 1;
+}
+
+.form-control{
+  border:1px solid #6EAF59 ;
+  border-radius: 0.5em ;
 
 }
