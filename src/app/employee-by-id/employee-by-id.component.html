@@ -3,9 +3,10 @@
   <div class="d-flex flex-column flex-md-row">
   <div class="d-flex flex-row flex-md-column col-12 col-md-2 ">
 
-    <button (click)="goBack()">Retour</button>
-    <button (click)="toDelete()">Supprimer</button>
+    <button  [routerLink]="['/employees']">Retour</button>
     <button (click)="toUpdate()">Editer</button>
+    <button (click)="toDelete()">Supprimer</button>
+
   </div>
 
   <div class="col-12 col-md-10">
@@ -17,7 +18,7 @@
       class="nav-tabs"
     >
       <li [ngbNavItem]="1" [destroyOnHide]="true">
-        <a ngbNavLink>Coordonées</a>
+        <a class="categories" ngbNavLink>Coordonées</a>
         <ng-template ngbNavContent>
           <!--
           <ngb-alert [dismissible]="false" class="d-block mt-3" type="danger">
@@ -37,17 +38,17 @@
         </ng-template>
       </li>
       <li [ngbNavItem]="2">
-        <a ngbNavLink>Identité</a>
+        <a class="categories" ngbNavLink>Identité</a>
         <ng-template ngbNavContent>
           <p>Pièce d'Identité n°: {{ selectedEmployee.identityNumber }}</p>
           <p>Nacionalité: {{ selectedEmployee.nationality }}</p>
           <p>Numéro Sécurité Sociale: {{ selectedEmployee.socialNumber }}</p>
           <p>Date de Naissance: {{ selectedEmployee.birthdayDate }}</p>
-          <p>Age: {{ selectedEmployee.age }}</p>
+
         </ng-template>
       </li>
       <li [ngbNavItem]="3">
-        <a ngbNavLink>Contrat</a>
+        <a class="categories" ngbNavLink>Contrat</a>
         <ng-template ngbNavContent let-active>
 
 
@@ -58,7 +59,7 @@
       </li>
 
       <li [ngbNavItem]="4">
-        <a ngbNavLink>Compta</a>
+        <a class="categories" ngbNavLink>Compta</a>
         <ng-template ngbNavContent let-active>
           <p>IBAN:{{ selectedEmployee.homePhone }}</p>
         </ng-template>

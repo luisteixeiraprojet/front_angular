@@ -55,7 +55,7 @@ toDelete(){
       });
       setTimeout(() => {
       this.router.navigate(['/employees']);
-      }, 500);
+      },1000);
   }
 }
 
@@ -67,10 +67,6 @@ toDelete(){
     console.log("Do componente chama-se receiveEmployeeToUpdate do servico : " + this.selectedEmployee + " em string fica: " + JSON.stringify(this.selectedEmployee));
     }
 
-//________________________________________________
-//button back
-  goBack(){
-    this._location.back();
-  }
+
 
 }//closes classe

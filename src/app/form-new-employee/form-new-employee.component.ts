@@ -33,7 +33,6 @@ export class FormNewEmployeeComponent implements OnInit {
     identityNumber:"",
     socialNumber:"",
     birthdayDate:"",
-    age:"",
     iban:"",
     typeContract:"",
     joinDate:"",
@@ -61,7 +60,6 @@ export class FormNewEmployeeComponent implements OnInit {
     this.employee.identityNumber = this.employeeObject.identityNumber;
     this.employee.socialNumber = this.employeeObject.socialNumber;
     this.employee.birthdayDate = this.employeeObject.birthdayDate.split("T")[0];
-    this.employee.age = this.employeeObject.age;
     this.employee.iban = this.employeeObject.iban;
     this.employee.typeContract = this.employeeObject.typeContract;
     this.employee.joinDate = this.employeeObject.joinDate.split("T")[0];

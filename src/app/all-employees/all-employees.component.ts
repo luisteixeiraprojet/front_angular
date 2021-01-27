@@ -33,11 +33,7 @@ addButtonClick(){
   this.betweenComponents.removeEmployeeToUpdate();
 }
 
-//________________________________________________
-  //button back
-  goBack(){
-    this._location.back();
-  }
+
 
 }; //closes class
 
