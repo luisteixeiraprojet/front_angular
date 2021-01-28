@@ -3,19 +3,19 @@
   <div class="d-flex flex-column flex-md-row">
   <div class="d-flex flex-row flex-md-column col-12 col-md-2 ">
 
-    <button  [routerLink]="['/employees']">Retour</button>
-    <button (click)="toUpdate()">Editer</button>
+    <button class="buttonMenu" [routerLink]="['/employees']">Retour</button>
+    <button class="buttonMenu" (click)="toUpdate()">Editer</button>
     <button (click)="toDelete()">Supprimer</button>
 
   </div>
 
-  <div class="col-12 col-md-10">
+  <div class=" col-12 col-md-10">
     <ul
       ngbNav
       #nav="ngbNav"
       [(activeId)]="active"
       [destroyOnHide]="false"
-      class="nav-tabs"
+      class="nav-tabs col-6 col-md-10"
     >
       <li [ngbNavItem]="1" [destroyOnHide]="true">
         <a class="categories" ngbNavLink>Coordonées</a>

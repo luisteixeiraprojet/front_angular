@@ -36,5 +36,11 @@ p{
   margin-bottom: 1em;
 }
 
+/*buttons*/
+@media (max-width: 768px) {
+  .buttonMenu{
+    margin-right: 0.2em;
+  }
 
+}
 

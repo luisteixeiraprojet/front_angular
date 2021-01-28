@@ -25,11 +25,14 @@
   margin-bottom: 2.5em ;
 }
 
-
 /*buttons*/
 @media (max-width: 768px) {
   .firstButton{
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 0em;
+    margin-right: 1em;
+  }
+  .box{
+    margin-top: 1em;
   }
 }
