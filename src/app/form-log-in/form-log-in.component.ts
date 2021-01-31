@@ -28,9 +28,9 @@ export class FormLogInComponent implements OnInit {
       (res: any) => {
         if (res.status) {
           console.log(" o res é ", res);
-
+        }
+      });
   }
-
 
   logout() {
    console.log("clic no logOut");
@@ -38,5 +38,5 @@ export class FormLogInComponent implements OnInit {
 
 
 
-}
+}//closes class
 

@@ -37,22 +37,18 @@ export class EmployeeByIdComponent implements OnInit {
   });
 
     //EBI: get the employee with that id
-    this.employeesService.getEmployeeById(this.idEmployee).subscribe(resultGetEmplById=>{
-      this.selectedEmployee = resultGetEmplById;
+    this.selectedEmployee = await this.employeesService.getEmployeeById(this.idEmployee);
       console.log("no back esta o selectedEmmployee ", this.selectedEmployee);
-    })
   }//closes ngOnInit
 
 //_______________________________________
 
-toDelete(){
+async toDelete(){
   let bool;
     bool = confirm("delete?");
     console.log(bool);
     if(bool == true){
-      this.employeesService.deleteEmployee(this.idEmployee).subscribe(result =>{
-      console.log("todelete: " + JSON.stringify(result))
-      });
+     await this.employeesService.deleteEmployee(this.idEmployee)
       setTimeout(() => {
       this.router.navigate(['/employees']);
       },1000);

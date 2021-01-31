@@ -20,13 +20,14 @@ export class AllEmployeesComponent implements OnInit {
 
   constructor(private employeesService : EmployeesService, private betweenComponents:BetweenComponentsService, private _Activatedroute:ActivatedRoute, private _location: Location ) { }
 
-  ngOnInit(): void {
-     this.employeesService.getAllEmployees().subscribe((e) =>{
-       this.employees = e;
-       //console.log("----------os employees sao: " + JSON.stringify(this.employees));
-     });
-  }//closes ngOnInit
+  async ngOnInit() {
+   this. employees =  await this.employeesService.getAllEmployees();
 
+
+  }//closes ngOnInit
+  //await this.employeesService.getAllEmployees().subscribe((e) =>{
+    //this.employees = e;
+    //console.log("----------os employees sao: " + JSON.stringify(this.employees));
 //_______________________________________________
 
 addButtonClick(){

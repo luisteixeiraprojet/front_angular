@@ -5,6 +5,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { RequestsApiService } from './requests-api.service' ;
 
 @Injectable({
   providedIn: 'root'
@@ -13,54 +14,64 @@ export class EmployeesService {
 
  //employees : Employee[];
  employee:{};
-  constructor(private http:HttpClient, private router: Router) { }
+  constructor(private http:HttpClient, private router: Router, private requestsApiService: RequestsApiService ) { }
 
 //______________________________________________________
-  getAllEmployees(){
-   return this.http.get("http://luisteixeiraprojet.herokuapp.com/employees");
+  async getAllEmployees(){
+    try {
+      return await this.requestsApiService.getRequest("/employees");
+    } catch (error) {
+      console.log("Error getAllEmployees " + error.message);
+    }
+   //return this.http.get("http://luisteixeiraprojet.herokuapp.com/employees");
   }
 
 //_______________________________________________________
-  getEmployeeById(id){
-    //console.log("dentro funçao employeeById em employees.service com id passado: " + id);
-    return this.http.get("http://luisteixeiraprojet.herokuapp.com/employees/" + id);
+  async getEmployeeById(id){
+    try {
+      console.log("dentro funçao employeeById em employees.service com id passado: " + id);
+      return await this.requestsApiService.getRequest("/employees/" + id);
+    } catch (error) {
+      console.log("Error getAllEmployees " + error.message);
+    }
+    //return this.http.get("http://luisteixeiraprojet.herokuapp.com/employees/" + id);
   }
 
 //_______________________________________________________
 async createEmployee(employeeObj){
-
   try {
-    const objectInfos =  await this.http.post("http://luisteixeiraprojet.herokuapp.com/employees/", employeeObj).toPromise();
-    return objectInfos;
+    return await this.requestsApiService.postRequest("/employees", employeeObj);
   } catch (error) {
-    console.log(JSON.stringify(error));
-    console.log("error details: \n" + error.message + "\n" + error.error);
+    console.log("Error " + error.message);
   }
 }
 
 //_______________________________________________________
-updateEmployee(id, obj){
+async updateEmployee(id, obj){
   try {
-  //  console.log("UPDATE: Employee.service dentro da funçao updateEmployee com o id e o obj a passar ao heroku", id, JSON.stringify(obj));
-    this.http.put("http://luisteixeiraprojet.herokuapp.com/employees/formUpdate/" + id, obj).subscribe((info) =>{
-     // console.log("UPDATE: employees.service - var que tem a chamada update do heroku antes do seu retorno: " + JSON.stringify(chamadaHeroku));
-      return info ;
-    });
-
+   // console.log("----------1. UPDATE: Employee.service dentro da funçao updateEmployee : id e obj", id, JSON.stringify(obj));
+    return await this.requestsApiService.putRequests("/employees/formUpdate/" + id, obj );
   } catch (error) {
-    console.log(JSON.stringify(error));
-    console.log("error details: \n" + error.message + "\n" + error.error);
+    console.log("Error " + error.message);
   }
 }
 
-
 //_______________________________________________________
+  async deleteEmployee(id){
 
-  deleteEmployee(id){
-    return this.http.delete("http://luisteixeiraprojet.herokuapp.com/employees/" + id);
+    try {
+      console.log("------1. deleteEmployee employeeSErvice")
+      await this.requestsApiService.delete("/employees/" + id);
+    } catch (error) {
+      console.log("Error " + error.message);
+    }
+
   }
 
-//http://luisteixeiraprojet.herokuapp.com/employees/" + id
-//http://localhost:3000
+
+  /*
+    return await this.http.delete("http://luisteixeiraprojet.herokuapp.com/employees/" + id);
+  }
+ */
 
 }

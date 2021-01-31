@@ -7,6 +7,9 @@ import { map } from 'rxjs/operators';
 })
 export class LoginService {
 
+  servAddress = "http://localhost:4200/"
+  //"http://luisteixeiraprojet.herokuapp.com/"
+
   constructor(private _http: HttpClient) { }
 
   postTypeRequest(url: any, payload: any){

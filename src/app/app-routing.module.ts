@@ -12,7 +12,7 @@ import { FormLogInComponent} from './form-log-in/form-log-in.component' ;
 
 
 const routes: Routes = [
-  {path:'', component: FormLogInComponent},
+ // {path:'', component: FormLogInComponent},
   {path:'', component: EmployeurComponent},
   {path:'employees', component: AllEmployeesComponent},
   {path:'employees/:id', component: EmployeeByIdComponent},
