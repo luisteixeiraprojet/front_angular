@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
-import { BetweenComponentsService } from './../between-components.service';
+import { BetweenComponentsService } from '../services/between-components.service';
 import { Component, OnInit } from '@angular/core';
-import { EmployeesService } from './../employees.service';
+import { EmployeesService } from '../services/employees.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -66,9 +66,7 @@ export class FormNewEmployeeComponent implements OnInit {
       this.employee.nationality = this.employeeObject.nationality;
       this.employee.identityNumber = this.employeeObject.identityNumber;
       this.employee.socialNumber = this.employeeObject.socialNumber;
-      this.employee.birthdayDate = this.employeeObject.birthdayDate.split(
-        'T'
-      )[0];
+      this.employee.birthdayDate = this.employeeObject.birthdayDate.split('T')[0];
       this.employee.iban = this.employeeObject.iban;
       this.employee.typeContract = this.employeeObject.typeContract;
       this.employee.joinDate = this.employeeObject.joinDate.split('T')[0];

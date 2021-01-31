@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 //imports
-import { EmployeesService } from './../employees.service';
+import { EmployeesService } from '../services/employees.service';
 import { ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
 import { Router } from '@angular/router';
-import {BetweenComponentsService} from './../between-components.service';
+import {BetweenComponentsService} from '../services/between-components.service';
 
 /*modal
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';

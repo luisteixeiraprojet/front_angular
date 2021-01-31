@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { EMPLOYEES } from './mock-employees';
-import { Employee } from './employeeInterface';
+import { EMPLOYEES } from '../mock-employees';
+import { Employee } from '../employeeInterface';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';

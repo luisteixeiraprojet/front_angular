@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeurComponent implements OnInit {
 
+
+  isLogin = false;
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

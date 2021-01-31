@@ -1,8 +1,8 @@
-import { BetweenComponentsService } from './../between-components.service';
+import { BetweenComponentsService } from '../services/between-components.service';
 import { Component, OnInit } from '@angular/core';
 
 //import Service to comunication
-import { EmployeesService } from './../employees.service';
+import { EmployeesService } from '../services/employees.service';
 import { Employee } from '../employeeInterface';
 import { ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
