@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class RequestsApiService {
 
   constructor(private _http: HttpClient, ) { }
 
-//GET request
 
+//_____________________________________________________________________
 async getRequest(url:any){
   try {
     console.log("----2.getRequest");
@@ -23,10 +23,12 @@ async getRequest(url:any){
   }
 }
 
-//POST requests
+//_______________________________________________________________________
  async postRequest(url: any, requestBody: any) {
   try {
+    console.log("------------3. dentro de postRequest em requests api com url ", this.servBaseAddress + url);
     const requestResult =  await this._http.post(this.servBaseAddress + url, requestBody).toPromise();
+    console.log("------3.1. o requestResult é : ", requestResult);
     return requestResult;
   } catch (error) {
     console.log(JSON.stringify(error));
@@ -34,7 +36,7 @@ async getRequest(url:any){
   };
   }
 
- //PUT requests
+ //_________________________________________________________________________
  async putRequests(url: any, requestBody: any){
   try {
     //console.log("-------2.UPDATE: requestsapi put request com id e obj "+ url, JSON.stringify(obj));
@@ -47,7 +49,7 @@ async getRequest(url:any){
     }
 }
 
-//DELETE request
+//___________________________________________________________________________
 async delete(url:any){
   try {
     console.log("-------2.delete employee api service url " + url);
@@ -63,4 +65,4 @@ async delete(url:any){
 
 
 
-}
+}//closes class

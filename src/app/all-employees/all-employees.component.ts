@@ -22,12 +22,8 @@ export class AllEmployeesComponent implements OnInit {
 
   async ngOnInit() {
    this. employees =  await this.employeesService.getAllEmployees();
-
-
   }//closes ngOnInit
-  //await this.employeesService.getAllEmployees().subscribe((e) =>{
-    //this.employees = e;
-    //console.log("----------os employees sao: " + JSON.stringify(this.employees));
+
 //_______________________________________________
 
 addButtonClick(){

@@ -1,0 +1,43 @@
+.warning {
+  border:1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.25rem;
+  padding: 2rem;
+  background: #fff;
+  color: #f65656;
+  box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
+
+}
+
+.submit{
+  background-color:#6EAF59 ;
+  color: #FFFFFF;
+  text-align: center;
+  height: 3em;
+  text-align:center;
+  font-size:1.1em;
+  border-radius:0.2em;
+}
+
+.submit:hover{
+  background-color:  #ebfae6;
+  color: #6EAF59;
+  border-color: #6EAF59;
+  box-shadow: 0 6px 8px 0 #631f5a7c;
+  transition: 0.5s;
+}
+
+.title{
+  font-size:2em;
+  color:#6EAF59;
+  margin:0.5em;
+}
+
+.form-control{
+  height: 3em;;
+}
+
+label{
+  color:#6EAF59;
+}
+
+

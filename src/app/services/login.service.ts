@@ -1,26 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { RequestsApiService } from './requests-api.service' ;
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  servAddress = "http://localhost:4200/"
-  //"http://luisteixeiraprojet.herokuapp.com/"
+  constructor(private _http: HttpClient, private requestsApiService: RequestsApiService, private _router: Router ) { }
 
-  constructor(private _http: HttpClient) { }
+  async checkLogIn(payload: any){
+    console.log("----- 2. checkLogin LoginService ");
+    let result= await this.requestsApiService.postRequest('/login', payload);
+    console.log("----- 2.1. checkLogin LoginService ", result);
 
-  postTypeRequest(url: any, payload: any){
-    return this._http.post("http://luisteixeiraprojet.herokuapp.com/", payload).pipe(
-      map((res) => {
-        console.log("--------- map o res dentro da funçao post do login service ", res);
-        return res;
-      })
-    );
+    return result;
+  }
+
+  setDataInLocalStorage(employeeInfos: any, data: any) {
+    localStorage.setItem(employeeInfos, data);
+   // console.log("++++ setDataLocalStorage em login service ", localStorage);
+
   }
 
 
-
-}
+}//closes class

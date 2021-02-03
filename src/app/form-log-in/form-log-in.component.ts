@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class FormLogInComponent implements OnInit {
 
   isLogin: boolean = false;
+  errorLogIn : boolean = false;
 
   constructor(
     private _loginService : LoginService,
@@ -21,17 +22,24 @@ export class FormLogInComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-  onSubmit(form: NgForm){
-    console.log('--------- The form data : ', form.value);
-    this._loginService.postTypeRequest('user/login', form.value).subscribe(
-      (res: any) => {
-        if (res.status) {
-          console.log(" o res é ", res);
-        }
-      });
+//__________________________________________________
+//when submitting form logIn
+ async onSubmit(form: NgForm){
+   // console.log('--------- 1. The form data : ', form.value);
+    let requestResult  = await this._loginService.checkLogIn(form.value);
+    //  console.log("------1.1.requestResult", requestResult);
+      if(requestResult != undefined && requestResult != null){
+        this._loginService.setDataInLocalStorage('employeeInfos',JSON.stringify(requestResult));
+        console.log("--++++ component form logIn " +  JSON.stringify(requestResult));
+        this._router.navigate(['']);
+      }else{
+       this.errorLogIn = true;
+       setTimeout(()=> this.errorLogIn = false,2500);
+      }
   }
 
+
+//________________________________________________
   logout() {
    console.log("clic no logOut");
   }
