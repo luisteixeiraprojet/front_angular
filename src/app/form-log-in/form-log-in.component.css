@@ -1,11 +1,10 @@
 .warning {
-  border:1px solid rgba(0, 0, 0, 0.2);
+  border:3px solid #631f5a7c;
   border-radius: 0.25rem;
-  padding: 2rem;
-  background: #fff;
-  color: #f65656;
-  box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
-
+  padding: 1em;
+  background:   #ebfae6;
+  color:  #6EAF59;
+  box-shadow: 0 6px 8px 0 #631f5a7c;
 }
 
 .submit{

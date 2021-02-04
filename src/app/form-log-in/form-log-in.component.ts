@@ -1,3 +1,4 @@
+import { BetweenComponentsService } from './../services/between-components.service';
 import { LoginService } from './../services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -16,7 +17,8 @@ export class FormLogInComponent implements OnInit {
 
   constructor(
     private _loginService : LoginService,
-    private _router: Router
+    private _router: Router,
+    private _betweenService:BetweenComponentsService
   ) { }
 
   ngOnInit(): void {
@@ -30,7 +32,11 @@ export class FormLogInComponent implements OnInit {
     //  console.log("------1.1.requestResult", requestResult);
       if(requestResult != undefined && requestResult != null){
         this._loginService.setDataInLocalStorage('employeeInfos',JSON.stringify(requestResult));
-        console.log("--++++ component form logIn " +  JSON.stringify(requestResult));
+      // console.log("--1.2.component form logIn " +  JSON.stringify(requestResult));
+
+      //change value to the variable used in the header
+        this._betweenService.isLoggedIn.next(true);
+
         this._router.navigate(['']);
       }else{
        this.errorLogIn = true;
@@ -39,10 +45,8 @@ export class FormLogInComponent implements OnInit {
   }
 
 
-//________________________________________________
-  logout() {
-   console.log("clic no logOut");
-  }
+
+
 
 
 

@@ -7,11 +7,11 @@
         <img class="logo mt-2 " src="assets/logo.png" >
       </a>
     </div>
-    <div class="col-6 d-flex flex-column ml-auto justify-content-around">
-      <p class="m-0 userN">UserName </p>
+    <div class="col-6 d-flex flex-column ml-auto justify-content-around" *ngIf="loggedIn">
+      <p class="m-0 userN">UserName: {{userLoggedName}}</p>
       <div class="d-flex flex-column flex-md-row justify-content-md-end">
         <button class="info-btn col-md-4" >Profil </button>
-        <button class="info-btn ml-0 ml-md-2 mt-2 mt-md-0 col-md-4">Deconnéxion</button>
+        <button class="info-btn ml-0 ml-md-2 mt-2 mt-md-0 col-md-4"(click)="logOut()">Deconnéxion</button>
       </div>
     </div>
   </div>

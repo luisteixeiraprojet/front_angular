@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { BehaviorSubject } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -7,6 +9,10 @@ export class BetweenComponentsService {
 
 
   employeeToUpdate;
+
+
+  //pass the value of isLoggedIn to be subscribed by the variable that makes binding header.ts and header.html
+  public isLoggedIn : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor() { }
 
@@ -23,8 +29,9 @@ export class BetweenComponentsService {
   }
 
 
-
   removeEmployeeToUpdate(){
     localStorage.removeItem('currentEmployee');
   }
+
+
 }
