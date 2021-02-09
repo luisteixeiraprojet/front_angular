@@ -27,28 +27,22 @@ export class FormLogInComponent implements OnInit {
 //__________________________________________________
 //when submitting form logIn
  async onSubmit(form: NgForm){
-   // console.log('--------- 1. The form data : ', form.value);
+
+    //pass the values written on the form - loginService + requests-api.service
     let requestResult  = await this._loginService.checkLogIn(form.value);
-    //  console.log("------1.1.requestResult", requestResult);
+    console.log("1.login, requestResult linha 33, ", requestResult);
       if(requestResult != undefined && requestResult != null){
-        this._loginService.setDataInLocalStorage('employeeInfos',JSON.stringify(requestResult));
-      // console.log("--1.2.component form logIn " +  JSON.stringify(requestResult));
+        this._loginService.registerInLocalStorage('employeeInfos',JSON.stringify(requestResult));
 
-      //change value to the variable used in the header
+      //change value of the variable used in the header so the header show/dont show the div with userName and butttons
         this._betweenService.isLoggedIn.next(true);
-
         this._router.navigate(['']);
-      }else{
+
+      }else{ //if the credentials dont match with DB a div erreur will appear for 2.5 seconds
        this.errorLogIn = true;
        setTimeout(()=> this.errorLogIn = false,2500);
       }
   }
-
-
-
-
-
-
 
 }//closes class
 

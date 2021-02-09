@@ -33,12 +33,11 @@ export class EmployeeByIdComponent implements OnInit {
     //EBI: get and pass the id
     this._Activatedroute.paramMap.subscribe(params => {
       this.idEmployee = params.get('id');
-     console.log("The id of the clicked employee is: " + this.idEmployee);
   });
 
     //EBI: get the employee with that id
     this.selectedEmployee = await this.employeesService.getEmployeeById(this.idEmployee);
-      console.log("no back esta o selectedEmmployee ", this.selectedEmployee);
+
   }//closes ngOnInit
 
 //_______________________________________
@@ -46,7 +45,7 @@ export class EmployeeByIdComponent implements OnInit {
 async toDelete(){
   let bool;
     bool = confirm("delete?");
-    console.log(bool);
+
     if(bool == true){
      await this.employeesService.deleteEmployee(this.idEmployee)
       setTimeout(() => {
@@ -57,10 +56,10 @@ async toDelete(){
 
 //_______________________________________
   toUpdate(): void {
-   console.log("UPDATE: do componente para o servico,/formUpdate/ " + this.idEmployee);
+    console.log("UPDATE: " + this.idEmployee);
     this.router.navigate(['/formUpdate/'+ this.idEmployee]);
     this.betweenComponents.receiveEmployeeToUpdate(this.selectedEmployee);
-    console.log("Do componente chama-se receiveEmployeeToUpdate do servico : " + this.selectedEmployee + " em string fica: " + JSON.stringify(this.selectedEmployee));
+    //console.log("Selected Employee is " + JSON.stringify(this.selectedEmployee));
     }
 
 

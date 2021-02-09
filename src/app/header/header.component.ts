@@ -4,48 +4,59 @@ import { LoginService } from './../services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { LocalStorageService } from './../services/local-storage.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
 
-  //will subscribe the value from betweenService
+export class HeaderComponent implements OnInit {
+  //will subscribe the value from betweenService so it changes the userLoggedName and show/hide the div inside the header
   loggedIn: boolean;
 
   //binding with html
   userLoggedName;
 
-  constructor(private _loginService : LoginService,  private _router: Router, private _betweenService:BetweenComponentsService) { }
+  constructor(
+    private _localStorageService: LocalStorageService,
+    private _loginService: LoginService,
+    private _router: Router,
+    private _betweenService: BetweenComponentsService
+  ) {}
 
-  ngOnInit(){
-
-    //the variable loggedIn subscribs the value of the variable isLoggedIn.
-    this._betweenService.isLoggedIn.subscribe(value => {
+  ngOnInit() {
+    //get the value of isLoggedIn and pass it/subscrib it to loggedIn variable
+    this._betweenService.isLoggedIn.subscribe((value) => {
       this.loggedIn = value;
-      //console.log("00 - valor de logged in ", this.loggedIn);
-
-      if(this.loggedIn == true){
-     // console.log("01 - valor de logged in ", this.loggedIn);
-       this.userLoggedName= this.getUserName();
-       //console.log("02 - valor de logged in ", this.userLoggedName);
+      if (this.loggedIn == true) {
+        this.userLoggedName = this.getFirstName();
       }
-    })
+    });
 
+    /*the token verification is here because everytime that there's an event (get/post requests, reload page, this part of the app is constantlty updated and has
+    a variable whose value changes/is updated at each event - betweenServices)*/
+    let verifiedToken = this._loginService.verifyValidationToken();
+    console.log("ngOnInit employeur ", verifiedToken);
   }
 
-  async getUserName(){
-    //console.log("0. dentro de getUserName - header")
-    //console.log("1. header this.userLoggedIn", this.userLoggedName);
-    this.userLoggedName = await this._loginService.userNameIs();
-    console.log("1.1 header this.userLoggedIn", this.userLoggedName);
+  //get the firstName to pass to the variable userLoggedName(html)
+  async getFirstName() {
+    let userLogged = await this._loginService.whoIsLogged();
+    if (
+      userLogged.firstName == '' ||
+      userLogged.firstName == null ||
+      userLogged.firstName == undefined
+    ) {
+      this.userLoggedName = '';
+    } else {
+      this.userLoggedName = userLogged.firstName;
+    }
   }
 
-  logOut(){
-    this._loginService.clearStorageLogOut();
-    this._betweenService.isLoggedIn.next(false);
-    this._router.navigate(['login']);
+  //Log Out - click button 'déconnexion'
+  logOut() {
+    this._loginService.logOut();
   }
-
-}//closes class
+} //closes class

@@ -20,6 +20,7 @@ import { ModalComponent as ModalComponent } from './modal/modal.component';
 import { MatDialogRef} from '@angular/material/dialog';
 import { FormLogInComponent } from './form-log-in/form-log-in.component';
 import { EmployeeViewComponent } from './employee-view/employee-view.component';
+import { PointageComponent } from './pointage/pointage.component';
 
 
 
@@ -37,7 +38,8 @@ import { EmployeeViewComponent } from './employee-view/employee-view.component';
     FormNewEmployeeComponent,
     ModalComponent,
     FormLogInComponent,
-    EmployeeViewComponent
+    EmployeeViewComponent,
+    PointageComponent
   ],
   imports: [
     BrowserModule,

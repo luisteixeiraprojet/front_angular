@@ -8,16 +8,19 @@ import {FormNewEmployeeComponent} from './form-new-employee/form-new-employee.co
 import { Routes, RouterModule } from '@angular/router';
 import { FormLogInComponent} from './form-log-in/form-log-in.component';
 import {EmployeeViewComponent} from './employee-view/employee-view.component';
+import {PointageComponent} from './pointage/pointage.component';
 
 
 const routes: Routes = [
-  {path:'', component: EmployeurComponent},
   {path:'login', component: FormLogInComponent},
+  {path:'', component: EmployeurComponent},
+
   {path:'employees', component: AllEmployeesComponent},
   {path:'employees/:id', component: EmployeeByIdComponent},
   {path:'createEmployee', component: FormNewEmployeeComponent},
   {path:'formUpdate/:id', component:FormNewEmployeeComponent },
-  {path:'employeeAccount', component: EmployeeViewComponent } //ver se dp n tem de ser com id para cd um dos employees
+  {path:'employeeAccount', component: EmployeeViewComponent }, //ver se dp n tem de ser com id para cd um dos employees
+  {path: 'timeSheet', component: PointageComponent}
 ];
 
 

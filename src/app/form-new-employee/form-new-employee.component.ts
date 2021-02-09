@@ -71,12 +71,11 @@ export class FormNewEmployeeComponent implements OnInit {
       this.employee.typeContract = this.employeeObject.typeContract;
       this.employee.joinDate = this.employeeObject.joinDate.split('T')[0];
       this.employee.hourlyPrice = this.employeeObject.hourlyPrice;
-
-      //console.log("FORM NEW EMPLOYEE LINHA 52: ficando igual ao getEmployee to update " + this.employee.firstName + " e o do get e " + this.employeeObject.firstName);
-      //console.log("a data nascimento : " + this.employee.birthdayDate + "data de joindate: " + this.employee.joinDate );
     }
   } //closes ngOnInit
 
+
+//when submitting the form
   submitOnClick(form) {
     if (form.valid) {
       this.isSubmiting = true;
@@ -86,7 +85,8 @@ export class FormNewEmployeeComponent implements OnInit {
       alert('Veuillez remplir les champs obligatoires.');
     }
   }
-
+//____________________________________________________________
+//when submitting the form verify the route so we can distinguish if it is to x=create a new employee or to update an existant one
   async createOrUpdate() {
     let id;
     try {
@@ -106,6 +106,7 @@ export class FormNewEmployeeComponent implements OnInit {
       setTimeout(() => {
         this.router.navigate(['/employees/' + id]);
       }, 500);
+
     } catch (error) {
       console.log(error);
       alert("Attention le formulaire n'est pas bien rempli!");

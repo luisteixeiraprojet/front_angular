@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { RequestsApiService } from './requests-api.service' ;
 import { Router } from '@angular/router';
+import {LocalStorageService} from './local-storage.service';
+import { BetweenComponentsService } from './between-components.service';
+
 
 
 @Injectable({
@@ -11,42 +14,47 @@ import { Router } from '@angular/router';
 export class LoginService {
 
 
-  constructor(private _http: HttpClient, private requestsApiService: RequestsApiService, private _router: Router ) { }
+  constructor(private _router:Router ,private _betweenService: BetweenComponentsService, private _http: HttpClient, private _requestsApiService: RequestsApiService, private _localStorageService: LocalStorageService ) { }
 
-  employeeLogged;
-  employeeLoggedFirstName;
+  //to save the user who logged
+  isLogged;
 
-
+  //get the user who logged - pass it to form-log-in.ts
   async checkLogIn(payload: any){
-   console.log("----- 2. checkLogin LoginService ");
-    this.employeeLogged= await this.requestsApiService.postRequest('/login', payload);
-    return this.employeeLogged;
+    this.isLogged= await this._requestsApiService.postRequestNoHeaders('/login', payload);
+    return this.isLogged;
   }
 
-  setDataInLocalStorage(employeeInfos: any, data: any) {
-    localStorage.setItem(employeeInfos, data);
-    console.log("++++2.3 setDataLocalStorage em login service ", localStorage);
+  //from form-log-in.ts - pass the infos of the user who logged to the localstorage
+  registerInLocalStorage(variableName,requestResult){
+   let inLocalStorage = this._localStorageService.setDataInLocalStorage('employeeInfos',JSON.stringify(requestResult));
+  return inLocalStorage;
   }
 
-  clearStorageLogOut() {
-  localStorage.clear();
-   console.log("2.4..depois de clear localstorage: limpeza  ", localStorage);
+  //get from the localStorage the user who logged - pass it to  header.ts so we can access his firstName
+  async whoIsLogged(){
+    let itemReturnedFromLocalStorage =  await this._localStorageService.getFromLocalStorage('employeeInfos');
+    this.isLogged = JSON.parse(itemReturnedFromLocalStorage);
+    //console.log("0.Type this.employeeLogged é ", typeof this.employeeLogged);
+   // console.log("0.1. key ", Object.keys(this.employeeLogged));
+    return this.isLogged;
   }
 
-  async userNameIs(){
-    let employeeName;
-    this.employeeLogged =  await JSON.parse(localStorage.getItem('employeeInfos'));
-    console.log("2.5. loginService - this.employeeLogged.firstName ", this.employeeLogged.firstName);
-    if(this.employeeLogged.firstName =="" || this.employeeLogged.firstName==null ||  this.employeeLogged.firstName==undefined){
-      employeeName ="";
-    }else {
-      employeeName= this.employeeLogged.firstName;
-      console.log("employeeName é: ", employeeName);
+  //From header - verifiy at each request if token is valide(not expxired and if the user is relaly logged in and not just trying through postman ou directily from the url)
+  async verifyValidationToken(){
+    let isStillLogged= await this._requestsApiService.getRequest('/tokenVerify');
+
+    if(isStillLogged && isStillLogged.result == "OK"){
+      this._betweenService.isLoggedIn.next(true);
+    }else{
+      this._betweenService.isLoggedIn.next(false);
     }
-    return employeeName;
+    console.log("resultado do verifyToken Login ser ", isStillLogged);
   }
 
-
+  logOut() {
+    this._betweenService.logOut();
+  }
 
 
 
