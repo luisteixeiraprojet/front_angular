@@ -25,26 +25,23 @@ async getRequest(url:any){
 so we can send headers:authorisation  solicited in the serveur and so we 're redirected to page login if token not valide
 */
   try {
-    //verify if infos about user are still in the localstorage (example,when someone tries to access directily writting the url without loggin in )
-    let allInfos = JSON.parse(this._localStorageService.getFromLocalStorage("employeeInfos"));
-    console.log("1. GET: request-api all infos ", allInfos);
+    //verify if infos user are still in the localstorage (example,when someone tries to access directily writting the url without loggin in)
 
+    let allInfos = this._localStorageService.getFromLocalStorage("employeeInfos");
     if(allInfos == null || allInfos == undefined){
       this._betweenService.logOut();
       return
     }
 
-    //if the allInfos are still in the storage, get the token add it to the http header's request
+    //if the allInfos are still in the storage, get the token and add it to the http header's request
     let token = allInfos.sessionId;
     const headers = new HttpHeaders({'authorization':'Bearer '+token});
-    console.log("2. GET-requetstapi token ", token);
-    console.log("2. GET-requetstapi token ", headers);
-
     let resultRequest; //initialized here as undefined (almost as type 'any') so it doesnt return a syntaxe erreur from loginService(function verifyValidationToken());
 
     //send the get request(getAllEmployees, for example) where header's property authorization = token (solicited in app.js(serveur))
     resultRequest = await this._http.get(this.servBaseAddress+url, {headers}).toPromise();
-    return resultRequest;
+    this._localStorageService.refreshToken(resultRequest.newToken); //resultRequest.newToken sent as response from the serveur (example, routes employees)
+    return resultRequest.content;
 
   } catch (error) {
     console.log("Error ", error);
@@ -56,15 +53,20 @@ so we can send headers:authorisation  solicited in the serveur and so we 're red
   }
 }
 
-//_______________________________________________________________________
 
-/*this request Post without Headers authorisation is exclusive forcases where nothing is yet stored in
-the localstorage as when we are loggin in for instance*/
+
+//_______________________________________________________________________
+/*this request Post without Headers authorisation is exclusive for cases where nothing is yet stored in the localstorage as when we are loggin in for instance*/
 async postRequestNoHeaders(url: any, requestBody: any) {
+  console.log(">>>>>>>>>.3.request-api dentro de postRequestNoHeaders ");
   //all post requests will verify if the token is still valide before sending the request to the serveur
  try {
-   console.log("postRequest: ", this.servBaseAddress + url + JSON.stringify(requestBody));
+   //console.log("postRequest: ", this.servBaseAddress + url + JSON.stringify(requestBody));
+   console.log(">>>>>>>>>3.1.request-api - http.post ao url  ", this.servBaseAddress + url + "com o objecto", requestBody);
+
    const requestResult =  await this._http.post(this.servBaseAddress + url, requestBody).toPromise();
+   console.log(">>>>>>>>>3.2.request-api - Resultado do http.post de cima e que vai ser retornado ", requestResult);
+
    return requestResult;
 
  } catch (error) {
@@ -73,32 +75,35 @@ async postRequestNoHeaders(url: any, requestBody: any) {
  };
  }
 
+ //____________________________________________________________________________________________________
 //to all post request when we're already logged in
  async postRequest(url: any, requestBody: any) {
-   //all post requests will verify if the token is still valide before sending the request to the serveur
+   //all post requests will verify if the token is still valide before sending the request to the serveur and register the new token in the LocalStorage
   try {
-
+    console.log(" ::::::::::::::::5.requests-api linha 86 dentro de postRequest()" );
     //verify if infos about user are still in the localstorage (example,when someone tries to access directily writting the url without loggin in)
-    let allInfos = JSON.parse(this._localStorageService.getFromLocalStorage("employeeInfos"));
-    console.log("request-api all infos ", allInfos);
+    let allInfos = this._localStorageService.getFromLocalStorage("employeeInfos");
+    console.log(" ::::::::::::::::6.requests-api linha 89 - allInfos ", allInfos );
 
     if(allInfos == null || allInfos == undefined){
       this._betweenService.logOut();
+      console.log(" ::::::::::::::::6.1.requests-api linha 93 - se erro no allInfos ");
       return
     }
 
     //if the allInfos are still in the storage, get the token add it to the http header's request(solicited in app.js(serveur))
     let token = allInfos.sessionId;
-    console.log("o token ", token);
+    console.log(" ::::::::::::::::7.requestApi - linha 99- o token é ", token  );
     const headers = new HttpHeaders({'authorization':'Bearer '+token});
-    console.log("em headers postRequest, api ", headers);
+    console.log(" ::::::::::::::::8.requestApi - linha 101- headers sao ", headers  );
     let requestResult;
 
     //send the get request(getAllEmployees, for example) where header's property authorization = token
-    console.log("postRequest: ", this.servBaseAddress + url + JSON.stringify(requestBody));
     requestResult =  await this._http.post(this.servBaseAddress + url,requestBody,{headers}).toPromise();
-
-    return requestResult;
+    console.log(" ::::::::::::::::9.requestApi - linha 106- pedido post ao serveur na morada ",this.servBaseAddress + url,requestBody,{headers} );
+    this._localStorageService.refreshToken(requestResult.newToken);
+    console.log(" ::::::::::::::::9.1.requestApi - linha 108- request.content é ", requestResult.content );
+    return requestResult.content;
 
   } catch (error) {
     console.log(JSON.stringify(error));
@@ -116,7 +121,7 @@ async postRequestNoHeaders(url: any, requestBody: any) {
  async putRequests(url: any, requestBody: any){
   try {
     //verify if infos about user are still in the localstorage (example,when someone tries to access directily writting the url without loggin in)
-    let allInfos = JSON.parse(this._localStorageService.getFromLocalStorage("employeeInfos"));
+    let allInfos = this._localStorageService.getFromLocalStorage("employeeInfos");
     console.log("request-api all infos ", allInfos);
 
     if(allInfos == null || allInfos == undefined){
@@ -130,10 +135,11 @@ async postRequestNoHeaders(url: any, requestBody: any) {
 
 
     //send the get request(getAllEmployees, for example) where header's property authorization = token
-      console.log("PUT: id and obj "+ url, JSON.stringify(requestBody));
-      this._http.put(this.servBaseAddress + url, requestBody, {headers}).subscribe((info) =>{
-        return info ;
+      this._http.put(this.servBaseAddress + url, requestBody, {headers}).subscribe((info:any) =>{
+        this._localStorageService.refreshToken(info.newToken);
+        return info.content ;
       });
+
     } catch (error) {
       console.log(JSON.stringify(error));
       console.log("Error details: \n" + error.message + "\n" + error.error);
@@ -148,10 +154,10 @@ async postRequestNoHeaders(url: any, requestBody: any) {
 //___________________________________________________________________________
 async delete(url:any){
   try {
-
+    console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3. Dentro de delete em apiRequests");
     //verify if infos about user are still in the localstorage (example,when someone tries to access directily writting the url without loggin in)
-    let allInfos = JSON.parse(this._localStorageService.getFromLocalStorage("employeeInfos"));
-    console.log("request-api all infos ", allInfos);
+    let allInfos = this._localStorageService.getFromLocalStorage("employeeInfos");
+    console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3.1 Resultado da chamada  delete da requestApi ", allInfos);
 
     if(allInfos == null || allInfos == undefined){
       this._betweenService.logOut();
@@ -160,15 +166,19 @@ async delete(url:any){
 
     //if the allInfos are still in the storage, get the token add it to the http header's request(solicited in app.js(serveur))
     let token = allInfos.sessionId;
-    console.log("o token ", token);
+    console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3.2. Token no LS ", token);
     const headers = new HttpHeaders({'authorization':'Bearer '+token});
+    console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3.3.headers enviados no pedido delete ao servidor ", headers);
     console.log("em headers postRequest, api ", headers);
     let resultRequest;
 
     //send the get request(getAllEmployees, for example) where header's property authorization = token
-    console.log("DELETE: " + this.servBaseAddress + url )
+    console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3.4.url+headers para a morada do servidor",this.servBaseAddress + url,{headers} );
     resultRequest = await this._http.delete(this.servBaseAddress + url,{headers} ).toPromise();
-    return resultRequest;
+    console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3.5.resultado do pedido a morada do servidor ",resultRequest);
+    this._localStorageService.refreshToken(resultRequest.newToken);
+    console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3.6.requestResult.content retornado do servidor é  ",resultRequest.content);
+    return resultRequest.content;
 
   } catch (error) {
     console.log("Error " + error.message);

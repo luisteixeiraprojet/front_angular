@@ -90,12 +90,14 @@ export class FormNewEmployeeComponent implements OnInit {
   async createOrUpdate() {
     let id;
     try {
+
       if (this.router.url === '/createEmployee') {
         let createdEmployee: any; //'cause of typology. typesript requires type of variable (and object doesnt always have the id. with any it doesn't matter). To not have erreurs of compilation before obtaining the id
         createdEmployee = await this.employeesService.createEmployee(
           this.employee
         );
         id = createdEmployee.Id_employee;
+
       } else {
         let updatedEmployee = await this.employeesService.updateEmployee(
           this.employeeObject.Id_employee,

@@ -30,25 +30,29 @@ export class HeaderComponent implements OnInit {
     //get the value of isLoggedIn and pass it/subscrib it to loggedIn variable
     this._betweenService.isLoggedIn.subscribe((value) => {
       this.loggedIn = value;
+
       if (this.loggedIn == true) {
         this.userLoggedName = this.getFirstName();
       }
     });
 
-    /*the token verification is here because everytime that there's an event (get/post requests, reload page, this part of the app is constantlty updated and has
-    a variable whose value changes/is updated at each event - betweenServices)*/
-    let verifiedToken = this._loginService.verifyValidationToken();
-    console.log("ngOnInit employeur ", verifiedToken);
+/*the token verification is here because everytime that there's an event (get/post requests,
+reload page, this part of the app is constantlty updated and hasa variable whose
+value changes/is updated at each event - betweenServices)*/
+
+  this._loginService.verifyValidationToken();
+
   }
 
   //get the firstName to pass to the variable userLoggedName(html)
   async getFirstName() {
     let userLogged = await this._loginService.whoIsLogged();
     if (
-      userLogged.firstName == '' ||
       userLogged.firstName == null ||
-      userLogged.firstName == undefined
+      userLogged.firstName == undefined ||
+      userLogged.firstName == ''
     ) {
+
       this.userLoggedName = '';
     } else {
       this.userLoggedName = userLogged.firstName;

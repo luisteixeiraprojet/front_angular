@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { EMPLOYEES } from '../mock-employees';
 import { Employee } from '../employeeInterface';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { catchError, retry } from 'rxjs/operators';
+
 import { Router } from '@angular/router';
 import { RequestsApiService } from './requests-api.service' ;
+
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +40,11 @@ export class EmployeesService {
 //_______________________________________________________
 //values written on the form-new-employee passed + make request post
 async createEmployee(employeeObj){
+  console.log("::::::::::::::::3.employee.service-linha42 -  dentro de createEmployee");
   try {
-    return await this.requestsApiService.postRequest("/employees", employeeObj);
+    let pedidoPost = await this.requestsApiService.postRequest("/employees", employeeObj);
+    console.log("::::::::::::::::4.employee.service-linha45 -  dentro de pedidoPost", pedidoPost + "com o objeto" + employeeObj);
+    return pedidoPost;
   } catch (error) {
     console.log("Error " + error.message);
   }
@@ -63,7 +67,9 @@ async updateEmployee(id, obj){
   async deleteEmployee(id){
 
     try {
-      await this.requestsApiService.delete("/employees/" + id);
+      console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨1. employeeService chama delete da requestApi");
+      let toDelete = await this.requestsApiService.delete("/employees/" + id);
+      console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨2. Resultado da chamada  delete da requestApi ", toDelete);
 
     } catch (error) {
       console.log("Error " + error.message);

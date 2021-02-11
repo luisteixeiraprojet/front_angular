@@ -43,11 +43,11 @@ export class EmployeeByIdComponent implements OnInit {
 //_______________________________________
 
 async toDelete(){
+
   let bool;
     bool = confirm("delete?");
-
     if(bool == true){
-     await this.employeesService.deleteEmployee(this.idEmployee)
+     let idToDelete = await this.employeesService.deleteEmployee(this.idEmployee);
       setTimeout(() => {
       this.router.navigate(['/employees']);
       },1000);

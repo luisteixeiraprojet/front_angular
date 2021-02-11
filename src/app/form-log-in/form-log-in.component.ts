@@ -30,18 +30,15 @@ export class FormLogInComponent implements OnInit {
 
     //pass the values written on the form - loginService + requests-api.service
     let requestResult  = await this._loginService.checkLogIn(form.value);
-    console.log("1.login, requestResult linha 33, ", requestResult);
-      if(requestResult != undefined && requestResult != null){
-        this._loginService.registerInLocalStorage('employeeInfos',JSON.stringify(requestResult));
+    console.log(">>>>>>>>>1.form-log-in click submit chama checkLogin ");
+    console.log(">>>>>>>>>1.1. form-log-in resultado de chamar checkLogin ", requestResult);
 
-      //change value of the variable used in the header so the header show/dont show the div with userName and butttons
-        this._betweenService.isLoggedIn.next(true);
-        this._router.navigate(['']);
 
-      }else{ //if the credentials dont match with DB a div erreur will appear for 2.5 seconds
-       this.errorLogIn = true;
-       setTimeout(()=> this.errorLogIn = false,2500);
-      }
+    if(!requestResult){
+      this.errorLogIn = true;
+     setTimeout(()=> this.errorLogIn = false,2500);
+    }
+
   }
 
 }//closes class
