@@ -1,3 +1,4 @@
+import { AllMyAbsencesComponent } from './all-my-absences/all-my-absences.component';
 import { EmployeeByIdComponent } from './employee-by-id/employee-by-id.component';
 import { NgModule, Component } from '@angular/core';
 
@@ -9,6 +10,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormLogInComponent} from './form-log-in/form-log-in.component';
 import {EmployeeViewComponent} from './employee-view/employee-view.component';
 import {PointageComponent} from './pointage/pointage.component';
+import { AllAbsencesComponent } from './all-absences/all-absences.component';
 
 
 const routes: Routes = [
@@ -20,7 +22,11 @@ const routes: Routes = [
   {path:'createEmployee', component: FormNewEmployeeComponent},
   {path:'formUpdate/:id', component:FormNewEmployeeComponent },
   {path:'employeeAccount', component: EmployeeViewComponent }, //ver se dp n tem de ser com id para cd um dos employees
-  {path: 'timeSheet', component: PointageComponent}
+  {path: 'timeSheet', component: PointageComponent},
+  {path: 'myAbsences', component: AllMyAbsencesComponent },
+  {path: 'allAbsences', component:AllAbsencesComponent },
+
+
 ];
 
 

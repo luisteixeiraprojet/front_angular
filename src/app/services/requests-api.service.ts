@@ -24,10 +24,13 @@ async getRequest(url:any){
 /*all get requests will verify if the token is still valide before sending the request to the serveur
 so we can send headers:authorisation  solicited in the serveur and so we 're redirected to page login if token not valide
 */
+console.log("+++++++ 3. dentro de getRequest api service")
   try {
     //verify if infos user are still in the localstorage (example,when someone tries to access directily writting the url without loggin in)
 
     let allInfos = this._localStorageService.getFromLocalStorage("employeeInfos");
+    console.log("++++++3.1. verifcacao de allInfos em GetRequest, " , allInfos);
+
     if(allInfos == null || allInfos == undefined){
       this._betweenService.logOut();
       return

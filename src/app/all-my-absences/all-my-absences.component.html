@@ -1,0 +1,34 @@
+<div class=" container">
+  <div class="row ">
+    <div class="d-flex flex-row flex-md-column col-12 col-md-2 ">
+      <button class="button firstButton"  [routerLink]="['/employeeAccount']">
+        Retour <br/>
+        au <br/>
+        Menu
+      </button>
+      <button
+        class="button"
+        [routerLink]="['/myAbsences']"
+        (click)="nouvelleAbsence()">
+        Demander <br/>
+        une  <br/>
+        Absence
+      </button>
+    </div>
+
+    <!--
+    <div class=" col-12 col-md-10">
+      <ul>
+        <li
+          class="eachEmployee d-flex justify-content-around flex-column flex-md-row"
+          *ngFor="let empl of employees"
+          [routerLink]="['/employees', empl.Id_employee]"
+        >
+          <span> Prénom: {{ empl.firstName }} </span>
+          <span> Nom: {{ empl.lastName }} </span>
+          <span> Portable: {{ empl.mobilePhone }}</span>
+        </li>
+      </ul>
+    </div>-->
+  </div>
+</div>

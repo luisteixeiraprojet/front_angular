@@ -21,6 +21,8 @@ import { MatDialogRef} from '@angular/material/dialog';
 import { FormLogInComponent } from './form-log-in/form-log-in.component';
 import { EmployeeViewComponent } from './employee-view/employee-view.component';
 import { PointageComponent } from './pointage/pointage.component';
+import { AllMyAbsencesComponent } from './all-my-absences/all-my-absences.component';
+import { AllAbsencesComponent } from './all-absences/all-absences.component';
 
 
 
@@ -39,7 +41,9 @@ import { PointageComponent } from './pointage/pointage.component';
     ModalComponent,
     FormLogInComponent,
     EmployeeViewComponent,
-    PointageComponent
+    PointageComponent,
+    AllMyAbsencesComponent,
+    AllAbsencesComponent
   ],
   imports: [
     BrowserModule,

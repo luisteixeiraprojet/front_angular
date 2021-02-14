@@ -1,0 +1,28 @@
+<div class=" container">
+  <div class="row ">
+    <div class="d-flex flex-row flex-md-column col-12 col-md-2 ">
+      <button class="button firstButton"  [routerLink]="['/']">
+        Retour <br/>
+        au <br/>
+        Menu
+      </button>
+
+    </div>
+
+    <div class=" col-12 col-md-10">
+      <ul>
+        <li
+          class="eachEmployee d-flex justify-content-around flex-column flex-md-row"
+          *ngFor="let abs of absences"
+        >
+        <span> Nom Employee {{ abs.Id_employee }} </span>
+        <span> Type: {{abs.TypeOfAbsence }} </span>
+          <span> Date Début: {{abs.startDate }} </span>
+          <span> Date Fin: {{ abs.endDate }} </span>
+          <span> Status: {{ abs.status }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
