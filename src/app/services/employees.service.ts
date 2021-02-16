@@ -40,10 +40,9 @@ export class EmployeesService {
 //_______________________________________________________
 //values written on the form-new-employee passed + make request post
 async createEmployee(employeeObj){
-  console.log("::::::::::::::::3.employee.service-linha42 -  dentro de createEmployee");
+
   try {
     let pedidoPost = await this.requestsApiService.postRequest("/employees", employeeObj);
-    console.log("::::::::::::::::4.employee.service-linha45 -  dentro de pedidoPost", pedidoPost + "com o objeto" + employeeObj);
     return pedidoPost;
   } catch (error) {
     console.log("Error " + error.message);

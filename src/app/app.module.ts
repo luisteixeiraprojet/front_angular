@@ -23,6 +23,7 @@ import { EmployeeViewComponent } from './employee-view/employee-view.component';
 import { PointageComponent } from './pointage/pointage.component';
 import { AllMyAbsencesComponent } from './all-my-absences/all-my-absences.component';
 import { AllAbsencesComponent } from './all-absences/all-absences.component';
+import { FormNewAbsenceComponent } from './form-new-absence/form-new-absence.component';
 
 
 
@@ -43,7 +44,8 @@ import { AllAbsencesComponent } from './all-absences/all-absences.component';
     EmployeeViewComponent,
     PointageComponent,
     AllMyAbsencesComponent,
-    AllAbsencesComponent
+    AllAbsencesComponent,
+    FormNewAbsenceComponent
   ],
   imports: [
     BrowserModule,

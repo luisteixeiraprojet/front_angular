@@ -16,7 +16,7 @@ export class FormNewEmployeeComponent implements OnInit {
   //UPDATE: Employee BY id
   employeeObject;
 
-  //________Pour CREER EMPLOYEE
+  //To create a user
   employee = {
     firstName: '',
     lastName: '',
@@ -39,7 +39,7 @@ export class FormNewEmployeeComponent implements OnInit {
   constructor(
     private employeesService: EmployeesService,
     private router: Router,
-    private _Activatedroute: ActivatedRoute,
+    private _activatedroute: ActivatedRoute,
     private betweenComponents: BetweenComponentsService
   ) {}
 

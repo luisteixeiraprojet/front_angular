@@ -2,13 +2,10 @@
 import { Router } from '@angular/router';
 import { LocalStorageService } from './local-storage.service';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, JsonpClientBackend } from '@angular/common/http';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { error } from 'protractor';
 import { BetweenComponentsService } from './between-components.service';
-
-
-
 
 @Injectable({providedIn: 'root'})
 export class RequestsApiService {
@@ -17,25 +14,18 @@ export class RequestsApiService {
   //http://luisteixeiraprojet.herokuapp.com"
 
   constructor(private _http: HttpClient, private _localStorageService: LocalStorageService, private _betweenService:BetweenComponentsService ) { }
-
-
 //_____________________________________________________________________
 async getRequest(url:any){
 /*all get requests will verify if the token is still valide before sending the request to the serveur
 so we can send headers:authorisation  solicited in the serveur and so we 're redirected to page login if token not valide
 */
-console.log("+++++++ 3. dentro de getRequest api service")
   try {
     //verify if infos user are still in the localstorage (example,when someone tries to access directily writting the url without loggin in)
-
-    let allInfos = this._localStorageService.getFromLocalStorage("employeeInfos");
-    console.log("++++++3.1. verifcacao de allInfos em GetRequest, " , allInfos);
-
+   let allInfos = this._localStorageService.getFromLocalStorage("employeeInfos");
     if(allInfos == null || allInfos == undefined){
       this._betweenService.logOut();
       return
     }
-
     //if the allInfos are still in the storage, get the token and add it to the http header's request
     let token = allInfos.sessionId;
     const headers = new HttpHeaders({'authorization':'Bearer '+token});
@@ -56,20 +46,12 @@ console.log("+++++++ 3. dentro de getRequest api service")
   }
 }
 
-
-
 //_______________________________________________________________________
 /*this request Post without Headers authorisation is exclusive for cases where nothing is yet stored in the localstorage as when we are loggin in for instance*/
 async postRequestNoHeaders(url: any, requestBody: any) {
-  console.log(">>>>>>>>>.3.request-api dentro de postRequestNoHeaders ");
   //all post requests will verify if the token is still valide before sending the request to the serveur
  try {
-   //console.log("postRequest: ", this.servBaseAddress + url + JSON.stringify(requestBody));
-   console.log(">>>>>>>>>3.1.request-api - http.post ao url  ", this.servBaseAddress + url + "com o objecto", requestBody);
-
    const requestResult =  await this._http.post(this.servBaseAddress + url, requestBody).toPromise();
-   console.log(">>>>>>>>>3.2.request-api - Resultado do http.post de cima e que vai ser retornado ", requestResult);
-
    return requestResult;
 
  } catch (error) {
@@ -83,37 +65,46 @@ async postRequestNoHeaders(url: any, requestBody: any) {
  async postRequest(url: any, requestBody: any) {
    //all post requests will verify if the token is still valide before sending the request to the serveur and register the new token in the LocalStorage
   try {
-    console.log(" ::::::::::::::::5.requests-api linha 86 dentro de postRequest()" );
+
+   console.log(" /////// 3.requests-api linha 86 dentro de postRequest()" );
+   console.log(" /////// 3.1. dentro de postRequest() c o bodyRequest ",JSON.stringify(requestBody));
     //verify if infos about user are still in the localstorage (example,when someone tries to access directily writting the url without loggin in)
     let allInfos = this._localStorageService.getFromLocalStorage("employeeInfos");
-    console.log(" ::::::::::::::::6.requests-api linha 89 - allInfos ", allInfos );
+   console.log(" /////////4.requests-api linha 89 - allInfos ", allInfos );
 
     if(allInfos == null || allInfos == undefined){
       this._betweenService.logOut();
-      console.log(" ::::::::::::::::6.1.requests-api linha 93 - se erro no allInfos ");
+    console.log(" ///////// 5. requests-api linha 93 - se erro no allInfos ");
       return
     }
 
     //if the allInfos are still in the storage, get the token add it to the http header's request(solicited in app.js(serveur))
     let token = allInfos.sessionId;
-    console.log(" ::::::::::::::::7.requestApi - linha 99- o token é ", token  );
-    const headers = new HttpHeaders({'authorization':'Bearer '+token});
-    console.log(" ::::::::::::::::8.requestApi - linha 101- headers sao ", headers  );
+    //console.log(" /////// 6.requestApi - linha 99- o token é ", token  );
+    const headers = new HttpHeaders({'authorization':'Bearer '+ token});
+   // console.log(" /////// 7.requestApi - linha 101- headers sao ", headers  );
     let requestResult;
+
+    //console.log("/////// 8. antes de fazer chamada post")
+   // console.log("/////////8.1 post pedido this.servBaseAddress + url: ", this.servBaseAddress + url)
+   // console.log(" ///////// 8.2.requestApi - linha 106- pedido post ao serveur na morada de cima com body e headers ", JSON.stringify(requestBody) + " headers " + JSON.stringify( {headers}) );
 
     //send the get request(getAllEmployees, for example) where header's property authorization = token
     requestResult =  await this._http.post(this.servBaseAddress + url,requestBody,{headers}).toPromise();
-    console.log(" ::::::::::::::::9.requestApi - linha 106- pedido post ao serveur na morada ",this.servBaseAddress + url,requestBody,{headers} );
+   console.log("/////////8.2.1 post pedido a morada: ", this.servBaseAddress + url)
+  console.log(" ///////// 8.2.2.requestApi - linha 106- pedido post ao serveur na morada de cima com body e headers ", JSON.stringify(requestBody) + " headers " +JSON.stringify({headers} ));
     this._localStorageService.refreshToken(requestResult.newToken);
-    console.log(" ::::::::::::::::9.1.requestApi - linha 108- request.content é ", requestResult.content );
+    console.log(" //////// 9.requestApi - linha 108- request.content é ", requestResult.content );
     return requestResult.content;
 
   } catch (error) {
+  //  console.log(" ////// 10 dentro do catch se error ", error.message);
     console.log(JSON.stringify(error));
-    console.log("Error details postRequest : \n" + error.message + "\n" + error.error);
+   console.log("//////////// 10.1. Error details postRequest : \n" + error.message + "\n" + error.error);
 
     // //if the token is no longer valide the middleWare(app.js) will be returned an erreur (401 to 403) and we will be redirect to the page login
     if(error.status >= 401 && error.status <= 403 ){
+   //   console.log("///////////// 11. dentro do if ")
       this._betweenService.logOut();
       return
     }

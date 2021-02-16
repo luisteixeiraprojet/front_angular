@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AbsencesService } from '../services/absences.service';
-import { RequestsApiService } from './requests-api.service' ;
+import { RequestsApiService } from '../services/requests-api.service' ;
 
 @Component({
   selector: 'app-all-absences',

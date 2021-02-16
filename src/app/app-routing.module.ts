@@ -1,3 +1,4 @@
+import { FormNewAbsenceComponent } from './form-new-absence/form-new-absence.component';
 import { AllMyAbsencesComponent } from './all-my-absences/all-my-absences.component';
 import { EmployeeByIdComponent } from './employee-by-id/employee-by-id.component';
 import { NgModule, Component } from '@angular/core';
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: 'timeSheet', component: PointageComponent},
   {path: 'myAbsences', component: AllMyAbsencesComponent },
   {path: 'allAbsences', component:AllAbsencesComponent },
+  {path: 'formAbsence', component:FormNewAbsenceComponent}
 
 
 ];

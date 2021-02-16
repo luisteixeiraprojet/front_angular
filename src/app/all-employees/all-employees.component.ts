@@ -9,9 +9,6 @@ import {Location} from '@angular/common';
 import { Router } from '@angular/router';
 import { LocalStorageService } from './../services/local-storage.service';
 
-
-
-
 @Component({
   selector: 'app-all-employees',
   templateUrl: './all-employees.component.html',
@@ -25,7 +22,6 @@ export class AllEmployeesComponent implements OnInit {
   constructor(private _betweenService: BetweenComponentsService, private employeesService : EmployeesService, private _localStorageService: LocalStorageService, private _router: Router, private betweenComponents:BetweenComponentsService, private _Activatedroute:ActivatedRoute, private _location: Location ) { }
 
   async ngOnInit() {
-
     this.employees =  await this.employeesService.getAllEmployees();
   }
 
