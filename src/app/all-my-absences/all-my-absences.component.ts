@@ -1,3 +1,5 @@
+import { AbsencesService } from './../services/absences.service';
+import { LocalStorageService } from './../services/local-storage.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,13 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllMyAbsencesComponent implements OnInit {
 
-  constructor() { }
+  idEmployee;
+  constructor(private _localStorage: LocalStorageService, private _absenceService:AbsencesService) { }
 
-  ngOnInit(): void {
+  myAbsences:any;
+
+  async ngOnInit(){
+
+    let getIdEmployee = await this._localStorage.getFromLocalStorage("employeeInfos");
+    this.idEmployee = getIdEmployee.Id_employee;
+    this.myAbsences = await this._absenceService.getMyAbsences(this.idEmployee);
   }
 
-  nouvelleAbsence(){
-    console.log("dentro nouvelleAbsence()");
-    return "hello Absence";
+//________________________________________________________
+  updateAbsence(){
+    console.log("dentro de changer absence");
+
+
   }
 }

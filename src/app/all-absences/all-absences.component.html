@@ -1,7 +1,7 @@
 <div class=" container">
   <div class="row ">
-    <div class="d-flex flex-row flex-md-column col-12 col-md-2 ">
-      <button class="button firstButton"  [routerLink]="['/']">
+    <div class="d-flex flex-row flex-md-column col-12 col-md-2">
+      <button class="button retour firstButton mb-2"  [routerLink]="['/']">
         Retour <br/>
         au <br/>
         Menu
@@ -9,19 +9,26 @@
 
     </div>
 
-    <div class=" col-12 col-md-10">
-      <ul>
-        <li
-          class="eachEmployee d-flex justify-content-around flex-column flex-md-row"
-          *ngFor="let abs of absences"
-        >
-        <span> Nom Employee {{ abs.Id_employee }} </span>
-        <span> Type: {{abs.TypeOfAbsence }} </span>
-          <span> Date Début: {{abs.startDate }} </span>
-          <span> Date Fin: {{ abs.endDate }} </span>
-          <span> Status: {{ abs.status }}</span>
-        </li>
-      </ul>
+      <div class="col-12 col-md-10">
+        <ul>
+          <li
+            class="eachAbs d-flex flex-column flex-md-row"
+            *ngFor="let abs of absences">
+
+            <div class="infos col-12 col-md-10 d-flex flex-column justify-content-around" >
+              <p class="nomAndStatus"> Nom Employee {{ abs.Id_employee }} </p>
+              <span class="mb-1"> Type d'absence: {{abs.TypeOfAbsence }} </span>
+              <span class="mb-1"> Du  {{abs.startDate.split('T')[0]  }} au {{ abs.endDate.split('T')[0] }} (inclus) </span>
+              <p class="nomAndStatus"> Status: {{ abs.status }}</p>
+            </div>
+
+            <div class=" threeButtons col-12 d-flex flex-column col-md-2">
+              <button class="btnAction pt-2 pb-2 mb-1" (click)="acceptAbs()">Accepter</button>
+              <button class="btnAction pt-2 pb-2 mb-1" (click)="denyAbs()">Refuser</button>
+              <button class="btnAction pt-2 pb-2 " (click)="deleteAbs()">Delete</button>
+            </div>
+          </li>
+        </ul>
     </div>
   </div>
 </div>

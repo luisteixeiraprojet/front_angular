@@ -6,7 +6,6 @@
     <button class="buttonMenu" [routerLink]="['/employees']">Retour</button>
     <button class="buttonMenu" (click)="toUpdate()">Editer</button>
     <button (click)="toDelete()">Supprimer</button>
-
   </div>
 
   <div class="col-12 col-md-10">
@@ -43,7 +42,7 @@
           <p>Pièce d'Identité n°: {{ selectedEmployee.identityNumber }}</p>
           <p>Nacionalité: {{ selectedEmployee.nationality }}</p>
           <p>Numéro Sécurité Sociale: {{ selectedEmployee.socialNumber }}</p>
-          <p>Date de Naissance: {{ selectedEmployee.birthdayDate }}</p>
+          <p>Date de Naissance: {{ selectedEmployee.birthdayDate.split('T')[0]}}</p>
 
         </ng-template>
       </li>
@@ -53,7 +52,7 @@
 
 
           <p>Type de Contrat:{{ selectedEmployee.typeContract }}</p>
-          <p>Depuis: {{ selectedEmployee.joinDate }}</p>
+          <p>Depuis: {{ selectedEmployee.joinDate.split('T')[0] }}</p>
           <p>Prix de l'heure: {{ selectedEmployee.hourlyPrice }}</p>
         </ng-template>
       </li>

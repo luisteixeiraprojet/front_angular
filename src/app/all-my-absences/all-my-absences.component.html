@@ -9,26 +9,25 @@
       <button
         class="button"
         [routerLink]="['/formAbsence']"
-        (click)="nouvelleAbsence()">
+        >
         Demander <br/>
         une  <br/>
         Absence
       </button>
     </div>
 
-    <!--
     <div class=" col-12 col-md-10">
       <ul>
         <li
-          class="eachEmployee d-flex justify-content-around flex-column flex-md-row"
-          *ngFor="let empl of employees"
-          [routerLink]="['/employees', empl.Id_employee]"
+          class="eachAbsence d-flex justify-content-around flex-column flex-md-row"
+          *ngFor="let abs of myAbsences"
         >
-          <span> Prénom: {{ empl.firstName }} </span>
-          <span> Nom: {{ empl.lastName }} </span>
-          <span> Portable: {{ empl.mobilePhone }}</span>
+          <span> Début: {{ abs.startDate.split('T')[0] }} </span>
+          <span> Fin: {{ abs.endDate.split('T')[0] }} </span>
+          <span> Status: {{ abs.status }}</span>
+          <button class="editer w-25 pt-2 pb-2" (click)="updateAbsence()">Changer</button>
         </li>
       </ul>
-    </div>-->
+    </div>
   </div>
 </div>

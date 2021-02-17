@@ -1,3 +1,4 @@
+import { LocalStorageService } from './../services/local-storage.service';
 import { Component, OnInit } from '@angular/core';
 
 import { AbsencesService } from '../services/absences.service';
@@ -11,14 +12,28 @@ import { RequestsApiService } from '../services/requests-api.service' ;
 export class AllAbsencesComponent implements OnInit {
 
   absences:any;
+  employeeName;
 
-  constructor(private _absencesService:AbsencesService) { }
+  constructor(private _absencesService:AbsencesService, private _localStroage:LocalStorageService) { }
 
   async ngOnInit(){
-    console.log("++++++++ 1.dentro de ngOnInit all-absences");
     this.absences = await this._absencesService.getAllAbsences();
 
 
   }
+
+//________________________________________________
+  acceptAbs(){
+    console.log("dentro de accepter");
+  }
+
+//________________________________________________
+  denyAbs(){
+    console.log("dentro de deny absence");
+  }
+//________________________________________________
+deleteAbs(){
+  console.log("dentro de eleteAbs");
+}
 
 }

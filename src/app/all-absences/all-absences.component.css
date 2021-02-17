@@ -1,29 +1,22 @@
-.button{
-  margin-bottom: 0.5em;
+.nomAndStatus{
+  color:#6EAF59;
+  font-weight: bold;
 }
 
-.eachEmployee{
+.eachAbs{
   border: 3.5px solid #6EAF59;
   border-radius:0.5em;
-  padding: 2em;
+  padding: 1em 0 1em 0;
   margin-left:0;
   margin-right: 0;
   margin-bottom: 0.5em;
 }
+
 
 ul{
   list-style-type: none;
   padding:0 !important;
 }
 
-/*buttons*/
-@media (max-width: 768px) {
-  .firstButton{
-    margin-top: 0;
-
-    margin-right: 1em;
-  }
-
-}
 
 

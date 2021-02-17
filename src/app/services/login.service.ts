@@ -53,7 +53,7 @@ export class LoginService {
   async verifyValidationToken(){
 
     let isStillLogged= await this._requestsApiService.getRequest('/tokenVerify');
-  // console.log("__________ 0.1. linha64,  Resultado de getRequest a requestApi-isStillLogged ", isStillLogged);
+
     if(isStillLogged && isStillLogged.result == "OK"){
       this._betweenService.isLoggedIn.next(true);
     }else{

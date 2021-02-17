@@ -50,12 +50,7 @@ export class FormNewEmployeeComponent implements OnInit {
       // this.employee = this.employeeObject;
 
       this.employee.firstName = this.employeeObject.firstName;
-      console.log(
-        'FORM NEW EMPLOYEE LINHA 52: ficando igual ao getEmployee to update ' +
-          this.employee.firstName +
-          ' e o do get e ' +
-          this.employeeObject.firstName
-      );
+
       this.employee.lastName = this.employeeObject.lastName;
       this.employee.mobilePhone = this.employeeObject.mobilePhone;
       this.employee.homePhone = this.employeeObject.homePhone;

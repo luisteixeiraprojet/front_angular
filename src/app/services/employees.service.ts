@@ -20,6 +20,7 @@ export class EmployeesService {
 
   async getAllEmployees(){
     try {
+      console.log("ùùùùùùùùùù dentro de getAllEmpl - employee.service linha 23");
       return await this.requestsApiService.getRequest("/employees");
     } catch (error) {
       console.log("Error getAllEmployees " + error.message);
@@ -29,7 +30,9 @@ export class EmployeesService {
 
 //_______________________________________________________
 //id passed from employee-by-id.ts + make request GET
+
   async getEmployeeById(id){
+    console.log("ùùùùùùùùùù dentro de getEmployeeById - employee.service linha 34");
     try {
       return await this.requestsApiService.getRequest("/employees/" + id);
     } catch (error) {

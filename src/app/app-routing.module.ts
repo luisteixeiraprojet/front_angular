@@ -26,7 +26,8 @@ const routes: Routes = [
   {path: 'timeSheet', component: PointageComponent},
   {path: 'myAbsences', component: AllMyAbsencesComponent },
   {path: 'allAbsences', component:AllAbsencesComponent },
-  {path: 'formAbsence', component:FormNewAbsenceComponent}
+  {path: 'formAbsence', component:FormNewAbsenceComponent},
+  {path: 'updateAbsence', component:FormNewAbsenceComponent}
 
 
 ];
