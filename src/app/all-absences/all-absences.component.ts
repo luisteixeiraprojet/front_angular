@@ -18,7 +18,7 @@ export class AllAbsencesComponent implements OnInit {
 
   async ngOnInit(){
     this.absences = await this._absencesService.getAllAbsences();
-
+    console.log("allAbsences.ts - ngOnInit ", this.absences);
 
   }
 

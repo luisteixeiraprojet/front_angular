@@ -2,6 +2,8 @@ import { LocalStorageService } from './../services/local-storage.service';
 import { AbsencesService } from './../services/absences.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {MatIconModule} from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-form-new-absence',
@@ -26,6 +28,17 @@ export class FormNewAbsenceComponent implements OnInit {
   constructor(private router: Router,private _absenceService: AbsencesService, private _localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
+
+      var local = new Date();
+      local.setMinutes(local.getMinutes() - local.getTimezoneOffset());
+      this.absence.requestDate = local.toJSON().slice(0,10);
+      console.log("a dat é ", this.absence.requestDate);
+
+
+
+
+
+
   }
   //when submitting the form
   submitOnClick(form) {

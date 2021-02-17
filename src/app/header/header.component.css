@@ -24,7 +24,7 @@
 .info-btn{
   height:2em;
   border-radius:0.3em;
-  margin:0;
+  margin: 0.2em;
 }
 
 .userN{
@@ -51,6 +51,7 @@ dois numa row e mais pequenos*/
   }
   .info-btn{
     height: 3em;
+
   }
   .userN{
     display:none;

@@ -22,10 +22,16 @@
           class="eachAbsence d-flex justify-content-around flex-column flex-md-row"
           *ngFor="let abs of myAbsences"
         >
-          <span> Début: {{ abs.startDate.split('T')[0] }} </span>
-          <span> Fin: {{ abs.endDate.split('T')[0] }} </span>
-          <span> Status: {{ abs.status }}</span>
-          <button class="editer w-25 pt-2 pb-2" (click)="updateAbsence()">Changer</button>
+        <div class="col-12 col-md-10 d-flex flex-column">
+          <span class="typeAndStatus mb-1"> Absence: {{ abs.typeOfAbsence }}</span>
+          <span class="mb-1"> Du {{ abs.startDate.split('T')[0] }} au {{ abs.endDate.split('T')[0] }} </span>
+          <span class="mb-1"> Demandé le {{ abs.requestDate.split('T')[0] }}</span>
+          <span class="typeAndStatus"> Status: {{ abs.status }}</span>
+        </div>
+
+        <div class="col-12 col-md-2 align-self-center">
+          <button class="pt-2 pb-2" (click)="updateAbsence()">Changer</button>
+        </div>
         </li>
       </ul>
     </div>

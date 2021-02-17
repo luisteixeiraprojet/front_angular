@@ -1,35 +1,39 @@
 <div class=" container">
   <div class="row ">
     <div class="d-flex flex-row flex-md-column col-12 col-md-2">
-      <button class="button retour firstButton mb-2"  [routerLink]="['/']">
-        Retour <br/>
-        au <br/>
+      <button class="button retour firstButton mb-2" [routerLink]="['/']">
+        Retour <br />
+        au <br />
         Menu
       </button>
 
     </div>
 
-      <div class="col-12 col-md-10">
-        <ul>
-          <li
-            class="eachAbs d-flex flex-column flex-md-row"
-            *ngFor="let abs of absences">
+    <div class="col-12 col-md-10">
+      <ul>
+        <li class="eachAbs" *ngFor="let abs of absences">
 
-            <div class="infos col-12 col-md-10 d-flex flex-column justify-content-around" >
-              <p class="nomAndStatus"> Nom Employee {{ abs.Id_employee }} </p>
-              <span class="mb-1"> Type d'absence: {{abs.TypeOfAbsence }} </span>
-              <span class="mb-1"> Du  {{abs.startDate.split('T')[0]  }} au {{ abs.endDate.split('T')[0] }} (inclus) </span>
-              <p class="nomAndStatus"> Status: {{ abs.status }}</p>
+            <div class="d-flex flex-column flex-md-row justify-content-between">
+              <div class="d-flex flex-column justify-content-around">
+                <div class="nomAndDate"> {{ abs.firstName }} {{abs.lastName | uppercase }}</div>
+                <div> Type d'absence <span class="nomAndDate "> {{abs.typeOfAbsence }} </span></div>
+                <div> Du <span class="nomAndDate "> {{abs.startDate.split('T')[0] }} </span> au <span
+                    class="nomAndDate "> {{ abs.endDate.split('T')[0] }} </span> </div>
+
+                <div>Demandé le: {{ abs.requestDate.split('T')[0] }}</div>
+              </div>
+              <div class="d-flex flex-column justify-content-center" >
+                <span class="nomAndDate ">Status: <i class="far fa-check-square fa-2x"></i>  {{ abs.status }}</span>
+                <div class=" threeButtons d-flex flex-row justify-content-around ">
+                  <button class="btnAction" (click)="acceptAbs()"><i class="far fa-check-square fa-2x"></i> </button>
+                  <button class="btnAction" (click)="denyAbs()"><i class="far fa-times-circle fa-2x"></i></button>
+                  <button class="btnAction" (click)="deleteAbs()"><i class="far fa-trash-alt fa-2x"></i></button>
+                </div>
+              </div>
             </div>
 
-            <div class=" threeButtons col-12 d-flex flex-column col-md-2">
-              <button class="btnAction pt-2 pb-2 mb-1" (click)="acceptAbs()">Accepter</button>
-              <button class="btnAction pt-2 pb-2 mb-1" (click)="denyAbs()">Refuser</button>
-              <button class="btnAction pt-2 pb-2 " (click)="deleteAbs()">Delete</button>
-            </div>
-          </li>
-        </ul>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
-

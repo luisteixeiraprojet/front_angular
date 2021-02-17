@@ -2,10 +2,15 @@
   margin-bottom: 0.5em;
 }
 
+.typeAndStatus{
+  color:#6EAF59;
+  font-weight: bold;
+}
+
 .eachAbsence{
   border: 3.5px solid #6EAF59;
   border-radius:0.5em;
-  padding: 2em;
+  padding: 1em 0 1em 0;
   margin-left:0;
   margin-right: 0;
   margin-bottom: 0.5em;
