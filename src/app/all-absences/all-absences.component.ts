@@ -14,26 +14,58 @@ export class AllAbsencesComponent implements OnInit {
   absences:any;
   employeeName;
 
-  constructor(private _absencesService:AbsencesService, private _localStroage:LocalStorageService) { }
+
+
+  constructor(private _absenceService:AbsencesService, private _localStroage:LocalStorageService) { }
 
   async ngOnInit(){
-    this.absences = await this._absencesService.getAllAbsences();
-    console.log("allAbsences.ts - ngOnInit ", this.absences);
+    this.absences = await this._absenceService.getAllAbsences();
+
+
+
 
   }
 
-//________________________________________________
-  acceptAbs(){
-    console.log("dentro de accepter");
-  }
+//_______________________________________________
+isDecided(absence){
+  console.log("is decided ", absence);
+  if(absence.status != "" && absence.status != null && absence.status != undefined && Number(absence.status) !=0){
+    console.log("absence.status ", absence.status );
+    return true
+  }else{ return false }
 
-//________________________________________________
-  denyAbs(){
-    console.log("dentro de deny absence");
-  }
-//________________________________________________
-deleteAbs(){
-  console.log("dentro de eleteAbs");
 }
 
+//________________________________________________
+  async acceptAbs(selectedAbs){
+    let bool;
+        bool = confirm("Cette demande sera REFUSEE. Vous n'aurez pas la possibilité de changer votre décision. Êtes-vous sûr de vouloir continuer? ");
+        if(bool == true){
+    selectedAbs.status = "accepted";
+    selectedAbs.statusDate = new Date().toISOString();
+    let x = await this._absenceService.updateAbsence(selectedAbs);
+    }
+  }
+
+//________________________________________________
+  async denyAbs(selectedAbs){
+    let bool;
+        bool = confirm("Cette demande sera REFUSEE. Vous n'aurez pas la possibilité de changer votre décision. Êtes-vous sûr de vouloir continuer? ");
+        if(bool == true){
+    selectedAbs.status = "refused";
+    selectedAbs.statusDate = new Date().toISOString();
+    await this._absenceService.updateAbsence(selectedAbs);
+    }
+  }
+
+//________________________________________________
+async deleteAbs(idAbs){
+      let bool;
+        bool = confirm("delete?");
+        if(bool == true){
+         await this._absenceService.deleteAbs(idAbs);
+         this.absences = await this._absenceService.getAllAbsences();
+      }
 }
+
+}//closes class

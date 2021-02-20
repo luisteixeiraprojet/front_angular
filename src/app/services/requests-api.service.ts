@@ -16,12 +16,12 @@ export class RequestsApiService {
   constructor(private _http: HttpClient, private _localStorageService: LocalStorageService, private _betweenService:BetweenComponentsService ) { }
 //_____________________________________________________________________
 async getRequest(url:any){
-console.log("++++++++++ 4.dentor de getRequest em requestApi.service " + url);
+
 /*all get requests will verify if the token is still valide before sending the request to the serveur
 so we can send headers:authorisation  solicited in the serveur and so we 're redirected to page login if token not valide
 */
   try {
-    //verify if infos user are still in the localstorage (example,when someone tries to access directily writting the url without loggin in)
+  //verify if infos user are still in the localstorage (example,when someone tries to access directily writting the url without loggin in)
    let allInfos = this._localStorageService.getFromLocalStorage("employeeInfos");
 
     if(allInfos == null || allInfos == undefined){
@@ -33,12 +33,11 @@ so we can send headers:authorisation  solicited in the serveur and so we 're red
     const headers = new HttpHeaders({'authorization':'Bearer '+token});
 
     let resultRequest; //initialized here as undefined (almost as type 'any') so it doesnt return a syntaxe erreur from loginService(function verifyValidationToken());
-    console.log("+++++++++++ ", this.servBaseAddress+url);
+
     //send the get request(getAllEmployees, for example) where header's property authorization = token (solicited in app.js(serveur))
     resultRequest = await this._http.get(this.servBaseAddress+url, {headers}).toPromise();
 
     this._localStorageService.refreshToken(resultRequest.newToken); //resultRequest.newToken sent as response from the serveur (example, routes employees)
-    console.log("++++++++++ 4.4. resultRequest.content : ", resultRequest, url );
 
     return resultRequest.content;
 
@@ -70,6 +69,8 @@ async postRequestNoHeaders(url: any, requestBody: any) {
  //____________________________________________________________________________________________________
 //to all post request when we're already logged in
  async postRequest(url: any, requestBody: any) {
+
+  console.log("/////1.postRequest body ", requestBody  );
    //all post requests will verify if the token is still valide before sending the request to the serveur and register the new token in the LocalStorage
   try {
     //verify if infos about user are still in the localstorage (example,when someone tries to access directily writting the url without loggin in)
@@ -104,10 +105,12 @@ async postRequestNoHeaders(url: any, requestBody: any) {
 
  //________________________________________________________________________
  async putRequests(url: any, requestBody: any){
+
   try {
     //verify if infos about user are still in the localstorage (example,when someone tries to access directily writting the url without loggin in)
     let allInfos = this._localStorageService.getFromLocalStorage("employeeInfos");
-    console.log("request-api all infos ", allInfos);
+
+    //console.log("request-api all infos ", allInfos);
 
     if(allInfos == null || allInfos == undefined){
       this._betweenService.logOut();
@@ -121,6 +124,10 @@ async postRequestNoHeaders(url: any, requestBody: any) {
 
     //send the get request(getAllEmployees, for example) where header's property authorization = token
       this._http.put(this.servBaseAddress + url, requestBody, {headers}).subscribe((info:any) =>{
+        console.log("///5.1. o put na morada: ", this.servBaseAddress + url);
+        console.log("///5.2. e com o requestBody: ",requestBody);
+        //console.log("5.3. com os headers ", {headers});
+        console.log("/////5.4. ir para o servidor ver os logs")
         this._localStorageService.refreshToken(info.newToken);
         return info.content ;
       });
@@ -138,11 +145,12 @@ async postRequestNoHeaders(url: any, requestBody: any) {
 
 //___________________________________________________________________________
 async delete(url:any){
+  console.log("requestApiService. delete")
   try {
-    console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3. Dentro de delete em apiRequests");
+   // console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3. Dentro de delete em apiRequests");
     //verify if infos about user are still in the localstorage (example,when someone tries to access directily writting the url without loggin in)
     let allInfos = this._localStorageService.getFromLocalStorage("employeeInfos");
-    console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3.1 Resultado da chamada  delete da requestApi ", allInfos);
+   // console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3.1 Resultado da chamada  delete da requestApi ", allInfos);
 
     if(allInfos == null || allInfos == undefined){
       this._betweenService.logOut();
@@ -151,18 +159,18 @@ async delete(url:any){
 
     //if the allInfos are still in the storage, get the token add it to the http header's request(solicited in app.js(serveur))
     let token = allInfos.sessionId;
-    console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3.2. Token no LS ", token);
+    //"¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3.2. Token no LS ", token);
     const headers = new HttpHeaders({'authorization':'Bearer '+token});
-    console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3.3.headers enviados no pedido delete ao servidor ", headers);
-    console.log("em headers postRequest, api ", headers);
+   // console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3.3.headers enviados no pedido delete ao servidor ", headers);
+  //  console.log("em headers postRequest, api ", headers);
     let resultRequest;
 
     //send the get request(getAllEmployees, for example) where header's property authorization = token
-    console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3.4.url+headers para a morada do servidor",this.servBaseAddress + url,{headers} );
+   // console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3.4.url+headers para a morada do servidor",this.servBaseAddress + url,{headers} );
     resultRequest = await this._http.delete(this.servBaseAddress + url,{headers} ).toPromise();
-    console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3.5.resultado do pedido a morada do servidor ",resultRequest);
+   // console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3.5.resultado do pedido a morada do servidor ",resultRequest);
     this._localStorageService.refreshToken(resultRequest.newToken);
-    console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3.6.requestResult.content retornado do servidor é  ",resultRequest.content);
+   // console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨3.6.requestResult.content retornado do servidor é  ",resultRequest.content);
     return resultRequest.content;
 
   } catch (error) {

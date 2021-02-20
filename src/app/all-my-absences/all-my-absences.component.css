@@ -2,6 +2,14 @@
   margin-bottom: 0.5em;
 }
 
+.btnAction{
+  width: 3.2em;
+  height: 3.2em;
+  padding: 0.5em;
+
+  margin: 0.1em;
+}
+
 .typeAndStatus{
   color:#6EAF59;
   font-weight: bold;

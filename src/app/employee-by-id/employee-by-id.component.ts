@@ -47,7 +47,7 @@ async toDelete(){
   let bool;
     bool = confirm("delete?");
     if(bool == true){
-     let idToDelete = await this.employeesService.deleteEmployee(this.idEmployee);
+      await this.employeesService.deleteEmployee(this.idEmployee);
       setTimeout(() => {
       this.router.navigate(['/employees']);
       },1000);

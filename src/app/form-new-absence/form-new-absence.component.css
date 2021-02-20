@@ -65,4 +65,17 @@
   .box{
     margin-top: 1em;
   }
+
+  hr{
+    display: none;
+  }
+
+  .title{
+    font-size:1.7em;
+    margin: 0 0 1em 0;
+  }
+
+  .dateDmd{
+    margin-bottom: 1em;
+  }
 }

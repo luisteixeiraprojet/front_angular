@@ -29,8 +29,9 @@
           <span class="typeAndStatus"> Status: {{ abs.status }}</span>
         </div>
 
-        <div class="col-12 col-md-2 align-self-center">
-          <button class="pt-2 pb-2" (click)="updateAbsence()">Changer</button>
+        <div class="col-12 col-md-2 d-flex justify-content-center align-self-center">
+          <button class="btnAction" (click)="updateAbsence(abs)"><i class="far fa-edit "></i></button>
+          <button class="btnAction" (click)="deleteAbsence(abs.Id_absence)"><i class="far fa-trash-alt"></i></button>
         </div>
         </li>
       </ul>

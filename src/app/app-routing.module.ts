@@ -27,7 +27,7 @@ const routes: Routes = [
   {path: 'myAbsences', component: AllMyAbsencesComponent },
   {path: 'allAbsences', component:AllAbsencesComponent },
   {path: 'formAbsence', component:FormNewAbsenceComponent},
-  {path: 'updateAbsence', component:FormNewAbsenceComponent}
+  {path: 'updateAbsence/:id', component:FormNewAbsenceComponent}
 
 
 ];

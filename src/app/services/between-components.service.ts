@@ -16,6 +16,8 @@ export class BetweenComponentsService {
   //that will dictate if the header shows/hides the div (buttons and userName) and will update the value of userLohggedName
   public isLoggedIn : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
+  private objToUpdate:any;
+
   constructor(private _router:Router) { }
 
   //from employee-by-id + stringify 'cause localStorage works with strings
@@ -35,13 +37,19 @@ export class BetweenComponentsService {
   }
 
   logOut() {
-    console.log("function logOut header")
     localStorage.clear();
-    console.log("limpou.?")
     this.isLoggedIn.next(false);
-    console.log("mudanca da variavel")
     this._router.navigate(['login']);
+  }
 
+  //receive abs to update and pass it to others components
+  receiveObjectToUpdate(objToUpdate){
+   console.log("//2. betweenServices - receiveObj c objToUpdate ", objToUpdate);
+     this.objToUpdate = objToUpdate;
+  }
+
+  getObjToUpdate(){
+    return this.objToUpdate;
   }
 
 

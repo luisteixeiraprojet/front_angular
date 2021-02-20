@@ -22,12 +22,20 @@
 
                 <div>Demandé le: {{ abs.requestDate.split('T')[0] }}</div>
               </div>
+
               <div class="d-flex flex-column justify-content-center" >
-                <span class="nomAndDate ">Status: <i class="far fa-check-square fa-2x"></i>  {{ abs.status }}</span>
+
+
                 <div class=" threeButtons d-flex flex-row justify-content-around ">
-                  <button class="btnAction" (click)="acceptAbs()"><i class="far fa-check-square fa-2x"></i> </button>
-                  <button class="btnAction" (click)="denyAbs()"><i class="far fa-times-circle fa-2x"></i></button>
-                  <button class="btnAction" (click)="deleteAbs()"><i class="far fa-trash-alt fa-2x"></i></button>
+                  <span class="nomAndDate mr-5 d-flex flex-column justify-content-center" *ngIf="isDecided(abs)">
+                    <span >  Status </span>
+
+                    <i class="far fa-check-square fa-2x  align-self-center" *ngIf="abs.status=='accepted'"></i>
+                    <i class="far fa-times-circle fa-2x  align-self-center"  *ngIf="abs.status=='refused'"></i>
+                  </span>
+                  <button class="btnAction" (click)="acceptAbs(abs)" *ngIf="!isDecided(abs)"><i class="far fa-check-square fa-2x"></i> </button>
+                  <button class="btnAction" (click)="denyAbs(abs)" *ngIf="!isDecided(abs)"><i class="far fa-times-circle fa-2x"></i></button>
+                  <button class="btnAction" (click)="deleteAbs(abs.Id_absence)"><i class="far fa-trash-alt fa-2x"></i></button>
                 </div>
               </div>
             </div>

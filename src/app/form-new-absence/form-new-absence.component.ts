@@ -1,8 +1,10 @@
+import { BetweenComponentsService } from './../services/between-components.service';
 import { LocalStorageService } from './../services/local-storage.service';
 import { AbsencesService } from './../services/absences.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
+import {Absence} from "../model/absence";
 
 
 @Component({
@@ -13,35 +15,39 @@ import {MatIconModule} from '@angular/material/icon';
 export class FormNewAbsenceComponent implements OnInit {
   isSubmiting = false;
 
-  //to create an absence
-  absence = {
-    typeOfAbsence:'',
-    requestDate:'',
-    startDate:'',
-    endDate:'',
-    status:'',
-    statusDate:'',
-    Id_employee:''
-  }
+  //to use when updating an absence
+  formValues:any;
+  updatedAbsence;
+  idAbsence;
 
+  absence = new Absence();
 
-  constructor(private router: Router,private _absenceService: AbsencesService, private _localStorageService: LocalStorageService) { }
+  constructor(private router: Router,private _absenceService: AbsencesService, private _localStorageService: LocalStorageService, private _betweenComponents : BetweenComponentsService) { }
 
   ngOnInit(): void {
 
+    //if not createAbsence
+    if(this.router.url != '/formAbsence'){
+      this.absence.fillObj(this._betweenComponents.getObjToUpdate());
+      //so it will present the date in html format dd/mm/yyyy of the selected absence otherwise it wont happen
+    this.absence.startDate = this.absence.startDate.split('T')[0];
+     this.absence.endDate = this.absence.endDate.split('T')[0];
+     this.absence.requestDate = this.absence.requestDate.split('T')[0]
+
+    }else{
       var local = new Date();
       local.setMinutes(local.getMinutes() - local.getTimezoneOffset());
       this.absence.requestDate = local.toJSON().slice(0,10);
-      console.log("a dat é ", this.absence.requestDate);
-
-
-
-
-
-
+    }
   }
+
   //when submitting the form
   submitOnClick(form) {
+    if (form.valid) {
+
+    this.isSubmiting = true;
+
+   //console.log("/////// 1. FNA.ts - 50-, ", this.absence )
 
     const requestDate = new Date(this.absence.requestDate);
     this.absence.requestDate = requestDate.toISOString();
@@ -50,35 +56,45 @@ export class FormNewAbsenceComponent implements OnInit {
     this.absence.startDate = startDate.toISOString();
 
     const endDate = new Date(this.absence.endDate);
-    this.absence.endDate = requestDate.toISOString();
+    this.absence.endDate = endDate.toISOString();
 
     let getIdEmployee = this._localStorageService.getFromLocalStorage("employeeInfos");
     this.absence.Id_employee = getIdEmployee.Id_employee;
 
-    if (form.valid) {
-      this.isSubmiting = true;
-      this.createAbsence();
-      form.reset();
+  //  console.log("/////// 2. FNA.ts - 64-, ", this.absence )
+
+    this.absCreateOrUpdate();
+
     } else {
       alert('Veuillez remplir les champs obligatoires.');
     }
   }
 
-  async createAbsence(){
+  async absCreateOrUpdate(){
 
-    let createdAbsence:any;
+
     try {
+      if (this.router.url === '/formAbsence'){
+      await this._absenceService.createAbsence(this.absence.toSimpleObject());
 
-      createdAbsence = await this._absenceService.createAbsence(this.absence);
-      setTimeout(() => {
-        this.router.navigate(['/myAbsences/']);
-      }, 500);
+      }else{
+        //requestDAte doesn't apply here because we can not change that date in the form update.It comes from this.absence by default
+        this.updatedAbsence = await this._absenceService.updateAbsence(this.absence.toSimpleObject());
+      }
     } catch (error) {
       console.log("error ", error.message);
       alert("Attention le formulaire n'est pas bien rempli!");
       this.isSubmiting=false;
-    }
+
+    } setTimeout(() => {
+      this.router.navigate(['/myAbsences/']);
+    }, 500);
   }
+
+
+
+
+
 
 
 }//closes class

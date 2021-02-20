@@ -69,9 +69,7 @@ async updateEmployee(id, obj){
   async deleteEmployee(id){
 
     try {
-      console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨1. employeeService chama delete da requestApi");
-      let toDelete = await this.requestsApiService.delete("/employees/" + id);
-      console.log("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨2. Resultado da chamada  delete da requestApi ", toDelete);
+      await this.requestsApiService.delete("/employees/" + id);
 
     } catch (error) {
       console.log("Error " + error.message);
