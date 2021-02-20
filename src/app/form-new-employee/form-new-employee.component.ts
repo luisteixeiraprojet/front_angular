@@ -3,6 +3,7 @@ import { BetweenComponentsService } from '../services/between-components.service
 import { Component, OnInit } from '@angular/core';
 import { EmployeesService } from '../services/employees.service';
 import { ActivatedRoute } from '@angular/router';
+import {Employee} from '../model/employee'
 
 @Component({
   selector: 'form-new-employee',
@@ -16,7 +17,11 @@ export class FormNewEmployeeComponent implements OnInit {
   //UPDATE: Employee BY id
   employeeObject;
 
+  //when creating an employee
+  employee=new Employee();
+
   //To create a user
+  /*
   employee = {
     firstName: '',
     lastName: '',
@@ -34,7 +39,7 @@ export class FormNewEmployeeComponent implements OnInit {
     typeContract: '',
     joinDate: '',
     hourlyPrice: '',
-  };
+  };*/
 
   constructor(
     private employeesService: EmployeesService,
@@ -47,8 +52,16 @@ export class FormNewEmployeeComponent implements OnInit {
     //so it runs only when its the route to update
     if (this.router.url != '/createEmployee') {
       this.employeeObject = this.betweenComponents.getEmployeeToUpdate();
-      // this.employee = this.employeeObject;
+      console.log("------------- 1. this.employeeObject = this.betweenComponents.getEmployeeToUpdate(); ", this.employeeObject );
 
+      //form will be completed with infos from the selected employee
+      this.employee.fillObjEmployee(this.employeeObject);
+      this.employee.birthdayDate = this.employee.birthdayDate.split('T')[0];
+      this.employee.joinDate =  this.employee.joinDate.split('T')[0];
+
+
+      // this.employee = this.employeeObject;
+      /*
       this.employee.firstName = this.employeeObject.firstName;
 
       this.employee.lastName = this.employeeObject.lastName;
@@ -65,15 +78,25 @@ export class FormNewEmployeeComponent implements OnInit {
       this.employee.iban = this.employeeObject.iban;
       this.employee.typeContract = this.employeeObject.typeContract;
       this.employee.joinDate = this.employeeObject.joinDate.split('T')[0];
-      this.employee.hourlyPrice = this.employeeObject.hourlyPrice;
+      this.employee.hourlyPrice = this.employeeObject.hourlyPrice;*/
     }
   } //closes ngOnInit
-
 
 //when submitting the form
   submitOnClick(form) {
     if (form.valid) {
       this.isSubmiting = true;
+
+      if(this.employeeObject.birthdayDate){
+        const birthdayDate = new Date(this.employeeObject.birthdayDate);
+        this.employeeObject.birthdayDate = birthdayDate.toISOString();
+        }
+
+        if(this.employeeObject.joinDate){
+        const joinDate = new Date(this.employeeObject.joinDate);
+        this.employeeObject.joinDate = joinDate.toISOString();
+        }
+
       this.createOrUpdate();
       form.reset();
     } else {
@@ -88,16 +111,26 @@ export class FormNewEmployeeComponent implements OnInit {
 
       if (this.router.url === '/createEmployee') {
         let createdEmployee: any; //'cause of typology. typesript requires type of variable (and object doesnt always have the id. with any it doesn't matter). To not have erreurs of compilation before obtaining the id
+        let simpleEmplObj= this.employee.toSimplifyObject();
         createdEmployee = await this.employeesService.createEmployee(
-          this.employee
+          simpleEmplObj
         );
         id = createdEmployee.Id_employee;
 
       } else {
-        let updatedEmployee = await this.employeesService.updateEmployee(
+        let bool;
+        bool = confirm("Les coordonées de ce salarié seront changées. Êtes-vous sûr de vouloir continuer? ");
+        if(bool == true){
+          let simpleEmplObj= this.employee.toSimplifyObject();
+          await this.employeesService.updateEmployee(
           this.employeeObject.Id_employee,
-          this.employee
-        );
+          simpleEmplObj)
+
+      }else{
+        id = this.employeeObject.Id_employee;
+
+        this.router.navigate(['/employees/' + id]);
+      }
         id = this.employeeObject.Id_employee;
       }
       setTimeout(() => {

@@ -20,30 +20,47 @@ export class EmployeesService {
 
   async getAllEmployees(){
     try {
-      console.log("ùùùùùùùùùù dentro de getAllEmpl - employee.service linha 23");
+
       return await this.requestsApiService.getRequest("/employees");
-    } catch (error) {
+
+      } catch (error) {
       console.log("Error getAllEmployees " + error.message);
     }
-   //return this.http.get("http://luisteixeiraprojet.herokuapp.com/employees");
   }
 
 //_______________________________________________________
 //id passed from employee-by-id.ts + make request GET
 
   async getEmployeeById(id){
-    console.log("ùùùùùùùùùù dentro de getEmployeeById - employee.service linha 34");
+
     try {
-      return await this.requestsApiService.getRequest("/employees/" + id);
+
+      let emplById = await this.requestsApiService.getRequest("/employees/" + id);
+
+       //ClearDb is sending -1 day in the date so temporarally i solved it like this:
+       if(emplById.birthdayDate){
+        let birthdayDate = new Date(emplById.birthdayDate)
+        birthdayDate.setDate(birthdayDate.getDate()+1);
+        emplById.birthdayDate = birthdayDate.toISOString();
+        }
+
+        if(emplById.joinDate){
+        let joinDate = new Date(emplById.joinDate)
+        joinDate.setDate(joinDate.getDate()+1);
+        emplById.joinDate = joinDate.toISOString();
+        }
+
+      return emplById;
+
     } catch (error) {
-      console.log("Error getAllEmployees " + error.message);
+      console.log("Error " + error.message);
     }
   }
 
 //_______________________________________________________
 //values written on the form-new-employee passed + make request post
 async createEmployee(employeeObj){
-
+  console.log("1. EmpServ - 46 - employeeObj ", employeeObj);
   try {
     let pedidoPost = await this.requestsApiService.postRequest("/employees", employeeObj);
     return pedidoPost;

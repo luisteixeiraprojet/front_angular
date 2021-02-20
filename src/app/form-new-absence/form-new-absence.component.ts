@@ -47,8 +47,6 @@ export class FormNewAbsenceComponent implements OnInit {
 
     this.isSubmiting = true;
 
-   //console.log("/////// 1. FNA.ts - 50-, ", this.absence )
-
     const requestDate = new Date(this.absence.requestDate);
     this.absence.requestDate = requestDate.toISOString();
 
@@ -79,7 +77,13 @@ export class FormNewAbsenceComponent implements OnInit {
 
       }else{
         //requestDAte doesn't apply here because we can not change that date in the form update.It comes from this.absence by default
+        let bool;
+        bool = confirm("Cette demande sera changée. Êtes-vous sûr de vouloir continuer? ");
+        if(bool == true){
         this.updatedAbsence = await this._absenceService.updateAbsence(this.absence.toSimpleObject());
+        }else{
+          this.router.navigate(['/myAbsences/']);
+        }
       }
     } catch (error) {
       console.log("error ", error.message);

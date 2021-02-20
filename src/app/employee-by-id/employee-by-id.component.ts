@@ -48,6 +48,7 @@ async toDelete(){
     bool = confirm("delete?");
     if(bool == true){
       await this.employeesService.deleteEmployee(this.idEmployee);
+      console.log("3. EmplById - 51- this.idEmployee ", this.idEmployee);
       setTimeout(() => {
       this.router.navigate(['/employees']);
       },1000);

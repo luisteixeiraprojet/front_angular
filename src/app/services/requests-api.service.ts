@@ -89,6 +89,7 @@ async postRequestNoHeaders(url: any, requestBody: any) {
     //send the get request(getAllEmployees, for example) where header's property authorization = token
     requestResult =  await this._http.post(this.servBaseAddress + url,requestBody,{headers}).toPromise();
     this._localStorageService.refreshToken(requestResult.newToken);
+    console.log(" ********************* ReqstAPI - 92- resultado de http.post ", requestResult.content);
     return requestResult.content;
 
   } catch (error) {

@@ -47,8 +47,6 @@ export class Absence {
   return absConvertedToObject;
  }
 
-
-
   public get Id_absence(): string {
     return this._Id_absence;
   }
