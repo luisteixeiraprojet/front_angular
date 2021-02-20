@@ -20,20 +20,14 @@ export class AllAbsencesComponent implements OnInit {
 
   async ngOnInit(){
     this.absences = await this._absenceService.getAllAbsences();
-
-
-
-
   }
 
 //_______________________________________________
 isDecided(absence){
-  console.log("is decided ", absence);
   if(absence.status != "" && absence.status != null && absence.status != undefined && Number(absence.status) !=0){
-    console.log("absence.status ", absence.status );
     return true
-  }else{ return false }
-
+  }else{
+     return false }
 }
 
 //________________________________________________

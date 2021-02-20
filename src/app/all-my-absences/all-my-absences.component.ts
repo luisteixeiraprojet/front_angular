@@ -27,6 +27,17 @@ export class AllMyAbsencesComponent implements OnInit {
 
   }
 
+
+//_______________________________________________
+isDecided(absence){
+  console.log("is decided ", absence);
+  if(absence.status != "" && absence.status != null && absence.status != undefined && Number(absence.status) !=0){
+    console.log("absence.status ", absence.status );
+    return true
+  }else{ return false }
+}
+
+
 //________________________________________________________
   updateAbsence(absToUpdate){
    // console.log("1.dentro de updateABs -allMyABs.ts - 31 - c a ausencia: ", absToUpdate);

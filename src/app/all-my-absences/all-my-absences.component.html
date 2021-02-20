@@ -23,14 +23,21 @@
           *ngFor="let abs of myAbsences"
         >
         <div class="col-12 col-md-10 d-flex flex-column">
-          <span class="typeAndStatus mb-1"> Absence: {{ abs.typeOfAbsence }}</span>
-          <span class="mb-1"> Du {{ abs.startDate.split('T')[0] }} au {{ abs.endDate.split('T')[0] }} </span>
+          <span class="typeAndStatus mb-1 "> Absence: {{ abs.typeOfAbsence }}</span>
+          <span class=" my-2"> Du <span class="typeAndStatus" > {{ abs.startDate.split('T')[0] }}</span> au <span class="typeAndStatus" >{{ abs.endDate.split('T')[0] }}  </span>inclus</span>
           <span class="mb-1"> Demandé le {{ abs.requestDate.split('T')[0] }}</span>
-          <span class="typeAndStatus"> Status: {{ abs.status }}</span>
+          <span class="typeAndStatus my-2" *ngIf="!isDecided(abs)"> Status: En attente de décision </span>
+          <span class="typeAndStatus mt-2 mb-1" *ngIf="isDecided(abs)">
+            Status:
+            <span *ngIf="abs.status=='accepted'">Acceptée</span>
+            <span *ngIf="abs.status=='refused'">Refusée</span>
+
+          </span>
+          <span class="mb-2" *ngIf="isDecided(abs)"> Décision transmise le: {{ abs.statusDate.split('T')[0]}}</span>
         </div>
 
         <div class="col-12 col-md-2 d-flex justify-content-center align-self-center">
-          <button class="btnAction" (click)="updateAbsence(abs)"><i class="far fa-edit "></i></button>
+          <button class="btnAction" (click)="updateAbsence(abs)"  *ngIf="!isDecided(abs)"><i class="far fa-edit "></i></button>
           <button class="btnAction" (click)="deleteAbsence(abs.Id_absence)"><i class="far fa-trash-alt"></i></button>
         </div>
         </li>

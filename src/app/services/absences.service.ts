@@ -63,6 +63,13 @@ async getMyAbsences(idEmployee){
        let endDate = new Date(allABs[eachAbs].endDate);
        endDate.setDate(endDate.getDate()+1);
        allABs[eachAbs].endDate = endDate.toISOString();
+
+      //so it doesnt return an error when startDate is not yet available
+       if( allABs[eachAbs].statusDate){
+        let statusDate = new Date(allABs[eachAbs].statusDate);
+        statusDate.setDate(statusDate.getDate()+1);
+        allABs[eachAbs].statusDate = statusDate.toISOString();
+      }
       }
       return allABs
 
