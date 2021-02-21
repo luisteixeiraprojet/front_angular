@@ -25,20 +25,19 @@ export class LocalStorageService {
 
   clearStorageLogOut() {
   localStorage.clear();
- //console.log("2.5. localStorage Service clear localstorage: limpeza  ", localStorage);
   }
 
 
   refreshToken(newToken){
-  //  console.log(" ////// 12. dentro de refresh token");
+
     //as when making a request a new token is created (authDataFuncions - serveur) we need to register it in the localStorage
     let employeeInfosStored = this.getFromLocalStorage('employeeInfos');
-  //  console.log(" ////// 12.1 resultado de employeeInfosStored - localstorage ", employeeInfosStored);
+
     if(employeeInfosStored  && employeeInfosStored.sessionId != newToken){
       employeeInfosStored.sessionId = newToken;
       this.setDataInLocalStorage('employeeInfos', JSON.stringify(employeeInfosStored));
     }
-   // console.log(" ////// 12.2. fim de refreshToken - localstorage");
+
   }
 
 

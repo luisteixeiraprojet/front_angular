@@ -59,8 +59,6 @@ export class FormNewAbsenceComponent implements OnInit {
     let getIdEmployee = this._localStorageService.getFromLocalStorage("employeeInfos");
     this.absence.Id_employee = getIdEmployee.Id_employee;
 
-  //  console.log("/////// 2. FNA.ts - 64-, ", this.absence )
-
     this.absCreateOrUpdate();
 
     } else {

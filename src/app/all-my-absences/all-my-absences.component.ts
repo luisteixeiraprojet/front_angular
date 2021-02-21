@@ -30,30 +30,26 @@ export class AllMyAbsencesComponent implements OnInit {
 
 //_______________________________________________
 isDecided(absence){
-  console.log("is decided ", absence);
   if(absence.status != "" && absence.status != null && absence.status != undefined && Number(absence.status) !=0){
-    console.log("absence.status ", absence.status );
     return true
-  }else{ return false }
+  }else{
+     return false }
 }
 
 
 //________________________________________________________
   updateAbsence(absToUpdate){
-   // console.log("1.dentro de updateABs -allMyABs.ts - 31 - c a ausencia: ", absToUpdate);
     this._betweenService.receiveObjectToUpdate(absToUpdate);
     this.router.navigate(['/updateAbsence/' + absToUpdate.Id_absence]);
   }
 
 //________________________________________________________
   async deleteAbsence(idAbsence){
-    console.log("apagar abs  c id ", idAbsence);
       let bool;
         bool = confirm("delete?");
         if(bool == true){
          await this._absenceService.deleteAbs(idAbsence);
          this.myAbsences = await this._absenceService.getMyAbsences(this.idEmployee);
-
       }
     }
 

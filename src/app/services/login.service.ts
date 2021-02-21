@@ -62,7 +62,6 @@ export class LoginService {
   }
 
   logOut() {
-    console.log( "......Dentro LOGOUT()" )
     this._betweenService.logOut();
   }
 

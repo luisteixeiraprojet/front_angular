@@ -60,7 +60,6 @@ export class EmployeesService {
 //_______________________________________________________
 //values written on the form-new-employee passed + make request post
 async createEmployee(employeeObj){
-  console.log("1. EmpServ - 46 - employeeObj ", employeeObj);
   try {
     let pedidoPost = await this.requestsApiService.postRequest("/employees", employeeObj);
     return pedidoPost;
@@ -73,7 +72,6 @@ async createEmployee(employeeObj){
 //values written on the form-new-employee passed + make request post
 async updateEmployee(id, obj){
   try {
-   // console.log("UPDATE: " , id, JSON.stringify(obj));
     return await this.requestsApiService.putRequests("/employees/formUpdate/" + id, obj );
 
   } catch (error) {

@@ -48,7 +48,6 @@ async toDelete(){
     bool = confirm("delete?");
     if(bool == true){
       await this.employeesService.deleteEmployee(this.idEmployee);
-      console.log("3. EmplById - 51- this.idEmployee ", this.idEmployee);
       setTimeout(() => {
       this.router.navigate(['/employees']);
       },1000);
@@ -57,10 +56,8 @@ async toDelete(){
 
 //_______________________________________
   toUpdate(): void {
-    console.log("UPDATE: " + this.idEmployee);
     this.router.navigate(['/formUpdate/'+ this.idEmployee]);
     this.betweenComponents.receiveEmployeeToUpdate(this.selectedEmployee);
-    //console.log("Selected Employee is " + JSON.stringify(this.selectedEmployee));
     }
 
 

@@ -52,33 +52,14 @@ export class FormNewEmployeeComponent implements OnInit {
     //so it runs only when its the route to update
     if (this.router.url != '/createEmployee') {
       this.employeeObject = this.betweenComponents.getEmployeeToUpdate();
-      console.log("------------- 1. this.employeeObject = this.betweenComponents.getEmployeeToUpdate(); ", this.employeeObject );
 
       //form will be completed with infos from the selected employee
       this.employee.fillObjEmployee(this.employeeObject);
+
+      //split dates from T so they'll appear in html form
       this.employee.birthdayDate = this.employee.birthdayDate.split('T')[0];
       this.employee.joinDate =  this.employee.joinDate.split('T')[0];
 
-
-      // this.employee = this.employeeObject;
-      /*
-      this.employee.firstName = this.employeeObject.firstName;
-
-      this.employee.lastName = this.employeeObject.lastName;
-      this.employee.mobilePhone = this.employeeObject.mobilePhone;
-      this.employee.homePhone = this.employeeObject.homePhone;
-      this.employee.email = this.employeeObject.email;
-      this.employee.address = this.employeeObject.address;
-      this.employee.addressComplement = this.employeeObject.addressComplement;
-      this.employee.zipCode = this.employeeObject.zipCode;
-      this.employee.nationality = this.employeeObject.nationality;
-      this.employee.identityNumber = this.employeeObject.identityNumber;
-      this.employee.socialNumber = this.employeeObject.socialNumber;
-      this.employee.birthdayDate = this.employeeObject.birthdayDate.split('T')[0];
-      this.employee.iban = this.employeeObject.iban;
-      this.employee.typeContract = this.employeeObject.typeContract;
-      this.employee.joinDate = this.employeeObject.joinDate.split('T')[0];
-      this.employee.hourlyPrice = this.employeeObject.hourlyPrice;*/
     }
   } //closes ngOnInit
 
@@ -139,7 +120,7 @@ export class FormNewEmployeeComponent implements OnInit {
 
     } catch (error) {
       console.log(error);
-      alert("Attention le formulaire n'est pas bien rempli!");
+      alert("Attention: le formulaire n'est pas bien rempli!");
       this.isSubmiting=false;
     }
   }

@@ -82,7 +82,7 @@ async getMyAbsences(idEmployee){
   async createAbsence(absenceObj){
 
     try {
-     // console.log("////1.absenceObj  ", absenceObj);
+
        return await this._requestsApiService.postRequest("/absences", absenceObj);
 
     } catch (error) {
@@ -99,7 +99,7 @@ async updateAbsence(abs){
     absObject.fillObj(abs);
     let absObjectNoUndersocre = absObject.toSimpleObject();
     let resultadoPutRequest = await this._requestsApiService.putRequests("/absences/absenceUpdate/",  absObjectNoUndersocre);
-    console.log("uodateabs - absence service ",resultadoPutRequest )
+
     return resultadoPutRequest;
 
   } catch (error) {
