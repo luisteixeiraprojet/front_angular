@@ -73,7 +73,6 @@ async getMyAbsences(idEmployee){
       }
       return allABs
 
-
     } catch (error) {
       console.log("Error getAllAbsences, " + error.message);
     }

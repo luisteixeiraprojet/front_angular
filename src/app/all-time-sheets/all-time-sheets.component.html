@@ -17,24 +17,25 @@ Menu
 
 <div class="col-12 col-md-10">
 <ul>
-<li class="eachAbs" *ngFor="let act of activities">
-
+<li class="eachAbs" *ngFor="let ts of timesheets">
+<!--.split('T')[0]  -->
 <div class="d-flex flex-column flex-md-row justify-content-between">
 <div class="d-flex flex-column justify-content-around">
-<div class="nomAndDate"> {{ act.firstName }} {{act.lastName | uppercase }}</div>
-<div> Début <span class="nomAndDate "> {{act.startDate }} </span></div>
-<div> Fin <span class="nomAndDate "> {{act.endDate.split('T')[0] }}</span></div>
+<div class="nomAndDate"> {{ ts.firstName }} {{ts.lastName | uppercase }}</div>
+<div> <span class="nomAndDate "> Du  </span>  {{ts.beginningDate.split('T')[0] }}  <span class="nomAndDate "> au </span>  {{ts.finishDate.split('T')[0]}}</div>
+<div> <span class="nomAndDate "> Nombre d'heures effectuées: {{ts.totalHours}}  </span> </div>
+<div> Prix de l'heure:  <span class="nomAndDate "> {{ts.priceHour}}</span></div>
+<div> Activité: <span class="nomAndDate "> {{ts.name }} </span></div>
+<div> {{ ts.activity}} </div>
 </div>
 
 <div class="d-flex flex-column justify-content-center" >
 
-
 <div class=" threeButtons d-flex flex-row justify-content-around ">
 
+<button class="btnAction" (click)="updateAct(ts)"><i class="far fa-edit fa-2x  "></i> </button>
 
-<button class="btnAction" (click)="update(act)"><i class="far fa-check-square fa-2x"></i> </button>
-
-<button class="btnAction" (click)="deleteAct(act.Id_activity)"><i class="far fa-trash-alt fa-2x"></i></button>
+<button class="btnAction" (click)="deleteAct(ts.Id_timeSheet)"><i class="far fa-trash-alt fa-2x"></i></button>
 </div>
 </div>
 </div>

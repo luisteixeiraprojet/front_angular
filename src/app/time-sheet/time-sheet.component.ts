@@ -39,11 +39,11 @@ timeSheet = new TimeSheet();
 
       this.isSubmiting = true;
 
-      const startAt = new Date(this.timeSheet.startAt);
-      this.timeSheet.startAt = startAt.toISOString();
+      const finishDate = new Date(this.timeSheet.finishDate);
+      this.timeSheet.finishDate = finishDate.toISOString();
 
-      const finishAt = new Date(this.timeSheet.finishAt);
-      this.timeSheet.finishAt = finishAt.toISOString();
+      const beginningDate = new Date(this.timeSheet.beginningDate);
+      this.timeSheet.beginningDate = beginningDate.toISOString();
 
       this.tsCreateOrUpdate();
 

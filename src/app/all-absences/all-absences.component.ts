@@ -9,12 +9,11 @@ import { RequestsApiService } from '../services/requests-api.service' ;
   templateUrl: './all-absences.component.html',
   styleUrls: ['./all-absences.component.css']
 })
+
 export class AllAbsencesComponent implements OnInit {
 
   absences:any;
   employeeName;
-
-
 
   constructor(private _absenceService:AbsencesService, private _localStroage:LocalStorageService) { }
 

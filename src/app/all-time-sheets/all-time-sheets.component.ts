@@ -1,3 +1,4 @@
+import { TimesheetServiceService } from './../services/timesheet-service.service';
 import { ActivitiesService } from './../services/activities.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,13 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllTimeSheetsComponent implements OnInit {
 
-  activities: any;
+  timesheets: any;
 
-  constructor(private _activitiesService:ActivitiesService) { }
+  constructor(private _activitiesService:ActivitiesService, private _timesheetService: TimesheetServiceService) { }
 
  async ngOnInit(){
 
-    this.activities = await this._activitiesService.getAllActivities();
+    this.timesheets = await this._timesheetService.getAllTimeSheets();
+
+
+  }
+
+  updateAct(act){
+    console.log("updating activity");
+  }
+
+  deleteAct(actId){
+    console.log("deleting an activity ");
+
   }
 
 }

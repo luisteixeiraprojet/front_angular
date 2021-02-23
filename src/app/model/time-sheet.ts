@@ -1,9 +1,10 @@
 export class TimeSheet {
 
   private _Id_timeSheet;
-  private _startAt;
-  private _finishAt;
+  private _beginningDate;
+  private _finishDate;
   private _priceHour;
+  private _totalHours;
   private _Id_activity;
   private _Id_employee;
 
@@ -11,9 +12,10 @@ export class TimeSheet {
 
    fillObj(obj) {
     this.Id_timeSheet = obj.Id_timeSheet || undefined;
-    this.startAt = obj.startAt || undefined;
-    this.finishAt = obj.finishAt || undefined;
+    this.beginningDate = obj.beginningDate || undefined;
+    this.finishDate = obj.finishDate || undefined;
     this.priceHour = obj.priceHour || undefined;
+    this.totalHours = obj.totalHours || undefined;
     this.Id_activity = obj.Id_activity || undefined;
     this.Id_employee = obj.Id_employee || undefined;
 
@@ -23,9 +25,10 @@ export class TimeSheet {
  toSimpleObject(){
   const absConvertedToObject={
   Id_timeSheet: this._Id_timeSheet,
-  startAt : this._startAt,
-  finishAt: this._finishAt,
+  beginningDate : this._beginningDate,
+  finishDate: this._finishDate,
   priceHour : this._priceHour,
+  totalHours : this._totalHours,
   Id_activity : this._Id_activity,
   Id_employee: this._Id_employee,
   };
@@ -40,18 +43,18 @@ export class TimeSheet {
     this._Id_timeSheet = value;
   }
 
-  public get startAt() {
-    return this._startAt;
+  public get beginningDate() {
+    return this._beginningDate;
   }
-  public set startAt(value) {
-    this._startAt = value;
+  public set beginningDate(value) {
+    this._beginningDate = value;
   }
 
-  public get finishAt() {
-    return this._finishAt;
+  public get finishDate() {
+    return this._finishDate;
   }
-  public set finishAt(value) {
-    this._finishAt = value;
+  public set finishDate(value) {
+    this._finishDate = value;
   }
 
   public get priceHour() {
@@ -59,6 +62,13 @@ export class TimeSheet {
   }
   public set priceHour(value) {
     this._priceHour = value;
+  }
+
+  public get totalHours() {
+    return this._totalHours;
+  }
+  public set totalHours(value) {
+    this._totalHours = value;
   }
 
   public get Id_activity() {

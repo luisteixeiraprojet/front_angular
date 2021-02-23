@@ -26,7 +26,7 @@
         </div>
 
       <div class="row">
-        <!--Id_employyee-->
+        <!--Id_employee-->
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <label class="input-group-text" for="Id_employee">Salarié</label>
@@ -47,41 +47,55 @@
           </select>
         </div>
 
-      <!--startAt-->
+      <!--beginningDate-->
         <div class="form-items col-12 col-md-6">
-          <label for="startAt">Début</label>
+          <label for="beginningDate">Début</label>
           <input
           required
-          [(ngModel)]="timeSheet.startAt"
-          name="startAt"
-          #startAt="ngModel"
-          id="startAt"
+          [(ngModel)]="timeSheet.beginningDate"
+          name="beginningDate"
+          #beginningDate="ngModel"
+          id="beginningDate"
           type="datetime-local"
           class="form-control"
           [disabled]="isSubmiting"
-          [ngClass]="{ invalid: startAt.invalid }" />
+          [ngClass]="{ invalid: beginningDate.invalid }"/>
         </div>
 
         <!--FinishAt-->
         <div class="form-items col-12 col-md-6">
-          <label for="finishAt">Fin</label>
+          <label for="finishDate">Fin</label>
           <input
           required
-          [(ngModel)]="timeSheet.finishAt"
-          name="finishAt"
-          #finishAt="ngModel"
-          id="finishAt"
+          [(ngModel)]="timeSheet.finishDate"
+          name="finishDate"
+          #finishDate="ngModel"
+          id="finishDate"
           type="datetime-local"
           class="form-control"
           [disabled]="isSubmiting"
-          [ngClass]="{ invalid: finishAt.invalid }" />
+          [ngClass]="{ invalid: finishDate.invalid }" />
         </div>
 
 
-
-
         <div class="form-items col-12 col-md-4 ">
-          <label for="mobilePhone">Prix de l'heure</label>
+          <label for="totalHours">Heures Effectuées</label>
+          <div>
+            <input
+            required
+            [(ngModel)]="timeSheet.totalHours"
+             name="totalHours"
+            #totalHours="ngModel"
+            id="totalHours"
+            type="number"
+            class="form-control"
+            [disabled]="isSubmiting"
+            [ngClass]="{ invalid: totalHours.invalid }"
+           >
+          </div>
+
+
+          <label for="priceHour">Prix de l'heure</label>
           <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text">€</span>
@@ -100,6 +114,7 @@
           <div class="input-group-append">
             <span class="input-group-text">0.00</span>
           </div>
+
         </div>
         </div>
 
@@ -121,7 +136,7 @@
           [disabled]="isSubmiting"
           [ngClass]="{ invalid: Id_activity.invalid }"
           >
-            <option [value]="act.Id_activity" *ngFor="let act of allActivities" >{{act.name}} // DEBUT: {{act.startDate.split('T')[0]}} // FIN: {{act.endDate.split('T')[0]}}</option>
+            <option [value]="act.Id_activity" *ngFor="let act of allActivities" >{{act.name}} // DEBUT: {{act.beginningDate.split('T')[0]}} // FIN: {{act.endDate.split('T')[0]}}</option>
           </select>
         </div>
 
