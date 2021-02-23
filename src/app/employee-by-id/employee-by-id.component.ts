@@ -38,6 +38,15 @@ export class EmployeeByIdComponent implements OnInit {
     //EBI: get the employee with that id
     this.selectedEmployee = await this.employeesService.getEmployeeById(this.idEmployee);
 
+    //split dates so they can be shown in html
+    if(this.selectedEmployee.birthdayDate){
+    this.selectedEmployee.birthdayDate= this.selectedEmployee.birthdayDate.split('T')[0];
+    }
+    if( this.selectedEmployee.birthdayDate){
+    this.selectedEmployee.birthdayDate= this.selectedEmployee.birthdayDate.split('T')[0];
+    }
+
+
   }//closes ngOnInit
 
 //_______________________________________

@@ -3,14 +3,14 @@
 <div class="container upHeader mb-3">
   <div class="row div_red">
     <div class="div_orange col-4">
-      <a href="#" routerLink="/" >
-        <img class="logo mt-2 " src="assets/logo.png" >
+      <a href="#" (click)="tokenVerif()" routerLink="/" >
+        <img class="logo mt-2" src="assets/logo.png" >
       </a>
     </div>
     <div class="col-6 d-flex flex-column ml-auto justify-content-around" *ngIf="loggedIn">
       <p class="m-0 userN">UserName: {{userLoggedName}}</p>
       <div class="d-flex flex-column flex-md-row justify-content-md-end">
-        <button class="info-btn" >Profil </button>
+        <button class="info-btn"  routerLink="/changeProfil" >Profil </button>
         <button class="info-btn"(click)="logOut()">Deconnéxion</button>
       </div>
     </div>

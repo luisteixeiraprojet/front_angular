@@ -20,27 +20,6 @@ export class FormNewEmployeeComponent implements OnInit {
   //when creating an employee
   employee=new Employee();
 
-  //To create a user
-  /*
-  employee = {
-    firstName: '',
-    lastName: '',
-    mobilePhone: '',
-    homePhone: '',
-    email: '',
-    address: '',
-    addressComplement: '',
-    zipCode: '',
-    nationality: '',
-    identityNumber: '',
-    socialNumber: '',
-    birthdayDate: '',
-    iban: '',
-    typeContract: '',
-    joinDate: '',
-    hourlyPrice: '',
-  };*/
-
   constructor(
     private employeesService: EmployeesService,
     private router: Router,
@@ -68,6 +47,7 @@ export class FormNewEmployeeComponent implements OnInit {
     if (form.valid) {
       this.isSubmiting = true;
 
+      if (this.router.url != '/createEmployee'){
       if(this.employeeObject.birthdayDate){
         const birthdayDate = new Date(this.employeeObject.birthdayDate);
         this.employeeObject.birthdayDate = birthdayDate.toISOString();
@@ -77,6 +57,7 @@ export class FormNewEmployeeComponent implements OnInit {
         const joinDate = new Date(this.employeeObject.joinDate);
         this.employeeObject.joinDate = joinDate.toISOString();
         }
+      }
 
       this.createOrUpdate();
       form.reset();
@@ -89,10 +70,12 @@ export class FormNewEmployeeComponent implements OnInit {
   async createOrUpdate() {
     let id;
     try {
-
+      console.log("****** 1. dentro de createOrUpdate");
       if (this.router.url === '/createEmployee') {
+        console.log("****** 2. dentro do if se  url === '/createEmployee'");
         let createdEmployee: any; //'cause of typology. typesript requires type of variable (and object doesnt always have the id. with any it doesn't matter). To not have erreurs of compilation before obtaining the id
         let simpleEmplObj= this.employee.toSimplifyObject();
+        console.log("******* 3.simpleEmplObj= this.employee.toSimplifyObject() ", simpleEmplObj );
         createdEmployee = await this.employeesService.createEmployee(
           simpleEmplObj
         );
@@ -123,5 +106,4 @@ export class FormNewEmployeeComponent implements OnInit {
       alert("Attention: le formulaire n'est pas bien rempli!");
       this.isSubmiting=false;
     }
-  }
-} //closes class
+  } } //closes class

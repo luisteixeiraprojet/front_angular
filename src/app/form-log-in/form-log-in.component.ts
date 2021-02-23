@@ -30,9 +30,6 @@ export class FormLogInComponent implements OnInit {
 
     //pass the values written on the form - loginService + requests-api.service
     let requestResult  = await this._loginService.checkLogIn(form.value);
-    console.log(">>>>>>>>>1.form-log-in click submit chama checkLogin ");
-    console.log(">>>>>>>>>1.1. form-log-in resultado de chamar checkLogin ", requestResult);
-
 
     if(!requestResult){
       this.errorLogIn = true;

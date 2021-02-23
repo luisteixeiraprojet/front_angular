@@ -63,4 +63,10 @@ value changes/is updated at each event - betweenServices)*/
   logOut() {
     this._loginService.logOut();
   }
+
+  //clic logo
+  tokenVerif(){
+  this._loginService.verifyValidationToken();
+  console.log("nao passou")
+  }
 } //closes class

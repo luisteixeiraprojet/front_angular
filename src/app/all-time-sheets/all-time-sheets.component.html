@@ -1,0 +1,46 @@
+<div class=" container">
+<div class="row ">
+<div class="d-flex flex-row flex-md-column col-12 col-md-2">
+<button class="button retour firstButton mb-2" [routerLink]="['/']">
+Retour <br />
+au <br />
+Menu
+</button>
+
+<button class="button retour firstButton mb-2" [routerLink]="['/timeSheet']">
+  Créer <br />
+ nouvel <br />
+  Pointage
+  </button>
+
+</div>
+
+<div class="col-12 col-md-10">
+<ul>
+<li class="eachAbs" *ngFor="let act of activities">
+
+<div class="d-flex flex-column flex-md-row justify-content-between">
+<div class="d-flex flex-column justify-content-around">
+<div class="nomAndDate"> {{ act.firstName }} {{act.lastName | uppercase }}</div>
+<div> Début <span class="nomAndDate "> {{act.startDate }} </span></div>
+<div> Fin <span class="nomAndDate "> {{act.endDate.split('T')[0] }}</span></div>
+</div>
+
+<div class="d-flex flex-column justify-content-center" >
+
+
+<div class=" threeButtons d-flex flex-row justify-content-around ">
+
+
+<button class="btnAction" (click)="update(act)"><i class="far fa-check-square fa-2x"></i> </button>
+
+<button class="btnAction" (click)="deleteAct(act.Id_activity)"><i class="far fa-trash-alt fa-2x"></i></button>
+</div>
+</div>
+</div>
+
+</li>
+</ul>
+</div>
+</div>
+</div>

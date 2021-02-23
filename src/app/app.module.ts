@@ -9,7 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { EmployeeByIdComponent } from './employee-by-id/employee-by-id.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormNewEmployeeComponent } from './form-new-employee/form-new-employee.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,11 +20,13 @@ import { ModalComponent as ModalComponent } from './modal/modal.component';
 import { MatDialogRef} from '@angular/material/dialog';
 import { FormLogInComponent } from './form-log-in/form-log-in.component';
 import { EmployeeViewComponent } from './employee-view/employee-view.component';
-import { PointageComponent } from './pointage/pointage.component';
+
 import { AllMyAbsencesComponent } from './all-my-absences/all-my-absences.component';
 import { AllAbsencesComponent } from './all-absences/all-absences.component';
 import { FormNewAbsenceComponent } from './form-new-absence/form-new-absence.component';
-
+import { ChangeProfilComponent } from './change-profil/change-profil.component';
+import {TimeSheetComponent} from './time-sheet/time-sheet.component';
+import { AllTimeSheetsComponent } from './all-time-sheets/all-time-sheets.component';
 
 
 
@@ -42,10 +44,12 @@ import { FormNewAbsenceComponent } from './form-new-absence/form-new-absence.com
     ModalComponent,
     FormLogInComponent,
     EmployeeViewComponent,
-    PointageComponent,
     AllMyAbsencesComponent,
     AllAbsencesComponent,
-    FormNewAbsenceComponent
+    FormNewAbsenceComponent,
+    ChangeProfilComponent,
+    TimeSheetComponent,
+    AllTimeSheetsComponent
   ],
   imports: [
     BrowserModule,

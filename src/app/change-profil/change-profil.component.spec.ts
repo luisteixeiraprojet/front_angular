@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PointageComponent } from './pointage.component';
+import { ChangeProfilComponent } from './change-profil.component';
 
-describe('PointageComponent', () => {
-  let component: PointageComponent;
-  let fixture: ComponentFixture<PointageComponent>;
+describe('ChangeProfilComponent', () => {
+  let component: ChangeProfilComponent;
+  let fixture: ComponentFixture<ChangeProfilComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PointageComponent ]
+      declarations: [ ChangeProfilComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PointageComponent);
+    fixture = TestBed.createComponent(ChangeProfilComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

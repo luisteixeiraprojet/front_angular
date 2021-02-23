@@ -1,0 +1,42 @@
+.warning {
+  border:3px solid #631f5a7c;
+  border-radius: 0.25rem;
+  padding: 1em;
+  background:   #ebfae6;
+  color:  #6EAF59;
+  box-shadow: 0 6px 8px 0 #631f5a7c;
+}
+
+.submit{
+  background-color:#6EAF59 ;
+  color: #FFFFFF;
+  text-align: center;
+  height: 3em;
+  text-align:center;
+  font-size:1.1em;
+  border-radius:0.2em;
+}
+
+.submit:hover{
+  background-color:  #ebfae6;
+  color: #6EAF59;
+  border-color: #6EAF59;
+  box-shadow: 0 6px 8px 0 #631f5a7c;
+  transition: 0.5s;
+}
+
+.title{
+  font-size:2em;
+  color:#6EAF59;
+  margin:0.5em;
+}
+
+.form-control{
+  height: 3em;;
+}
+
+label{
+  color:#6EAF59;
+}
+
+

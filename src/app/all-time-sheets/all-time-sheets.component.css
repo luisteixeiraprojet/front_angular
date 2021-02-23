@@ -1,0 +1,42 @@
+.nomAndDate{
+  color:#6EAF59;
+  font-weight: bold;
+  font-size: large;
+}
+
+.btnAction{
+  width: 3.2em;
+  height: 3.2em;
+  padding: 0.5em;
+  align-self: center;
+  margin: 0.1em;
+}
+
+.eachAbs{
+  border: 3.5px solid #6EAF59;
+  border-radius:0.5em;
+  padding: 1em;
+  margin-left:0;
+  margin-right: 0;
+  margin-bottom: 0.5em;
+}
+
+li div div div{
+  margin-bottom: 1em;
+}
+
+ul{
+  list-style-type: none;
+  padding:0 !important;
+}
+
+/*buttons*/
+@media (max-width: 768px) {
+
+  span{
+    margin-bottom: 1em;
+  }
+
+}
+
+

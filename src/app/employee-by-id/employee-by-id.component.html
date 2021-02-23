@@ -42,7 +42,7 @@
           <p>Pièce d'Identité n°: {{ selectedEmployee.identityNumber }}</p>
           <p>Nacionalité: {{ selectedEmployee.nationality }}</p>
           <p>Numéro Sécurité Sociale: {{ selectedEmployee.socialNumber }}</p>
-          <p>Date de Naissance: {{ selectedEmployee.birthdayDate.split('T')[0]}}</p>
+          <p>Date de Naissance: {{ selectedEmployee.birthdayDate}}</p>
 
 
         </ng-template>
@@ -53,7 +53,7 @@
 
 
           <p>Type de Contrat:{{ selectedEmployee.typeContract }}</p>
-          <p>Depuis: {{ selectedEmployee.joinDate.split('T')[0] }}</p>
+          <p>Depuis: {{ selectedEmployee.joinDate }}</p>
           <p>Prix de l'heure: {{ selectedEmployee.hourlyPrice }}</p>
         </ng-template>
       </li>
