@@ -44,7 +44,9 @@ export class BetweenComponentsService {
 
   //receive abs to update and pass it to others components
   receiveObjectToUpdate(objToUpdate){
+    //console.log("***** 1.BTWC-47 - dentro de receiveObjToUpdate ");
      this.objToUpdate = objToUpdate;
+    console.log("***** 1. BTWC-47 - receiveObjToUpdate ",   this.objToUpdate);
   }
 
   getObjToUpdate(){

@@ -27,16 +27,14 @@ const routes: Routes = [
   {path:'formUpdate/:id', component:FormNewEmployeeComponent },
   {path:'employeeAccount', component: EmployeeViewComponent }, //ver se dp n tem de ser com id para cd um dos employees
   {path: 'timeSheet', component: TimeSheetComponent},
+  {path: 'updateTs/:id', component: TimeSheetComponent},
   {path: 'allTimeSheets', component: AllTimeSheetsComponent},
   {path: 'myAbsences', component: AllMyAbsencesComponent },
   {path: 'allAbsences', component:AllAbsencesComponent },
   {path: 'formAbsence', component:FormNewAbsenceComponent},
   {path: 'updateAbsence/:id', component:FormNewAbsenceComponent},
   {path: 'changeProfil', component:ChangeProfilComponent}
-
-
 ];
-
 
 
 @NgModule({

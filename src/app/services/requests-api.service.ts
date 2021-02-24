@@ -155,6 +155,7 @@ async delete(url:any){
     let resultRequest;
 
     //send the get request(getAllEmployees, for example) where header's property authorization = token
+
     resultRequest = await this._http.delete(this.servBaseAddress + url,{headers} ).toPromise();
     this._localStorageService.refreshToken(resultRequest.newToken);
     return resultRequest.content;

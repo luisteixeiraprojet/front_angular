@@ -1,3 +1,5 @@
+import { BetweenComponentsService } from './../services/between-components.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TimesheetServiceService } from './../services/timesheet-service.service';
 import { ActivitiesService } from './../services/activities.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,22 +13,37 @@ export class AllTimeSheetsComponent implements OnInit {
 
   timesheets: any;
 
-  constructor(private _activitiesService:ActivitiesService, private _timesheetService: TimesheetServiceService) { }
+   //Update TS
+   idTS;
+   selectedTS;
+
+  constructor(private _activitiesService:ActivitiesService,  private _Activatedroute:ActivatedRoute, private _timesheetService: TimesheetServiceService, private _router:Router, private _betweenComponents:BetweenComponentsService) { }
 
  async ngOnInit(){
 
-    this.timesheets = await this._timesheetService.getAllTimeSheets();
+
+  this.timesheets = await this._timesheetService.getAllTimeSheets();
 
 
   }
 
-  updateAct(act){
-    console.log("updating activity");
-  }
+  updateTS(tsToUpdate){
 
-  deleteAct(actId){
-    console.log("deleting an activity ");
+    this._betweenComponents.receiveObjectToUpdate(tsToUpdate);
+    this._router.navigate(['/updateTs/' +tsToUpdate.Id_timeSheet]);
 
   }
 
+  async deleteTS(tSId){
+
+    let bool;
+    bool = confirm("delete?");
+    if(bool == true){
+     await this._timesheetService.deleteTimeSheet(tSId);
+     this.timesheets = await this._timesheetService.getAllTimeSheets();
+
+  }
 }
+
+
+}//closes classe

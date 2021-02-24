@@ -97,9 +97,8 @@ async updateAbsence(abs){
 
     absObject.fillObj(abs);
     let absObjectNoUndersocre = absObject.toSimpleObject();
-    let resultadoPutRequest = await this._requestsApiService.putRequests("/absences/absenceUpdate/",  absObjectNoUndersocre);
+    return await this._requestsApiService.putRequests("/absences/absenceUpdate/",  absObjectNoUndersocre);
 
-    return resultadoPutRequest;
 
   } catch (error) {
     console.log("Error " + error.message);
@@ -114,7 +113,8 @@ async deleteAbs(idAbs){
   try {
     await this._requestsApiService.delete("/absences/" + idAbs);
   } catch (error) {
-
+    console.log("Error - deleteAbs ", error.message);
+    return error.message;
   }
 }
 
