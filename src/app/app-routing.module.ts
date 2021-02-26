@@ -1,3 +1,7 @@
+import { FormMaterialComponent } from './form-material/form-material.component';
+import { AllMaterialsComponent } from './all-materials/all-materials.component';
+import { AllActivitiesComponent } from './all-activities/all-activities.component';
+import { ActivitiesComponent } from './activities/activities.component';
 import { AllTimeSheetsComponent } from './all-time-sheets/all-time-sheets.component';
 import { TimeSheetComponent } from './time-sheet/time-sheet.component';
 import { ChangeProfilComponent } from './change-profil/change-profil.component';
@@ -14,13 +18,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormLogInComponent} from './form-log-in/form-log-in.component';
 import {EmployeeViewComponent} from './employee-view/employee-view.component';
 
+
 import { AllAbsencesComponent } from './all-absences/all-absences.component';
 
 
 const routes: Routes = [
   {path:'login', component: FormLogInComponent},
   {path:'', component: EmployeurComponent},
-
   {path:'employees', component: AllEmployeesComponent},
   {path:'employees/:id', component: EmployeeByIdComponent},
   {path:'createEmployee', component: FormNewEmployeeComponent},
@@ -33,7 +37,13 @@ const routes: Routes = [
   {path: 'allAbsences', component:AllAbsencesComponent },
   {path: 'formAbsence', component:FormNewAbsenceComponent},
   {path: 'updateAbsence/:id', component:FormNewAbsenceComponent},
-  {path: 'changeProfil', component:ChangeProfilComponent}
+  {path: 'changeProfil', component:ChangeProfilComponent},
+  {path:'createactivity', component:ActivitiesComponent},
+  {path:'updateactivity/:id', component:ActivitiesComponent},
+  {path:'allactivities', component:AllActivitiesComponent},
+  {path:'allmaterials', component:AllMaterialsComponent},
+  {path:'creatematerial', component: FormMaterialComponent},
+  {path:'updatematerial/:id', component: FormMaterialComponent}
 ];
 
 

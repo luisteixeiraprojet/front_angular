@@ -19,14 +19,10 @@ export class AllMyAbsencesComponent implements OnInit {
   myAbsences:any;
 
   async ngOnInit(){
-
     let getIdEmployee = await this._localStorage.getFromLocalStorage("employeeInfos");
     this.idEmployee = getIdEmployee.Id_employee;
     this.myAbsences = await this._absenceService.getMyAbsences(this.idEmployee);
-
-
   }
-
 
 //_______________________________________________
 isDecided(absence){

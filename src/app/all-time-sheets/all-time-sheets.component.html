@@ -22,11 +22,12 @@
         <li class="eachAbs" *ngFor="let ts of timesheets">
           <!--.split('T')[0]  -->
           <div class="d-flex flex-column flex-md-row justify-content-between">
-            <div class="d-flex flex-column justify-content-around">
+            <div class="d-flex flex-column ">
               <div class="nomAndDate">
                 {{ ts.firstName }} {{ ts.lastName | uppercase }}
               </div>
-              <div>
+
+              <div class="d-flex flex-column justify-content-around" >
                 <span class="nomAndDate"> Du </span>
                 {{ ts.beginningDate.split("T")[0] }}
                 <span class="nomAndDate"> au </span>

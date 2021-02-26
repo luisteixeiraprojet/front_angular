@@ -8,7 +8,7 @@ export class Activity {
 
   fillObjActivity(obj){
     this.Id_activity = obj.Id_activity || undefined;
-    this.name= obj.namee || undefined;
+    this.name= obj.name || undefined;
     this.startDate= obj.startDate || undefined;
     this.endDate= obj.endDate || undefined;
   }

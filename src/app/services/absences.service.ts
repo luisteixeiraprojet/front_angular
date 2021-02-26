@@ -71,7 +71,7 @@ async getMyAbsences(idEmployee){
         allABs[eachAbs].statusDate = statusDate.toISOString();
       }
       }
-      return allABs
+      return allABs;
 
     } catch (error) {
       console.log("Error getAllAbsences, " + error.message);
@@ -81,9 +81,7 @@ async getMyAbsences(idEmployee){
   async createAbsence(absenceObj){
 
     try {
-
        return await this._requestsApiService.postRequest("/absences", absenceObj);
-
     } catch (error) {
       console.log("error ", error.message);
     }
@@ -117,5 +115,6 @@ async deleteAbs(idAbs){
     return error.message;
   }
 }
+//_______________________________________________________
 
 }//closes class

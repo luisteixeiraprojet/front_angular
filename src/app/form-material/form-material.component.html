@@ -1,0 +1,127 @@
+
+<div class="container">
+  <div class="d-flex flex-column flex-md-row">
+    <div class="d-flex flex-row flex-md-column col-12 col-md-2">
+      <button [routerLink]="['/allmaterials']" class="firstButton">
+        Retour <br />
+        à la <br />
+        Liste
+      </button>
+    </div>
+
+    <div class="box col-12 col-md-10">
+      <form
+        #materialForm="ngForm"
+        (ngSubmit)="submitOnClick(materialForm.form)">
+
+        <div class="title d-flex justify-content-center">
+          <hr class="w-25 mt-2 mr-2" />
+          Nouveau Matériel
+          <hr class="w-25 mt-2 ml-2" />
+        </div>
+
+        <div class="d-flex flex-column flex-md-row my-3">
+
+          <div class="form-items col-12 col-md-6 ">
+            <label for="name">Nom</label>
+            <input
+            required
+              [(ngModel)]="material.name"
+              name="name"
+              #name="ngModel"
+              id="name"
+              type="text"
+              class="form-control"
+              [disabled]="isSubmiting"
+              [ngClass]="{ invalid: name.invalid }"
+            />
+          </div>
+
+          <div class="form-items col-12 col-md-6">
+            <label for="purchaseDate">Date d'Achat</label>
+            <input
+            required
+              [(ngModel)]="material.purchaseDate"
+              name="purchaseDate"
+              #purchaseDate="ngModel"
+              id="purchaseDate"
+              type="date"
+              class="form-control"
+              [disabled]="isSubmiting"
+              [ngClass]="{ invalid: purchaseDate.invalid }"
+            />
+          </div>
+        </div>
+
+          <div class="d-flex flex-column flex-md-row my-3">
+          <div class="form-items col-12 col-md-6">
+            <label for="quantity">Quantité</label>
+            <input
+            required
+              [(ngModel)]="material.quantity"
+              name="quantity"
+              #quantity="ngModel"
+              id="quantity"
+              type="number"
+              class="form-control"
+              [disabled]="isSubmiting"
+              [ngClass]="{ invalid: quantity.invalid }"
+            />
+          </div>
+
+
+        <div class="form-items col-12 col-md-6">
+          <label for="unitaryPrice">Prix Unitaire</label>
+          <div class="input-group ">
+          <div class="input-group-prepend">
+            <span class="input-group-text">€</span>
+          </div>
+          <input
+          required
+          [(ngModel)]="material.unitaryPrice"
+           name="unitaryPrice"
+          #unitaryPrice="ngModel"
+          id="unitaryPrice"
+          type="number"
+          class="form-control"
+          [disabled]="isSubmiting"
+          [ngClass]="{ invalid: unitaryPrice.invalid }"
+         >
+          <div class="input-group-append">
+            <span class="input-group-text">0.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!------------------------------------------------------------------>
+
+
+<h2>7. Multiple values demo</h2>
+
+<ng-select2  [data]="activityList"
+         [options]="options"
+         [width]="500"
+         [value]="value"
+         (valueChanged)="changed($event)"
+></ng-select2>
+<br/><br/>
+Selected values: {{ current }}
+
+
+
+<!------------------------------------------------------------------>
+          <!--Button-->
+        <div class="d-flex justify-content-md-end my-5">
+          <input
+            class="submit col-12 col-md-4 form-control"
+            type="submit"
+            value="Envoyer"
+            [disabled]="isSubmiting"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

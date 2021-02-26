@@ -1,0 +1,85 @@
+
+<div class="container">
+  <div class="d-flex flex-column flex-md-row">
+    <div class="d-flex flex-row flex-md-column col-12 col-md-2">
+      <button [routerLink]="['/allactivities']" class="firstButton">
+        Retour <br />
+        à la <br />
+        Liste
+      </button>
+    </div>
+
+    <div class="box col-12 col-md-10">
+      <form
+        #activityForm="ngForm"
+        (ngSubmit)="submitOnClick(activityForm.form)">
+
+        <div class="title d-flex justify-content-center">
+          <hr class="w-25 mt-2 mr-2" />
+          Nouvelle activité
+          <hr class="w-25 mt-2 ml-2" />
+        </div>
+
+        <div class="d-flex flex-column flex-md-row ">
+          <div class="form-items col-12 col-md-6 ">
+            <label for="name">Nom</label>
+            <input
+            required
+              [(ngModel)]="activity.name"
+              name="name"
+              #name="ngModel"
+              id="name"
+              type="text"
+              class="form-control"
+              [disabled]="isSubmiting"
+              [ngClass]="{ invalid: name.invalid }"
+            />
+          </div>
+        </div>
+
+
+        <div class="d-flex flex-column flex-md-row my-3">
+          <div class="form-items col-12 col-md-6">
+            <label for="startDate">Date de Début</label>
+            <input
+            required
+              [(ngModel)]="activity.startDate"
+              name="startDate"
+              #startDate="ngModel"
+              id="startDate"
+              type="date"
+              class="form-control"
+              [disabled]="isSubmiting"
+              [ngClass]="{ invalid: startDate.invalid }"
+            />
+          </div>
+
+          <div class="form-items col-12 col-md-6">
+            <label for="endDate">Date de Fin</label>
+            <input
+            required
+              [(ngModel)]="activity.endDate"
+              name="endDate"
+              #endDate="ngModel"
+              id="endDate"
+              type="date"
+              class="form-control"
+              [disabled]="isSubmiting"
+              [ngClass]="{ invalid: endDate.invalid }"
+            />
+          </div>
+        </div>
+
+          <!--Button-->
+        <div class="d-flex justify-content-md-end my-5">
+          <input
+            class="submit col-12 col-md-4 form-control"
+            type="submit"
+            value="Envoyer"
+            [disabled]="isSubmiting"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

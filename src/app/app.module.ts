@@ -27,6 +27,12 @@ import { FormNewAbsenceComponent } from './form-new-absence/form-new-absence.com
 import { ChangeProfilComponent } from './change-profil/change-profil.component';
 import {TimeSheetComponent} from './time-sheet/time-sheet.component';
 import { AllTimeSheetsComponent } from './all-time-sheets/all-time-sheets.component';
+import { ActivitiesComponent } from './activities/activities.component';
+import { AllActivitiesComponent } from './all-activities/all-activities.component';
+import { FormMaterialComponent } from './form-material/form-material.component';
+import { AllMaterialsComponent } from './all-materials/all-materials.component';
+
+import { NgSelect2Module } from 'ng-select2';
 
 
 
@@ -49,7 +55,11 @@ import { AllTimeSheetsComponent } from './all-time-sheets/all-time-sheets.compon
     FormNewAbsenceComponent,
     ChangeProfilComponent,
     TimeSheetComponent,
-    AllTimeSheetsComponent
+    AllTimeSheetsComponent,
+    ActivitiesComponent,
+    AllActivitiesComponent,
+    FormMaterialComponent,
+    AllMaterialsComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +69,8 @@ import { AllTimeSheetsComponent } from './all-time-sheets/all-time-sheets.compon
     FormsModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    NgSelect2Module
   ],
 
   providers: [

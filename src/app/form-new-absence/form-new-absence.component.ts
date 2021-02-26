@@ -35,6 +35,7 @@ export class FormNewAbsenceComponent implements OnInit {
      this.absence.requestDate = this.absence.requestDate.split('T')[0]
 
     }else{
+      //to establish the requestDate
       var local = new Date();
       local.setMinutes(local.getMinutes() - local.getTimezoneOffset());
       this.absence.requestDate = local.toJSON().slice(0,10);
@@ -66,8 +67,8 @@ export class FormNewAbsenceComponent implements OnInit {
     }
   }
 
+//__________________________________________________
   async absCreateOrUpdate(){
-
 
     try {
       if (this.router.url === '/formAbsence'){
