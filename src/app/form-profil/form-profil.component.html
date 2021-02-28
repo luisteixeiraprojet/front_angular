@@ -1,0 +1,66 @@
+<p>form-profil works!</p>
+<div class="container">
+  <div class="d-flex flex-column flex-md-row">
+    <div class="d-flex flex-row flex-md-column col-12 col-md-2">
+      <button [routerLink]="['/']" class="firstButton">
+        Retour <br />
+        au <br />
+        Menu
+      </button>
+      <button
+        [routerLink]="['/employees']">
+        Retour <br />
+        à la <br />
+        Liste
+      </button>
+    </div>
+
+    <div class="box col-12 col-md-10">
+      <form
+        #profilForm="ngForm"
+        (ngSubmit)="submitOnClick(profilForm.form)">
+
+           <!-- Email-->
+           <div class="form-items col-12 col-md-4">
+            <label for="email">Adresse Mail</label>
+            <input
+              required
+              [(ngModel)]="formValues.email"
+              name="email"
+              #email="ngModel"
+              id="email"
+              type="email"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              class="form-control" [disabled]="isSubmiting"
+              [ngClass]="{ invalid: email.invalid }"
+            />
+            <div class="alert alert-danger" *ngIf="email.errors?.pattern">
+              L'adresse mail n'est pas valide.
+            </div>
+          </div>
+
+
+             <!--Password-->
+             <div class="form-items col-12">
+              <label for="password">Mot de passe</label>
+
+              <input
+                [(ngModel)]="formValues.password"
+                name="password"
+                #password="ngModel"
+                id="password"
+                type="text"
+                class="form-control" [disabled]="isSubmiting"
+              />
+            </div>
+
+        <div class="d-flex justify-content-md-end">
+        <input class="submit col-12 col-md-4 form-control" type="submit" value="Enregistrer" [disabled]="isSubmiting"/>
+      </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+

@@ -55,9 +55,16 @@ so we can send headers:authorisation  solicited in the serveur and so we 're red
 //_______________________________________________________________________
 /*this request Post without Headers authorisation is exclusive for cases where nothing is yet stored in the localstorage as when we are loggin in for instance*/
 async postRequestNoHeaders(url: any, requestBody: any) {
+  console.log("----- 2.-ReqAPI-58- dento requestPost c url ", url );
+  console.log("----- 2.1-ReqAPI-59- dento requestPost c reqBody ", requestBody );
+
   //all post requests will verify if the token is still valide before sending the request to the serveur
  try {
+  console.log("----- 2.2-ReqAPI-64- antes chamada http.post à morada ",this.servBaseAddress + url);
+  console.log("----- 2.3-ReqAPI-64- e c reqBody ", requestBody);
    const requestResult =  await this._http.post(this.servBaseAddress + url, requestBody).toPromise();
+   console.log("----- 2.4-ReqAPI-64- resultado chamada http.post  ", requestResult );
+
    return requestResult;
 
  } catch (error) {

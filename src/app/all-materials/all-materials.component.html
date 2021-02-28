@@ -1,5 +1,6 @@
 
 <div class=" container">
+  <h1 class="title ">Matériel</h1>
   <div class="row ">
     <div class="d-flex flex-row flex-md-column col-12 col-md-2">
       <button class="button retour firstButton mb-2" [routerLink]="['/']">
@@ -23,15 +24,16 @@
               <div class="d-flex flex-column ">
                 <div class="nomAndDate"> {{ mat.name |uppercase}} </div>
                 <div> Date d'Achat': <span class="nomAndDate ">{{mat.purchaseDate.split('T')[0] }} </span></div>
-              </div>
-
-              <div class="d-flex flex-column justify-content-around">
-                <div> Quantité: <span class="nomAndDate ">{{mat.quantity}} </span></div>
-                <div> Prix unitaire:<span class="nomAndDate ">{{mat.unitaryPrice}} €</span></div>
                 <div> Fournisseur:<span class="nomAndDate ">{{mat.supplier}} </span></div>
               </div>
 
-     <div class="d-flex flex-column justify-content-center" >
+              <div class="d-flex flex-column">
+                <div> Quantité: <span class="nomAndDate ">{{mat.quantity}} </span></div>
+                <div> Prix unitaire:<span class="nomAndDate ">{{mat.unitaryPrice}} €</span></div>
+
+              </div>
+
+     <div class="d-flex flex-md-column justify-content-center" >
                   <button class="btnAction" (click)="updateMat(mat)"><i class="far fa-edit fa-2x"></i></button>
                   <button class="btnAction" (click)="deleteMat(mat.Id_material)"><i class="far fa-trash-alt fa-2x"></i></button>
             </div>

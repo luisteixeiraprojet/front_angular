@@ -72,11 +72,27 @@ async createEmployee(employeeObj){
 //values written on the form-new-employee passed + make request post
 async updateEmployee(id, obj){
   try {
-    return await this.requestsApiService.putRequests("/employees/formUpdate/" + id, obj );
+    return await this.requestsApiService.putRequests("/employees/updateProfil/" + id, obj );
 
   } catch (error) {
     console.log("Error " + error.message);
   }
+}
+
+//_____________________________________________________
+async profileUpdate(id, obj){
+
+  try {
+
+    return await this.requestsApiService.putRequests("/employees/updateProfil/" + id, obj );
+
+  } catch (error) {
+    console.log("Error profile update ", error.message);
+  }
+
+
+
+
 }
 
 //_______________________________________________________

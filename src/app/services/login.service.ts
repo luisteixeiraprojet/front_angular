@@ -21,10 +21,14 @@ export class LoginService {
 
   //get the user who logged - pass it to form-log-in.ts
   async checkLogIn(payload: any){
+
+    console.log("----- 1.-loginSrvc-25- dentro checkLogIn c payload: ", payload );
     this.isLogged= await this._requestsApiService.postRequestNoHeaders('/login', payload);
+    console.log("----- 1.1.-loginSrvc-27- resultado chamada postRequestNoHeaders");
 
     if(this.isLogged != undefined && this.isLogged != null){
      let guardouLS =  localStorage.setItem("employeeInfos", JSON.stringify(this.isLogged));
+     console.log("----- 1.2-loginSrvc-31- guardounoLOcalStorage ", guardouLS );
      //this.registerInLocalStorage('employeeInfos',JSON.stringify('employeeInfos', this.isLogged));
 
     //change value of the variable used in the header so the header show/dont show the div with userName and butttons

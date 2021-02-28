@@ -3,7 +3,7 @@ import { BetweenComponentsService } from '../services/between-components.service
 import { Component, OnInit } from '@angular/core';
 import { EmployeesService } from '../services/employees.service';
 import { ActivatedRoute } from '@angular/router';
-import {Employee} from '../model/employee'
+import {Employee} from '../model/employee';
 
 @Component({
   selector: 'form-new-employee',

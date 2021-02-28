@@ -21,18 +21,6 @@
   margin-bottom: 0.5em;
 }
 
-.form-check-input:checked{
-  background-color: #6EAF59;
-  border-color: #6EAF59;
-
-}
-
-.form-check-input:focus{
-  box-shadow: 0em 0em 0.5em 0.01em #6EAF59;
-
-}
-
-
 .row{
   margin-bottom: 2.5em ;
 }
@@ -64,18 +52,5 @@
   }
   .box{
     margin-top: 1em;
-  }
-
-  hr{
-    display: none;
-  }
-
-  .title{
-    font-size:1.7em;
-    margin: 0 0 1em 0;
-  }
-
-  .dateDmd{
-    margin-bottom: 1em;
   }
 }

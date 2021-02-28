@@ -14,7 +14,7 @@ import { Options } from 'select2';
 export class FormMaterialComponent implements OnInit {
 
   public activityList: Array<Select2OptionData>;
-  public options: Select2Options;
+ // public options: Select2Options;
   public value: string[];
   public current: string;
 
@@ -60,12 +60,12 @@ export class FormMaterialComponent implements OnInit {
     ];
 
     this.value = [];
-
+/*
     this.options = {
       multiple: true,
       minimumResultsForSearch:2
     }
-
+*/
     this.current = this.value.join(' | ');
     }
     changed(data:string[]) {

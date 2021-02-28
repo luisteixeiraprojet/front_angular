@@ -1,10 +1,12 @@
+import { FormProfilComponent } from './form-profil/form-profil.component';
+import { AllMyTimesheetsComponent } from './all-my-timesheets/all-my-timesheets.component';
 import { FormMaterialComponent } from './form-material/form-material.component';
 import { AllMaterialsComponent } from './all-materials/all-materials.component';
 import { AllActivitiesComponent } from './all-activities/all-activities.component';
 import { ActivitiesComponent } from './activities/activities.component';
 import { AllTimeSheetsComponent } from './all-time-sheets/all-time-sheets.component';
 import { TimeSheetComponent } from './time-sheet/time-sheet.component';
-import { ChangeProfilComponent } from './change-profil/change-profil.component';
+
 import { FormNewAbsenceComponent } from './form-new-absence/form-new-absence.component';
 import { AllMyAbsencesComponent } from './all-my-absences/all-my-absences.component';
 import { EmployeeByIdComponent } from './employee-by-id/employee-by-id.component';
@@ -37,18 +39,19 @@ const routes: Routes = [
   {path: 'allAbsences', component:AllAbsencesComponent },
   {path: 'formAbsence', component:FormNewAbsenceComponent},
   {path: 'updateAbsence/:id', component:FormNewAbsenceComponent},
-  {path: 'changeProfil', component:ChangeProfilComponent},
+  {path: 'profil', component:FormProfilComponent},
   {path:'createactivity', component:ActivitiesComponent},
   {path:'updateactivity/:id', component:ActivitiesComponent},
   {path:'allactivities', component:AllActivitiesComponent},
   {path:'allmaterials', component:AllMaterialsComponent},
   {path:'creatematerial', component: FormMaterialComponent},
-  {path:'updatematerial/:id', component: FormMaterialComponent}
+  {path:'updatematerial/:id', component: FormMaterialComponent},
+  {path:'myTimesheets', component: AllMyTimesheetsComponent}
 ];
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

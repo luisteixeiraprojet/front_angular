@@ -24,7 +24,7 @@ import { EmployeeViewComponent } from './employee-view/employee-view.component';
 import { AllMyAbsencesComponent } from './all-my-absences/all-my-absences.component';
 import { AllAbsencesComponent } from './all-absences/all-absences.component';
 import { FormNewAbsenceComponent } from './form-new-absence/form-new-absence.component';
-import { ChangeProfilComponent } from './change-profil/change-profil.component';
+
 import {TimeSheetComponent} from './time-sheet/time-sheet.component';
 import { AllTimeSheetsComponent } from './all-time-sheets/all-time-sheets.component';
 import { ActivitiesComponent } from './activities/activities.component';
@@ -33,6 +33,8 @@ import { FormMaterialComponent } from './form-material/form-material.component';
 import { AllMaterialsComponent } from './all-materials/all-materials.component';
 
 import { NgSelect2Module } from 'ng-select2';
+import { AllMyTimesheetsComponent } from './all-my-timesheets/all-my-timesheets.component';
+import { FormProfilComponent } from './form-profil/form-profil.component';
 
 
 
@@ -53,13 +55,15 @@ import { NgSelect2Module } from 'ng-select2';
     AllMyAbsencesComponent,
     AllAbsencesComponent,
     FormNewAbsenceComponent,
-    ChangeProfilComponent,
+
     TimeSheetComponent,
     AllTimeSheetsComponent,
     ActivitiesComponent,
     AllActivitiesComponent,
     FormMaterialComponent,
-    AllMaterialsComponent
+    AllMaterialsComponent,
+    AllMyTimesheetsComponent,
+    FormProfilComponent
   ],
   imports: [
     BrowserModule,

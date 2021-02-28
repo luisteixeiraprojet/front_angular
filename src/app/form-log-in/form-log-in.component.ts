@@ -28,11 +28,12 @@ export class FormLogInComponent implements OnInit {
 //when submitting form logIn
  async onSubmit(form: NgForm){
 
-    //pass the values written on the form - loginService + requests-api.service
     let requestResult  = await this._loginService.checkLogIn(form.value);
 
     if(!requestResult){
+
       this.errorLogIn = true;
+
      setTimeout(()=> this.errorLogIn = false,2500);
     }
 

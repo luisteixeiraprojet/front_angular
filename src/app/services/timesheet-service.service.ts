@@ -6,7 +6,41 @@ import { TimeSheet } from '../model/time-sheet';
   providedIn: 'root',
 })
 export class TimesheetServiceService {
+
+
   constructor(private _requestsApiService: RequestsApiService) {}
+
+//____________________________________________
+
+async getMyTS(idEmployee){
+
+try {
+
+  let allMyTS = await this._requestsApiService.getRequest("/timesheets/myTimesheets/" + idEmployee);
+
+  //transform date
+
+  for (let eachTS = 0; eachTS < allMyTS.length; eachTS++){
+
+     //ClearDb is sending -1 day in the date so temporarally i solved it like this:
+     let beginningDate = new Date(allMyTS[eachTS].beginningDate)
+     beginningDate.setDate(beginningDate.getDate()+1);
+     allMyTS[eachTS].beginningDate = beginningDate.toISOString();
+
+     let finishDate = new Date(allMyTS[eachTS].finishDate)
+     finishDate.setDate(finishDate.getDate()+1);
+     allMyTS[eachTS].finishDate = finishDate.toISOString();
+  }
+  return allMyTS;
+
+} catch (error) {
+  console.log("Error getMyTS", error.message);
+}
+
+
+}
+
+
 
   //________________________________________________________________________
   async getAllTimeSheets() {
