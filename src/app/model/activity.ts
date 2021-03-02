@@ -3,6 +3,8 @@ export class Activity {
   private _name;
   private _startDate;
   private _endDate;
+  private _materials;
+
 
   constructor(){}
 
@@ -11,6 +13,7 @@ export class Activity {
     this.name= obj.name || undefined;
     this.startDate= obj.startDate || undefined;
     this.endDate= obj.endDate || undefined;
+    this.materials=obj.materials || undefined;
   }
 
 //converted to object 'cause we need to pass to api properties without underscore
@@ -19,7 +22,8 @@ export class Activity {
     Id_activity  : this._Id_activity,
     name : this._name,
     startDate : this._startDate,
-    endDate : this._endDate
+    endDate : this._endDate,
+    materials : this._materials
   };
     return emplConvToSimpleObject;
   }
@@ -52,6 +56,13 @@ export class Activity {
   }
   public set endDate(value) {
     this._endDate = value;
+  }
+
+  public get materials() {
+    return this._materials;
+  }
+  public set materials(value) {
+    this._materials = value;
   }
 
 

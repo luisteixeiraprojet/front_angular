@@ -5,6 +5,7 @@ export class Material {
   private _quantity;
   private _unitaryPrice;
   private _supplier;
+  private _activities;
 
 //_______________________________________________________
   fillMatObj(obj){
@@ -14,9 +15,10 @@ export class Material {
     this.quantity= obj.quantity || undefined;
     this.unitaryPrice= obj.unitaryPrice || undefined;
     this.supplier = obj.supplier || undefined;
+    this.activities = obj.activities || undefined;
   }
 
-
+//____________________________________________________________
 //converted to object 'cause we need to pass to api properties without underscore
 toSimplifyObject(){
   const emplConvToSimpleObject={
@@ -25,7 +27,8 @@ toSimplifyObject(){
   name : this._name,
   quantity : this._quantity,
   unitaryPrice : this._unitaryPrice,
-  supplier : this._supplier
+  supplier : this._supplier,
+  activities : this._activities
 };
   return emplConvToSimpleObject;
 }
@@ -73,8 +76,11 @@ toSimplifyObject(){
     this._supplier= value;
   }
 
-
-
-
+  public get activities() {
+    return this._activities;
+  }
+  public set activities(value) {
+    this._activities = value;
+  }
 
 }//closes class

@@ -1,5 +1,6 @@
-<p>form-profil works!</p>
-<div class="container">
+
+<div class="container ">
+  <h1 class="title">Mon Profil</h1>
   <div class="d-flex flex-column flex-md-row">
     <div class="d-flex flex-row flex-md-column col-12 col-md-2">
       <button [routerLink]="['/']" class="firstButton">
@@ -15,14 +16,20 @@
       </button>
     </div>
 
-    <div class="box col-12 col-md-10">
-      <form
+    <div class="box col-12 col-md-10 text-center   ">
+      <form class="d-flex flex-column align-items-center"
         #profilForm="ngForm"
         (ngSubmit)="submitOnClick(profilForm.form)">
 
+        <div class="title d-flex col-12 justify-content-center">
+          <hr class="w-25 mt-2 mr-2" />
+          Mes Identifiants
+          <hr class="w-25 mt-2 ml-2" />
+        </div>
+
            <!-- Email-->
-           <div class="form-items col-12 col-md-4">
-            <label for="email">Adresse Mail</label>
+           <div class="form-items mt-3 mt-md-4 col-md-6 ">
+            <label for="email"> Adresse Mail souhaitée</label>
             <input
               required
               [(ngModel)]="formValues.email"
@@ -41,22 +48,24 @@
 
 
              <!--Password-->
-             <div class="form-items col-12">
-              <label for="password">Mot de passe</label>
+             <div class="form-items mt-3 mt-md-4 col-md-6 ">
+              <label for="password">Mot de passe souhaité</label>
 
               <input
+              required
                 [(ngModel)]="formValues.password"
                 name="password"
                 #password="ngModel"
                 id="password"
                 type="text"
                 class="form-control" [disabled]="isSubmiting"
+                [ngClass]="{ invalid: password.invalid }"
               />
             </div>
 
-        <div class="d-flex justify-content-md-end">
-        <input class="submit col-12 col-md-4 form-control" type="submit" value="Enregistrer" [disabled]="isSubmiting"/>
-      </div>
+        <div class="d-flex justify-content-md-end col-12 ">
+         <input class="submit col-12 col-md-4 form-control mt-5" type="submit" value="Enregistrer" [disabled]="isSubmiting"/>
+        </div>
 
       </form>
     </div>

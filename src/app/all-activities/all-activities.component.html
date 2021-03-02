@@ -22,7 +22,7 @@
 
             <div class="d-flex flex-column flex-md-row justify-content-between">
               <div class="d-flex flex-column justify-content-around">
-                <div class="nomAndDate"> {{ act.name }} </div>
+                <div class="nomAndDate"> {{ act.name |uppercase }} </div>
                 <div> Date de Début: <span class="nomAndDate "> {{act.startDate.split('T')[0] }} </span></div>
                 <div> Date de Fin: <span class="nomAndDate "> {{act.endDate.split('T')[0] }} </span></div>
               </div>

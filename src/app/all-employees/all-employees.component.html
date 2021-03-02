@@ -24,8 +24,8 @@
           *ngFor="let empl of employees"
           [routerLink]="['/employees', empl.Id_employee]"
         >
-          <span> Prénom: {{ empl.firstName }} </span>
-          <span> Nom: {{ empl.lastName }} </span>
+          <span> Prénom: {{ empl.firstName | titlecase }} </span>
+          <span> Nom: {{ empl.lastName | uppercase }} </span>
           <span> Portable: {{ empl.mobilePhone }}</span>
         </li>
       </ul>

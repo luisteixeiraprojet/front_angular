@@ -16,8 +16,8 @@
 
             <div class="d-flex flex-column flex-md-row justify-content-between">
               <div class="d-flex flex-column justify-content-around">
-                <div class="nomAndDate"> {{ abs.firstName }} {{abs.lastName | uppercase }}</div>
-                <div> Type d'absence <span class="nomAndDate "> {{abs.typeOfAbsence }} </span></div>
+                <div class="nomAndDate"> {{ abs.firstName | titlecase }} {{abs.lastName | uppercase }}</div>
+                <div> Type d'absence <span class="nomAndDate "> {{abs.typeOfAbsence | titlecase  }} </span></div>
                 <div> Du <span class="nomAndDate "> {{abs.startDate.split('T')[0] }} </span> au <span
                     class="nomAndDate "> {{ abs.endDate.split('T')[0] }} </span> </div>
 

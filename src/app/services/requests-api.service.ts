@@ -35,6 +35,7 @@ so we can send headers:authorisation  solicited in the serveur and so we 're red
     let resultRequest; //initialized here as undefined (almost as type 'any') so it doesnt return a syntaxe erreur from loginService(function verifyValidationToken());
 
     //send the get request(getAllEmployees, for example) where header's property authorization = token (solicited in app.js(serveur))
+    console.log("mmmmmmmm ----- ver  a morada ",this.servBaseAddress+url );
     resultRequest = await this._http.get(this.servBaseAddress+url, {headers}).toPromise();
 
     this._localStorageService.refreshToken(resultRequest.newToken); //resultRequest.newToken sent as response from the serveur (example, routes employees)

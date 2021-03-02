@@ -70,8 +70,19 @@
             />
           </div>
         </div>
+  <!------------------------------------------------------------------------------------------>
+<p> materiais selecionados {{selectedMaterials}} </p>
+<div class="w-100 col-12">
+<ng-select2
+[value]="selectedMaterials"
+	[data]="allMaterials"
+  (valueChanged)="changed($event)"
+  [options]="options"
+ >
+</ng-select2>
+</div>
 
-          <!--Button-->
+ <!--Button-->
         <div class="d-flex justify-content-md-end my-5">
           <input
             class="submit col-12 col-md-4 form-control"

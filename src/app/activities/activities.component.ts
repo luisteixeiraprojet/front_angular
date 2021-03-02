@@ -1,8 +1,9 @@
+import { MaterialsService } from './../services/materials.service';
 import { ActivitiesService } from './../services/activities.service';
 import { LocalStorageService } from './../services/local-storage.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import {Activity} from '../model/activity';
+import { Activity } from '../model/activity';
 import { AbsencesService } from '../services/absences.service';
 import { BetweenComponentsService } from '../services/between-components.service';
 
@@ -11,45 +12,82 @@ import { BetweenComponentsService } from '../services/between-components.service
   templateUrl: './activities.component.html',
   styleUrls: ['./activities.component.css']
 })
+
 export class ActivitiesComponent implements OnInit {
+  //act and mat relation many to many
+
+  selectedMaterials: string[];
+  prevSelectedMat = [];
+
+  listMaterials = [];
+  allMaterials = [];
+  options = {
+    multiple: true,
+    closeOnSelect: false,
+    width: '300',
+  };
+
   isSubmiting = false;
 
   //to use when updating an absence
-  formValues:any;
+  formValues: any;
   updatedAct;
   idAct;
 
   activity = new Activity();
 
-  constructor(private _router: Router ,private _activitiesService: ActivitiesService , private _localStorageService: LocalStorageService , private _betweenComponents : BetweenComponentsService ) { }
+  constructor(private _router: Router, private _activitiesService: ActivitiesService, private _matService: MaterialsService, private _localStorageService: LocalStorageService, private _betweenComponents: BetweenComponentsService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
 
+    //get all materials
+    let getAllMaterials = await this._matService.getAllMaterials();
 
-     if(this._router.url != '/createactivity'){
+    //get id and name of each activitie
+    getAllMaterials.forEach(mat => {
+      let matObj = { id: "", text: "" };
+      matObj = { id: mat.Id_material, text: mat.name }
+      this.listMaterials.push(matObj);
+    });
+
+    //pass value to the list from which selection will happen
+    this.allMaterials = this.listMaterials;
+
+    //UPdate: pre complete form with infos of the selected activity
+    if (this._router.url != '/createactivity') {
       this.activity.fillObjActivity(this._betweenComponents.getObjToUpdate());
-     console.log("-------depois de fill ", this.activity);
+
+      //when updating get the previously selected activities
+      let idAct = this.activity.Id_activity;
+
+      let matPreviouslySelected= await this._activitiesService.actPreviouslySelected(idAct);
+      for (let index = 0; index < matPreviouslySelected.length; index++) {
+        const element = JSON.stringify(matPreviouslySelected[index].Id_activity);
+        this.prevSelectedMat.push(element);
+      } this.selectedMaterials = this.prevSelectedMat;
 
       //so it will present the date in html format dd/mm/yyyy of the selected absence otherwise it wont happen
       this.activity.startDate = this.activity.startDate.split('T')[0];
-     this.activity.endDate = this.activity.endDate.split('T')[0];
-     }
+      this.activity.endDate = this.activity.endDate.split('T')[0];
+    }
   }
-
   //____________________________________________________________
   //when submitting the form
+
   submitOnClick(form) {
     if (form.valid) {
 
-    this.isSubmiting = true;
+      this.isSubmiting = true;
 
-    const startDate = new Date(this.activity.startDate);
-    this.activity.startDate = startDate.toISOString();
+      const startDate = new Date(this.activity.startDate);
+      this.activity.startDate = startDate.toISOString();
 
-    const endDate = new Date(this.activity.endDate);
-    this.activity.endDate = endDate.toISOString();
+      const endDate = new Date(this.activity.endDate);
+      this.activity.endDate = endDate.toISOString();
 
-    this.actCreateOrUpdate();
+      this.activity.materials = this.selectedMaterials;
+
+      this.actCreateOrUpdate();
 
     } else {
       alert('Veuillez remplir les champs obligatoires.');
@@ -57,32 +95,39 @@ export class ActivitiesComponent implements OnInit {
   }
 
   //_________________________________________
-  async actCreateOrUpdate(){
-
+  async actCreateOrUpdate() {
     try {
-      if (this._router.url === '/createactivity'){
-      console.log("createOrUpdate act");
-      await this._activitiesService.createActivity(this.activity.toSimplifyObject());
-    }else{
-      console.log("-------- dentro de update act ");
-    //requestDAte doesn't apply here because we can not change that date in the form update.It comes from this.absence by default
-    let bool;
-    bool = confirm("Cette demande sera changée. Êtes-vous sûr de vouloir continuer? ");
-    if(bool == true){
-    this.updatedAct = await this._activitiesService.updateAct(this.activity.toSimplifyObject());
-    }else{
-      this._router.navigate(['/allactivities/']);
-    }
-  }
+      if (this._router.url === '/createactivity') {
+
+        await this._activitiesService.createActivity(this.activity.toSimplifyObject());
+
+      } else {
+
+        //requestDAte doesn't apply here because we can not change that date in the form update.It comes from this.absence by default
+        let bool;
+        bool = confirm("Cette demande sera changée. Êtes-vous sûr de vouloir continuer? ");
+
+        if (bool == true) {
+          console.log("mmmmmmm ----- ver o k tem this.activity ", this.activity.materials);
+          this.updatedAct = await this._activitiesService.updateAct(this.activity.toSimplifyObject());
+        } else {
+          this._router.navigate(['/allactivities/']);
+        }
+      }
     } catch (error) {
       console.log("Error update Act ", error.message);
-
-    } setTimeout(() => {
-      this._router.navigate(['/allactivities/']);
+    }
+    setTimeout(() => {
+      this._router.navigate(['/allmaterials/']);
     }, 500);
   };
 
-//_____________________________________________________
+  //_____________________________________________________________________
+  changed(data: string[]) {
+    this.selectedMaterials = data;
+  }
+
+  //_____________________________________________________
 
 
 }//closes class

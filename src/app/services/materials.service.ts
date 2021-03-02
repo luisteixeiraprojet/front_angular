@@ -11,6 +11,7 @@ export class MaterialsService {
 
 //_________________________________
 async createMaterial(matObj){
+  console.log("uuuuuu 1.dentro de updateMAterial: matobj tem: ", matObj)
 
   try {
     return await this._requestsApiService.postRequest("/materials", matObj);
@@ -21,12 +22,14 @@ async createMaterial(matObj){
 
 //____________________________
 async updateMat(mat){
+  console.log("uuuuuu 1.dentro de updateMAterial antes do if: matobj tem: ", mat)
   try {
-   // console.log("updateAct tem dentro de act ", mat );
+    console.log("uuuuuu 1.1.dentro de updateMAterial depois do: matobj tem: ", mat)
     let matObject= new Material();
 
     matObject.fillMatObj(mat);
     let actObjectNoUndersocre = matObject.toSimplifyObject();
+    console.log("uuuuuu 1.2.chamar putRequest c actObjectNoUndersocre: ", actObjectNoUndersocre)
     return await this._requestsApiService.putRequests("/materials/materialUpdate/",  actObjectNoUndersocre);
 
   } catch (error) {
@@ -64,6 +67,18 @@ async deleteMat(idMat){
     return error.message;
   }
 }
+//_________________________________________________
 
+async actPreviouslySelected(matId){
+  console.log("aaaaa 1. matServ-73-dentro previouslySelectedAct ");
+  try {
+    console.log("aaaaaaaa matServ - 75 - vai chmara getrEquest c id ", matId);
+    return  await this._requestsApiService.getRequest("/materials/previouslySelectedAct/" + matId);
 
+  } catch (error) {
+    console.log("Error - getActByMatId ", error.message);
+    return error.message;
+  }
+}
+//__________________________________________________
 }//closes class

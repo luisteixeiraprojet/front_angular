@@ -23,7 +23,7 @@
           *ngFor="let abs of myAbsences"
         >
         <div class="col-12 col-md-10 d-flex flex-column">
-          <span class="typeAndStatus mb-1 "> Absence: {{ abs.typeOfAbsence }}</span>
+          <span class="typeAndStatus mb-1 "> Absence: {{ abs.typeOfAbsence | titlecase}}</span>
           <span class=" my-2"> Du <span class="typeAndStatus" > {{ abs.startDate.split('T')[0] }}</span> au <span class="typeAndStatus" >{{ abs.endDate.split('T')[0] }}  </span>inclus</span>
           <span class="mb-1"> Demandé le {{ abs.requestDate.split('T')[0] }}</span>
           <span class="typeAndStatus my-2" *ngIf="!isDecided(abs)"> Status: En attente de décision </span>

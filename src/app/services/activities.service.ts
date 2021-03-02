@@ -58,7 +58,20 @@ for (let eachAct = 0; eachAct < allActs.length; eachAct++){
       console.log("Error getAllActivities" + error.message);
     }
   }
+//_____________________________________________
+async actPreviouslySelected(idAct){
+  console.log("mmmmmmmmmmmmmmmmmmmm --- idact ", idAct)
 
+  try {
+    console.log("aaaaaaaa matServ - 75 - vai chmara getrEquest c id ", idAct);
+    return  await this._requestsApiService.getRequest("/activities/previouslySelectedMat/" + idAct);
+
+  } catch (error) {
+    console.log("Error - getMatByActId ", error.message);
+    return error.message;
+  }
+
+}
 //____________________________________________
 async deleteAct(idAct){
   console.log("dentro absSErv delete");
