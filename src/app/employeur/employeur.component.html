@@ -1,4 +1,4 @@
-<section class="sections container" > <!--His father is the div allIntegrated in app.component.html-->
+<section *ngIf="isAdmin" class="sections container" > <!--His father is the div allIntegrated in app.component.html-->
   <div class="row gallerie_bouttons ">
      <div class="text-center col-12 col-md-4 mt-3 each_section">
       <a href="#" routerLink="/employees">
@@ -42,6 +42,39 @@
       <a routerLink="/rgpd">
       <button type="button" class="btn ">RGPD</button>
       </a>
+     </div>
+   </div>
+</section>
+
+<!--------------------------------------------------------------------------------------->
+<p *ngIf="!isAdmin">  e empregado</p>
+
+<section *ngIf="!isAdmin" class="sections container" > <!--His father is the div allIntegrated in app.component.html-->
+  <div class="row gallerie_bouttons ">
+     <div class="text-center col-12 col-md-6 mt-3 each_section">
+      <a href="#" routerLink="/myTimesheets">
+        <button type="button" class="btn ">Résumé Pointage</button>
+      </a>
+     </div>
+
+     <div class="each_section text-center col-12 col-md-6 mt-3">
+        <div> <!--col-xs-12 col-sm-12-->
+           <a routerLink="/myAbsences">
+            <button type="button" class="btn ">Congés et Absences</button>
+           </a>
+        </div>
+     </div>
+
+     <div class="each_section text-center col-12 col-md-6 mt-3 mt-md-5 mb-md-4  ">
+        <a routerLink="/contact">
+          <button type="button" class="btn "> Contacter Mon Employeur </button>
+        </a>
+     </div>
+
+     <div class=" each_section text-center col-12 col-md-6 mt-3 mt-md-5 mb-md-4 ">
+        <a routerLink="/depenses">
+          <button type="button" class="btn ">RGPD</button>
+        </a>
      </div>
    </div>
 </section>

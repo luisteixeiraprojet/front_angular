@@ -64,8 +64,4 @@ value changes/is updated at each event - betweenServices)*/
     this._loginService.logOut();
   }
 
-  //clic logo
-  tokenVerif(){
-  this._loginService.verifyValidationToken();
-  }
 } //closes class

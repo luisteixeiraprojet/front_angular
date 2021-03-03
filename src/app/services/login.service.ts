@@ -21,13 +21,17 @@ export class LoginService {
 
     this.isLogged= await this._requestsApiService.postRequestNoHeaders('/login', payload);
 
-
     if(this.isLogged.result != "ko"){
      localStorage.setItem("employeeInfos", JSON.stringify(this.isLogged));
 
     //change value of the variable used in the header so the header show/dont show the div with userName and butttons
       this._betweenService.isLoggedIn.next(true);
-      this._router.navigate(['']);
+
+      if(this.isLogged.role == "Admin"){
+        this._router.navigate(['']);
+      }else {
+        this._router.navigate(['/employeeAccount']);
+      }
     }
     return this.isLogged;
   }
@@ -36,11 +40,7 @@ async forgotPsw(payload: any){
   let result = await this._requestsApiService.postRequestNoHeaders('/login/newpassword', payload);
 console.log("result ", result);
   return result;
-
 }
-
-
-
 //__________________________________________________________
 //from form-log-in.ts - pass the infos of the user who logged to the localstorage
   registerInLocalStorage(variableName,requestResult){
@@ -48,7 +48,6 @@ console.log("result ", result);
 
   return inLocalStorage;
   }
-
 //_____________________________________________________________
 //get from the localStorage the user who logged - pass it to  header.ts so we can access his firstName
   async whoIsLogged(){
@@ -56,7 +55,6 @@ console.log("result ", result);
     this.isLogged = itemReturnedFromLocalStorage;
     return this.isLogged;
   }
-
 //____________________________________________________________
 //From header - verifiy at each request if token is valide(not expxired and if the user is relaly logged in and not just trying through postman ou directily from the url)
   async verifyValidationToken(){
@@ -69,12 +67,23 @@ console.log("result ", result);
       this._betweenService.isLoggedIn.next(false);
     }
   }
+//_______________________________________________________
+
+ isAdmin(){
+ let userLogged =  this._localStorageService.getFromLocalStorage('employeeInfos');
+ console.log("+++++++++++++++ x", userLogged);
+ console.log("+++++++++++++++ role:", userLogged.role);
+ if(userLogged.role == "Admin"){
+  return true;
+ }else {
+   return false;
+ }
+}
+
 
 //_______________________________________________________
   logOut() {
     this._betweenService.logOut();
   }
-
-
 //______________________________________
 }//closes class
