@@ -1,3 +1,5 @@
+import { LoginService } from './../services/login.service';
+import { Router } from '@angular/router';
 import { LocalStorageService } from './../services/local-storage.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,13 +13,22 @@ import { RequestsApiService } from '../services/requests-api.service' ;
 })
 
 export class AllAbsencesComponent implements OnInit {
-
+  verifyRole;
   absences:any;
   employeeName;
 
-  constructor(private _absenceService:AbsencesService, private _localStroage:LocalStorageService) { }
+  constructor(private _absenceService:AbsencesService, private _loginService:LoginService ,private _router:Router, private _localStroage:LocalStorageService) { }
 
   async ngOnInit(){
+
+   //so the employees can not access boss views
+   this.verifyRole = this._loginService.isAdmin();
+   if(this.verifyRole == false){
+     this._router.navigate(['/employeeAccount']);
+   }
+
+
+
     this.absences = await this._absenceService.getAllAbsences();
   }
 

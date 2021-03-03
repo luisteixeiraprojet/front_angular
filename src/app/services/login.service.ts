@@ -71,8 +71,7 @@ console.log("result ", result);
 
  isAdmin(){
  let userLogged =  this._localStorageService.getFromLocalStorage('employeeInfos');
- console.log("+++++++++++++++ x", userLogged);
- console.log("+++++++++++++++ role:", userLogged.role);
+
  if(userLogged.role == "Admin"){
   return true;
  }else {

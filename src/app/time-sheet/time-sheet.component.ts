@@ -1,3 +1,4 @@
+import { LoginService } from './../services/login.service';
 import { BetweenComponentsService } from './../services/between-components.service';
 import { Router } from '@angular/router';
 import { ActivitiesService } from './../services/activities.service';
@@ -14,6 +15,8 @@ import { EmployeesService } from '../services/employees.service';
 })
 
 export class TimeSheetComponent implements OnInit {
+  verifyRole;
+
 //button submit
 isSubmiting = false;
 
@@ -29,13 +32,24 @@ updatedTimeSheet
 //creating a new Pointage
 timeSheet = new TimeSheet();
 
-  constructor(private _tSService:TimesheetServiceService,
+  constructor(
+    private _tSService:TimesheetServiceService,
     private _employeeService:EmployeesService,
-    private _activitiesService: ActivitiesService, private _router:Router,
+    private _activitiesService: ActivitiesService,
+    private _router:Router,
     private router: Router,
+    private _loginService: LoginService,
     private _betweenComponents: BetweenComponentsService) { }
 
   async ngOnInit(){
+
+      //so the employees can not access boss views
+      this.verifyRole = this._loginService.isAdmin();
+      if(this.verifyRole == false){
+        this._router.navigate(['/employeeAccount']);
+      }
+
+
     this.allEmployees = await this._employeeService.getAllEmployees();
     this.allActivities = await this._activitiesService.getAllActivities();
 

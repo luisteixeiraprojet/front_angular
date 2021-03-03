@@ -1,3 +1,4 @@
+import { LoginService } from './../services/login.service';
 import { BetweenComponentsService } from './../services/between-components.service';
 import { MaterialsService } from './../services/materials.service';
 import { Router } from '@angular/router';
@@ -10,12 +11,18 @@ import { Script } from 'vm';
   styleUrls: ['./all-materials.component.css']
 })
 export class AllMaterialsComponent implements OnInit {
-
+  verifyRole;
   materials : any;
 
-  constructor(private _router: Router, private _betweenService: BetweenComponentsService,private _matService:MaterialsService ) { }
+  constructor(private _loginService:LoginService ,private _router: Router, private _betweenService: BetweenComponentsService,private _matService:MaterialsService ) { }
 
   async ngOnInit() {
+
+      //so the employees can not access boss views
+      this.verifyRole = this._loginService.isAdmin();
+      if(this.verifyRole == false){
+        this._router.navigate(['/employeeAccount']);
+      }
 
     this.materials = await this._matService.getAllMaterials();
   }

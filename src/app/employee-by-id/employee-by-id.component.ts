@@ -1,3 +1,4 @@
+import { LoginService } from './../services/login.service';
 import { Component, OnInit } from '@angular/core';
 
 //imports
@@ -18,6 +19,7 @@ import { ModalComponent } from './modal/modal.component';*/
 })
 
 export class EmployeeByIdComponent implements OnInit {
+  verifyRole;
 
   //to the nav
   active =1;
@@ -26,9 +28,15 @@ export class EmployeeByIdComponent implements OnInit {
   idEmployee;
   selectedEmployee;
 
-  constructor(private employeesService : EmployeesService, private betweenComponents: BetweenComponentsService, private _Activatedroute:ActivatedRoute,private router: Router, private _location: Location) { }
+  constructor(private employeesService : EmployeesService, private _loginService:LoginService ,private betweenComponents: BetweenComponentsService, private _Activatedroute:ActivatedRoute,private router: Router, private _location: Location) { }
 
   async ngOnInit(): Promise<void> {
+
+    //so the employees can not access boss views
+    this.verifyRole = this._loginService.isAdmin();
+    if(this.verifyRole == false){
+      this.router.navigate(['/employeeAccount']);
+    }
 
     //EBI: get and pass the id
     this._Activatedroute.paramMap.subscribe(params => {

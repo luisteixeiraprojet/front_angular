@@ -1,4 +1,6 @@
-import { LocalStorageService } from './../services/local-storage.service';
+import { Router } from '@angular/router';
+
+
 import { LoginService } from './../services/login.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,7 +15,7 @@ export class EmployeurComponent implements OnInit {
 
   isAdmin = false ;
   verifyRole;
-  constructor(private _loginService: LoginService, ) { }
+  constructor(private _loginService: LoginService, private _router:Router) { }
 
 
   ngOnInit(): void {
@@ -21,10 +23,12 @@ export class EmployeurComponent implements OnInit {
     //verify if the user is still logged in
     this._loginService.verifyValidationToken();
 
-    //to seprate views, verify role (employee VS admin)
+    //so the employee can't access boss views, verify role (employee VS admin)
     this.verifyRole = this._loginService.isAdmin();
     this.isAdmin = this.verifyRole;
-
+    if(this.isAdmin == false){
+      this._router.navigate(['/employeeAccount']);
+    }
   }
 
 }//closes class

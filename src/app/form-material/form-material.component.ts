@@ -1,3 +1,4 @@
+import { LoginService } from './../services/login.service';
 import { ActivitiesService } from './../services/activities.service';
 import { BetweenComponentsService } from './../services/between-components.service';
 import { MaterialsService } from './../services/materials.service';
@@ -12,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class FormMaterialComponent implements OnInit {
-  //mat and Act - relation many to many
+  verifyRole;
 
   //used when updating (assumes the previously idAct of the mat to update) and when creating (saves the idAct to send to update)
   selectedActivities:string[];
@@ -35,9 +36,15 @@ export class FormMaterialComponent implements OnInit {
 
  material = new Material();
 
-  constructor(private _router:Router, private _matService:MaterialsService, private _betweenService: BetweenComponentsService, private _activitiesService:ActivitiesService) { }
+  constructor(private _loginService:LoginService  ,private _router:Router, private _matService:MaterialsService, private _betweenService: BetweenComponentsService, private _activitiesService:ActivitiesService) { }
 
   async ngOnInit() {
+
+      //so the employees can not access boss views
+      this.verifyRole = this._loginService.isAdmin();
+      if(this.verifyRole == false){
+        this._router.navigate(['/employeeAccount']);
+      }
 
   //get all activities to be chosen
    let getAllActivities = await this._activitiesService.getAllActivities();

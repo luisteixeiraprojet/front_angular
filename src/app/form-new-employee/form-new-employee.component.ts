@@ -1,3 +1,4 @@
+import { LoginService } from './../services/login.service';
 import { error } from 'protractor';
 import { Router } from '@angular/router';
 import { BetweenComponentsService } from '../services/between-components.service';
@@ -13,6 +14,8 @@ import { isConstructorDeclaration } from 'typescript';
   styleUrls: ['./form-new-employee.component.css'],
 })
 export class FormNewEmployeeComponent implements OnInit {
+  verifyRole;
+
   //button submit
   isSubmiting = false;
 
@@ -28,10 +31,19 @@ export class FormNewEmployeeComponent implements OnInit {
     private employeesService: EmployeesService,
     private router: Router,
     private _activatedroute: ActivatedRoute,
-    private betweenComponents: BetweenComponentsService
+    private betweenComponents: BetweenComponentsService,
+    private _loginService:LoginService
   ) {}
 
   ngOnInit() {
+
+      //so the employees can not access boss views
+      this.verifyRole = this._loginService.isAdmin();
+      if(this.verifyRole == false){
+        this.router.navigate(['/employeeAccount']);
+      }
+
+
     //so it runs only when its the route to update
     if (this.router.url != '/createEmployee') {
       this.employeeObject = this.betweenComponents.getEmployeeToUpdate();

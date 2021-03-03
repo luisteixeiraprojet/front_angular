@@ -40,6 +40,7 @@ import { FormProfilComponent } from './form-profil/form-profil.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +64,8 @@ import { FormProfilComponent } from './form-profil/form-profil.component';
     FormMaterialComponent,
     AllMaterialsComponent,
     AllMyTimesheetsComponent,
-    FormProfilComponent
+    FormProfilComponent,
+
   ],
   imports: [
     BrowserModule,

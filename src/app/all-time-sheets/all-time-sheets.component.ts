@@ -1,3 +1,4 @@
+import { LoginService } from './../services/login.service';
 import { BetweenComponentsService } from './../services/between-components.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TimesheetServiceService } from './../services/timesheet-service.service';
@@ -17,12 +18,21 @@ export class AllTimeSheetsComponent implements OnInit {
    idTS;
    selectedTS;
 
-  constructor(private _activitiesService:ActivitiesService,  private _Activatedroute:ActivatedRoute, private _timesheetService: TimesheetServiceService, private _router:Router, private _betweenComponents:BetweenComponentsService) { }
+   //verify Roles to separate views
+   verifyRole;
+
+  constructor(private _activitiesService:ActivitiesService, private _loginService:LoginService,  private _Activatedroute:ActivatedRoute, private _timesheetService: TimesheetServiceService, private _router:Router, private _betweenComponents:BetweenComponentsService) { }
 
  async ngOnInit(){
 
+    //so the employees can not access boss views
+    this.verifyRole = this._loginService.isAdmin();
+    if(this.verifyRole == false){
+      this._router.navigate(['/employeeAccount']);
+    }
 
   this.timesheets = await this._timesheetService.getAllTimeSheets();
+
 
 
   }

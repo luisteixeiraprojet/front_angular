@@ -1,3 +1,4 @@
+import { LoginService } from './../services/login.service';
 import { MaterialsService } from './../services/materials.service';
 import { ActivitiesService } from './../services/activities.service';
 import { LocalStorageService } from './../services/local-storage.service';
@@ -15,6 +16,7 @@ import { BetweenComponentsService } from '../services/between-components.service
 
 export class ActivitiesComponent implements OnInit {
   //act and mat relation many to many
+  verifyRole
 
   selectedMaterials: string[];
   prevSelectedMat = [];
@@ -36,9 +38,14 @@ export class ActivitiesComponent implements OnInit {
 
   activity = new Activity();
 
-  constructor(private _router: Router, private _activitiesService: ActivitiesService, private _matService: MaterialsService, private _localStorageService: LocalStorageService, private _betweenComponents: BetweenComponentsService) { }
+  constructor(private _router: Router, private _loginService:LoginService  ,private _activitiesService: ActivitiesService, private _matService: MaterialsService, private _localStorageService: LocalStorageService, private _betweenComponents: BetweenComponentsService) { }
 
   async ngOnInit() {
+    //so the employees can not access boss views
+   this.verifyRole = this._loginService.isAdmin();
+   if(this.verifyRole == false){
+     this._router.navigate(['/employeeAccount']);
+   }
 
     //get all materials
     let getAllMaterials = await this._matService.getAllMaterials();
