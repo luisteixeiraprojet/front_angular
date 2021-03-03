@@ -26,6 +26,40 @@
           <hr class="w-25 mt-2 ml-2" />
         </div>
 
+        <div class="d-flex flex-row col-6 ">
+          <div class="form-check">
+          <input
+          id="role1"
+          class="form-check-input"
+            type="radio"
+            value="Employee"
+            name="role"
+            [(ngModel)]="employee.role"
+            required
+            #role="ngModel"
+            [disabled]="isSubmiting"
+            [ngClass]="{ invalid: role.invalid }"
+
+          />
+          <label class="mr-5 form-check-label " for="typeOfAbsence1">Salarié(e)</label>
+        </div>
+
+        <div class="form-check ">
+          <input
+          id="role2"
+          class="form-check-input "
+            type="radio"
+            value="Admin"
+            name="role"
+            [(ngModel)]="employee.role"
+            #role="ngModel"
+            [ngClass]="{ invalid: role.invalid }"
+          />
+          <label class="form-check-label " for="typeOfAbsence2">Admin</label>
+        </div>
+
+      </div>
+
         <div class="row">
           <!--PRENOM-->
           <div class="form-items col-12 col-md-6">
@@ -94,6 +128,11 @@
             </div>
           </div>
 
+          <p *ngIf="emailExists">
+            Cet adresse mail est déjà utilsée.
+            Merci d'enregistrer une autre adresse courriel.
+          </p>
+
           <!-- Téléphone Fixe-->
           <div class="form-items col-12 col-md-4">
             <label for="homePhone">Téléphone Fixe</label>
@@ -132,6 +171,7 @@
               class="form-control" [disabled]="isSubmiting"
             />
           </div>
+
 
           <!--Code Postale-->
           <div class="form-items col-12 col-md-6">

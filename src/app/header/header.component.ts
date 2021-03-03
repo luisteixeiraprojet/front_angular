@@ -67,6 +67,5 @@ value changes/is updated at each event - betweenServices)*/
   //clic logo
   tokenVerif(){
   this._loginService.verifyValidationToken();
-  console.log("nao passou")
   }
 } //closes class

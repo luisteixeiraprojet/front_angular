@@ -25,6 +25,23 @@
   transition: 0.5s;
 }
 
+.btnEmail{
+  background-color:#6EAF59 ;
+  color: #FFFFFF;
+  text-align: center;
+  text-align:center;
+  border-radius:0.2em;
+}
+
+.btnEmail:hover{
+  background-color:  #ebfae6;
+  color: #6EAF59;
+  border-color: #6EAF59;
+  box-shadow: 0 6px 8px 0 #631f5a7c;
+  transition: 0.5s;
+}
+
+
 .title{
   font-size:2em;
   color:#6EAF59;
@@ -40,3 +57,14 @@ label{
 }
 
 
+
+.fakeLink {
+     cursor:pointer;
+     color:blue;
+     text-decoration:underline;
+}
+
+.fakeLink:hover {
+  text-decoration:none;
+  text-shadow: 1px 1px 1px #555;
+}

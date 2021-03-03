@@ -1,9 +1,11 @@
+import { error } from 'protractor';
 import { Router } from '@angular/router';
 import { BetweenComponentsService } from '../services/between-components.service';
 import { Component, OnInit } from '@angular/core';
 import { EmployeesService } from '../services/employees.service';
 import { ActivatedRoute } from '@angular/router';
 import {Employee} from '../model/employee';
+import { isConstructorDeclaration } from 'typescript';
 
 @Component({
   selector: 'form-new-employee',
@@ -14,6 +16,8 @@ export class FormNewEmployeeComponent implements OnInit {
   //button submit
   isSubmiting = false;
 
+  //
+  emailExists = false;
   //UPDATE: Employee BY id
   employeeObject;
 
@@ -60,7 +64,7 @@ export class FormNewEmployeeComponent implements OnInit {
       }
 
       this.createOrUpdate();
-      form.reset();
+
     } else {
       alert('Veuillez remplir les champs obligatoires.');
     }
@@ -70,16 +74,20 @@ export class FormNewEmployeeComponent implements OnInit {
   async createOrUpdate() {
     let id;
     try {
-      console.log("****** 1. dentro de createOrUpdate");
+
       if (this.router.url === '/createEmployee') {
-        console.log("****** 2. dentro do if se  url === '/createEmployee'");
+
         let createdEmployee: any; //'cause of typology. typesript requires type of variable (and object doesnt always have the id. with any it doesn't matter). To not have erreurs of compilation before obtaining the id
         let simpleEmplObj= this.employee.toSimplifyObject();
-        console.log("******* 3.simpleEmplObj= this.employee.toSimplifyObject() ", simpleEmplObj );
-        createdEmployee = await this.employeesService.createEmployee(
-          simpleEmplObj
-        );
-        id = createdEmployee.Id_employee;
+
+        createdEmployee = await this.employeesService.createEmployee(simpleEmplObj);
+        //if email already exists
+        if(createdEmployee.error == "ko"){
+          this.emailExists = true;
+          this.isSubmiting = false;
+        }else{
+          id = createdEmployee.Id_employee;
+        }
 
       } else {
         let bool;
@@ -97,10 +105,12 @@ export class FormNewEmployeeComponent implements OnInit {
       }
         id = this.employeeObject.Id_employee;
       }
+
+      if(this.emailExists == false) {
       setTimeout(() => {
         this.router.navigate(['/employees/' + id]);
       }, 500);
-
+    }
     } catch (error) {
       console.log(error);
       alert("Attention: le formulaire n'est pas bien rempli!");

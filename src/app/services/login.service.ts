@@ -6,13 +6,10 @@ import { Router } from '@angular/router';
 import {LocalStorageService} from './local-storage.service';
 import { BetweenComponentsService } from './between-components.service';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-
 
   constructor(private _router:Router ,private _betweenService: BetweenComponentsService, private _http: HttpClient, private _requestsApiService: RequestsApiService, private _localStorageService: LocalStorageService ) { }
 
@@ -22,14 +19,11 @@ export class LoginService {
   //get the user who logged - pass it to form-log-in.ts
   async checkLogIn(payload: any){
 
-    console.log("----- 1.-loginSrvc-25- dentro checkLogIn c payload: ", payload );
     this.isLogged= await this._requestsApiService.postRequestNoHeaders('/login', payload);
-    console.log("----- 1.1.-loginSrvc-27- resultado chamada postRequestNoHeaders");
 
-    if(this.isLogged != undefined && this.isLogged != null){
-     let guardouLS =  localStorage.setItem("employeeInfos", JSON.stringify(this.isLogged));
-     console.log("----- 1.2-loginSrvc-31- guardounoLOcalStorage ", guardouLS );
-     //this.registerInLocalStorage('employeeInfos',JSON.stringify('employeeInfos', this.isLogged));
+
+    if(this.isLogged.result != "ko"){
+     localStorage.setItem("employeeInfos", JSON.stringify(this.isLogged));
 
     //change value of the variable used in the header so the header show/dont show the div with userName and butttons
       this._betweenService.isLoggedIn.next(true);
@@ -37,23 +31,34 @@ export class LoginService {
     }
     return this.isLogged;
   }
+//___________________________________________________________
+async forgotPsw(payload: any){
+  let result = await this._requestsApiService.postRequestNoHeaders('/login/newpassword', payload);
+console.log("result ", result);
+  return result;
+
+}
 
 
-  //from form-log-in.ts - pass the infos of the user who logged to the localstorage
+
+//__________________________________________________________
+//from form-log-in.ts - pass the infos of the user who logged to the localstorage
   registerInLocalStorage(variableName,requestResult){
    let inLocalStorage = this._localStorageService.setDataInLocalStorage('employeeInfos',JSON.stringify( requestResult));
 
   return inLocalStorage;
   }
 
-  //get from the localStorage the user who logged - pass it to  header.ts so we can access his firstName
+//_____________________________________________________________
+//get from the localStorage the user who logged - pass it to  header.ts so we can access his firstName
   async whoIsLogged(){
     let itemReturnedFromLocalStorage =  await this._localStorageService.getFromLocalStorage('employeeInfos');
     this.isLogged = itemReturnedFromLocalStorage;
     return this.isLogged;
   }
 
-  //From header - verifiy at each request if token is valide(not expxired and if the user is relaly logged in and not just trying through postman ou directily from the url)
+//____________________________________________________________
+//From header - verifiy at each request if token is valide(not expxired and if the user is relaly logged in and not just trying through postman ou directily from the url)
   async verifyValidationToken(){
 
     let isStillLogged= await this._requestsApiService.getRequest('/tokenVerify');
@@ -65,10 +70,11 @@ export class LoginService {
     }
   }
 
+//_______________________________________________________
   logOut() {
     this._betweenService.logOut();
   }
 
 
-
+//______________________________________
 }//closes class

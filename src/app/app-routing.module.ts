@@ -25,8 +25,8 @@ import { AllAbsencesComponent } from './all-absences/all-absences.component';
 
 
 const routes: Routes = [
-  {path:'login', component: FormLogInComponent},
   {path:'', component: EmployeurComponent},
+  {path:'login', component: FormLogInComponent},
   {path:'employees', component: AllEmployeesComponent},
   {path:'employees/:id', component: EmployeeByIdComponent},
   {path:'createEmployee', component: FormNewEmployeeComponent},
@@ -46,7 +46,9 @@ const routes: Routes = [
   {path:'allmaterials', component:AllMaterialsComponent},
   {path:'creatematerial', component: FormMaterialComponent},
   {path:'updatematerial/:id', component: FormMaterialComponent},
-  {path:'myTimesheets', component: AllMyTimesheetsComponent}
+  {path:'myTimesheets', component: AllMyTimesheetsComponent},
+  {path:':x', redirectTo: ''}
+
 ];
 
 

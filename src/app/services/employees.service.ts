@@ -62,6 +62,7 @@ export class EmployeesService {
 async createEmployee(employeeObj){
   try {
     let pedidoPost = await this.requestsApiService.postRequest("/employees", employeeObj);
+    console.log("------------------emplservice 65 ----- pedidoPost ", pedidoPost);
     return pedidoPost;
   } catch (error) {
     console.log("Error " + error.message);

@@ -16,6 +16,8 @@ export class Employee {
   private _typeContract;
   private _joinDate;
   private _hourlyPrice;
+  private _role;
+
 
   constructor(){}
 
@@ -37,6 +39,7 @@ export class Employee {
     this.typeContract= obj.typeContract|| undefined;
     this.joinDate= obj.joinDate || undefined;
     this.hourlyPrice= obj.hourlyPrice || undefined;
+    this.role=obj.role || undefined;
   }
 
 //converted to object 'cause we need to pass to api properties without underscore
@@ -59,6 +62,7 @@ export class Employee {
     typeContract : this._typeContract,
     joinDate : this._joinDate,
     hourlyPrice : this._hourlyPrice,
+    role : this._role
   };
     return emplConvToSimpleObject;
   }
@@ -182,7 +186,12 @@ export class Employee {
     this._nationality = value;
   }
 
-
+  public get role() {
+    return this._role;
+  }
+  public set role(value) {
+    this._role = value;
+  }
 
 }//closes class
 
