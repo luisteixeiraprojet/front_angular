@@ -24,7 +24,10 @@ export class FormMaterialComponent implements OnInit {
   options = {
     multiple: true,
     closeOnSelect: false,
-    width: '300',
+    width:"100%"
+
+
+
   };
 
   isSubmiting = false;

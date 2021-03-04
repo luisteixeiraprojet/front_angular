@@ -1,6 +1,11 @@
 <div class="container">
   <div class="d-flex flex-column flex-md-row">
     <div class="d-flex flex-row flex-md-column col-12 col-md-2">
+      <button [routerLink]="['/']" class="firstButton">
+        Retour <br />
+        au <br />
+        Menu
+      </button>
       <button [routerLink]="['/allmaterials']" class="firstButton">
         Retour <br />
         à la <br />
@@ -52,7 +57,7 @@
           </div>
         </div>
 
-          <div class="d-flex flex-column flex-md-row my-3">
+        <div class="d-flex flex-column flex-md-row my-3">
           <div class="form-items col-12 col-md-6">
             <label for="quantity">Quantité</label>
             <input
@@ -69,7 +74,7 @@
           </div>
 
 
-        <div class="form-items col-12 col-md-6">
+          <div class="form-items col-12 col-md-6">
           <label for="unitaryPrice">Prix Unitaire</label>
           <div class="input-group ">
           <div class="input-group-prepend">
@@ -93,20 +98,21 @@
       </div>
     </div>
 
-<!------------------------------------------------------------------------------------------>
-<p> actividades selecionadas {{selectedActivities}} </p>
 
-<div class="w-100 col-12">
-<ng-select2
-  [value]="selectedActivities"
-	[data]="allActivities"
-  (valueChanged)="changed($event)"
-  [options]="options"
- >
-</ng-select2>
-</div>
+    <div class="d-flex flex-column flex-md-row my-3">
 
-<div class="d-flex flex-column flex-md-row my-3">
+        <!------------------------------------>
+  <div class="col-12 col-md-6 my-3">
+    <label >Activités</label>
+    <ng-select2
+      [value]="selectedActivities"
+      [data]="allActivities"
+      (valueChanged)="changed($event)"
+      [options]="options"
+     >
+    </ng-select2>
+  </div>
+
   <div class="form-items col-12 col-md-6">
     <label for="supplier">Fournisseur</label>
     <input
@@ -119,7 +125,13 @@
       [disabled]="isSubmiting"
     />
   </div>
-  </div>
+
+
+
+</div>
+
+
+
 <!------------------------------------------------------------------------------------------>
 
 <!--Button-->

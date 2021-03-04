@@ -26,7 +26,7 @@ export class ActivitiesComponent implements OnInit {
   options = {
     multiple: true,
     closeOnSelect: false,
-    width: '300',
+    width: '100%',
   };
 
   isSubmiting = false;

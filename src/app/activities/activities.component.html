@@ -1,8 +1,12 @@
-
 <div class="container">
-  <h1 class="title ">Activités</h1>
+  <h1 class="title">Activités</h1>
   <div class="d-flex flex-column flex-md-row">
     <div class="d-flex flex-row flex-md-column col-12 col-md-2">
+      <button [routerLink]="['/']" class="firstButton">
+        Retour <br />
+        au <br />
+        Menu
+      </button>
       <button [routerLink]="['/allactivities']" class="firstButton">
         Retour <br />
         à la <br />
@@ -13,19 +17,19 @@
     <div class="box col-12 col-md-10">
       <form
         #activityForm="ngForm"
-        (ngSubmit)="submitOnClick(activityForm.form)">
-
+        (ngSubmit)="submitOnClick(activityForm.form)"
+      >
         <div class="title d-flex justify-content-center">
           <hr class="w-25 mt-2 mr-2" />
           Nouvelle activité
           <hr class="w-25 mt-2 ml-2" />
         </div>
 
-        <div class="d-flex flex-column flex-md-row ">
-          <div class="form-items col-12 col-md-6 ">
+        <div class="d-flex flex-column flex-md-row">
+          <div class="form-items col-12 col-md-6">
             <label for="name">Nom</label>
             <input
-            required
+              required
               [(ngModel)]="activity.name"
               name="name"
               #name="ngModel"
@@ -36,14 +40,26 @@
               [ngClass]="{ invalid: name.invalid }"
             />
           </div>
-        </div>
 
+          <div class="form-items col-12 col-md-6 ">
+            <label>Matériel associé</label><br />
+            <ng-select2
+              [value]="selectedMaterials"
+              [data]="allMaterials"
+              (valueChanged)="changed($event)"
+              [options]="options"
+            >
+            </ng-select2>
+          </div>
+
+
+        </div>
 
         <div class="d-flex flex-column flex-md-row my-3">
           <div class="form-items col-12 col-md-6">
             <label for="startDate">Date de Début</label>
             <input
-            required
+              required
               [(ngModel)]="activity.startDate"
               name="startDate"
               #startDate="ngModel"
@@ -58,7 +74,7 @@
           <div class="form-items col-12 col-md-6">
             <label for="endDate">Date de Fin</label>
             <input
-            required
+              required
               [(ngModel)]="activity.endDate"
               name="endDate"
               #endDate="ngModel"
@@ -70,20 +86,10 @@
             />
           </div>
         </div>
-  <!------------------------------------------------------------------------------------------>
-<p> materiais selecionados {{selectedMaterials}} </p>
-<div class="w-100 col-12">
-<ng-select2
-[value]="selectedMaterials"
-	[data]="allMaterials"
-  (valueChanged)="changed($event)"
-  [options]="options"
- >
-</ng-select2>
-</div>
 
- <!--Button-->
-        <div class="d-flex justify-content-md-end my-5">
+
+        <!--Button-->
+        <div class="d-flex justify-content-md-end mt-5">
           <input
             class="submit col-12 col-md-4 form-control"
             type="submit"
