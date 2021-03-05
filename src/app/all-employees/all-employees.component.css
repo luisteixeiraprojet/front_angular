@@ -1,3 +1,20 @@
+
+.active-pink input[type=search] {
+  border-bottom: 1px solid #f48fb1;
+  box-shadow: 0 1px 0 0 #f48fb1;
+  }
+
+  .active-purple-2 input[type=search]:focus:not([readonly]) {
+  border-bottom: 1px solid #ce93d8;
+  box-shadow: 0 1px 0 0 #ce93d8;
+  }
+
+  .active-purple input[type=search] {
+  border-bottom: 1px solid #ce93d8;
+  box-shadow: 0 1px 0 0 #ce93d8;
+  }
+
+/*____________________________________*/
 .title{
   color:#6EAF59;
   font-weight: bold;

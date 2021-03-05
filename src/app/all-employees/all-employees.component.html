@@ -18,10 +18,19 @@
     </div>
 
     <div class=" col-12 col-md-10">
+      <!-------------------------------------------------------------------->
+
+        <!-- 1. Search form -->
+        <div class="md-form">
+          <input type="search" [(ngModel)]="searchText" placeholder="Search text">
+        </div>
+
+
+      <!------------------------------------------------------------------------>
       <ul>
         <li
           class="eachEmployee d-flex justify-content-around flex-column flex-md-row"
-          *ngFor="let empl of employees"
+          *ngFor="let empl of employees | filter: searchText"
           [routerLink]="['/employees', empl.Id_employee]"
         >
           <span> Prénom: {{ empl.firstName | titlecase }} </span>

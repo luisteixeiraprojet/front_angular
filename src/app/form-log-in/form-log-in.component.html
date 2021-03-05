@@ -33,7 +33,7 @@
         <input
           class="submit my-3 col-12 col-md-4"
           type="submit"
-          value="Login"
+          value="Connexion"
         />
         <br />
         <p class="fakeLink" (click)="this.isLostPsw=true">
@@ -46,9 +46,10 @@
       </div>
     </div>
 
-    <!--Div in case the user lost his psw -->
-    <div class="form-group mt-2 mt-md-4 container" *ngIf="this.isLostPsw">
+    <!--Div forgotten  psw -->
+    <div class="col-12 col-md-10 mt-3 " *ngIf="this.isLostPsw">
       <form #pswform="ngForm" (ngSubmit)="sendUN(pswform)">
+        <div class="form-group mt-2 mt-md-4">
         <label for="userName">Votre Adresse E-mail </label>
         <input
         required
@@ -61,8 +62,15 @@
         class="form-control"
         [ngClass]="{ invalid: userName.invalid }"
         />
-        <input class="btnEmail" type="submit" value="Envoyer" />
+        </div>
+        <input
+        class="submit my-3 col-12 col-md-4"
+        type="submit"
+        value="Envoyer"
+      />
       </form>
+
+
       <p *ngIf="resultForgottenPsw.result == 'ok'">
         Un nouveau mot de passe vous a été envoyé par email.
       </p>

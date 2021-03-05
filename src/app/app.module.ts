@@ -35,6 +35,8 @@ import { AllMaterialsComponent } from './all-materials/all-materials.component';
 import { NgSelect2Module } from 'ng-select2';
 import { AllMyTimesheetsComponent } from './all-my-timesheets/all-my-timesheets.component';
 import { FormProfilComponent } from './form-profil/form-profil.component';
+import { FilterPipe } from './filter.pipe';
+import { FilterAbsencesPipe } from './filter-absences.pipe';
 
 
 
@@ -65,6 +67,8 @@ import { FormProfilComponent } from './form-profil/form-profil.component';
     AllMaterialsComponent,
     AllMyTimesheetsComponent,
     FormProfilComponent,
+    FilterPipe,
+    FilterAbsencesPipe,
 
   ],
   imports: [

@@ -13,6 +13,11 @@ import { RequestsApiService } from '../services/requests-api.service' ;
 })
 
 export class AllAbsencesComponent implements OnInit {
+  searchText;
+  status="en attente" ;
+  typeAbs="";
+
+
   verifyRole;
   absences:any;
   employeeName;
@@ -21,14 +26,13 @@ export class AllAbsencesComponent implements OnInit {
 
   async ngOnInit(){
 
+
+
    //so the employees can not access boss views
    this.verifyRole = this._loginService.isAdmin();
    if(this.verifyRole == false){
      this._router.navigate(['/employeeAccount']);
    }
-
-
-
     this.absences = await this._absenceService.getAllAbsences();
   }
 

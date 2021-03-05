@@ -10,17 +10,23 @@ import {Location} from '@angular/common';
 import { Router } from '@angular/router';
 import { LocalStorageService } from './../services/local-storage.service';
 
+
+
 @Component({
   selector: 'app-all-employees',
   templateUrl: './all-employees.component.html',
   styleUrls: ['./all-employees.component.css']
 })
-export class AllEmployeesComponent implements OnInit {
+export class AllEmployeesComponent implements OnInit{
+
+
 
   verifyRole;
 
   //employees: Employee[]; //com mock
   employees:any;
+
+  searchText:string;
 
   constructor(private _betweenService: BetweenComponentsService, private _loginService:LoginService ,private employeesService : EmployeesService, private _localStorageService: LocalStorageService, private _router: Router, private betweenComponents:BetweenComponentsService, private _Activatedroute:ActivatedRoute, private _location: Location ) { }
 
@@ -33,11 +39,10 @@ export class AllEmployeesComponent implements OnInit {
    }
    //get all employees
     this.employees =  await this.employeesService.getAllEmployees();
-
   }
 
 
-//_______________________________________________
+//__________________________________________________________________
 addButtonClick(){
   this.betweenComponents.removeEmployeeToUpdate();
   //will clean the form, erase the infos from the last updated/created employee

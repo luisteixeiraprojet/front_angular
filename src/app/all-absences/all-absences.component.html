@@ -7,12 +7,37 @@
         au <br />
         Menu
       </button>
-
     </div>
 
     <div class="col-12 col-md-10">
+<!-------------------------------------------------->
+
+ <!--1. SearchBar by employee name : filterAbsences: searchText-->
+ <div class="md-form">
+  <input type="search" [(ngModel)]="searchText" placeholder="Search text">
+</div>
+
+<!-------------------------------------------------->
+
+<label for="typeOfAbsence" >Type d'Absence</label>
+<select name="typeOfAbsence" [(ngModel)]="typeAbs">
+  <option value="" selected>Toutes</option>
+  <option value="Congés">Congés</option>
+  <option value="Exceptionnelle">Exceptionnelle</option>
+</select> <p> ---{{typeAbs}}</p>
+
+<!-- search by status-->
+<label for="status">Status</label>
+<select name="status" id="status" [(ngModel)]="status">
+  <option value="">Toutes</option>
+  <option value="accepted">Acceptée</option>
+  <option value="refused">Réfusée</option>
+  <option value="en attente" selected>En Attente</option>
+</select>
+
+<!-------- <p>ttttype  {{abs.typeOfAbsence}} </p>  <p>sssstatus{{abs.status}} </p>-------------------------------------------->
       <ul>
-        <li class="eachAbs" *ngFor="let abs of absences">
+        <li class="eachAbs" *ngFor="let abs of absences | filterAbsences: searchText: status : typeAbs">
 
             <div class="d-flex flex-column flex-md-row justify-content-between">
               <div class="d-flex flex-column justify-content-around">
