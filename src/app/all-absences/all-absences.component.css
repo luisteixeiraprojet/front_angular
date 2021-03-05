@@ -1,3 +1,27 @@
+
+
+
+label{
+  color:white;
+}
+
+::placeholder{
+  color:#6EAF59;
+}
+.searchInput{
+  border: 3.5px solid #6EAF59;
+  border-radius:0.5em;
+  padding: 0.5em;
+  margin-left:0;
+  margin-right: 0;
+  margin-bottom: 0.5em;
+  color:#6EAF59;
+}
+
+.fenetre:focus{
+  outline:none;
+}
+
 .title{
   color:#6EAF59;
   font-weight: bold;

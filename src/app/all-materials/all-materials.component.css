@@ -1,3 +1,5 @@
+
+
 .title{
   color:#6EAF59;
   font-weight: bold;
@@ -17,7 +19,7 @@
   margin: 0.1em;
 }
 
-.eachAbs{
+.eachMat{
   border: 3.5px solid #6EAF59;
   border-radius:0.5em;
   padding: 1em;
@@ -41,6 +43,8 @@ ul{
   span{
     margin-bottom: 1em;
   }
+
+
 
 }
 

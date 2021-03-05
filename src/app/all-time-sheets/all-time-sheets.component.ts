@@ -12,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllTimeSheetsComponent implements OnInit {
 
+  searchText:string;
   timesheets: any;
 
    //Update TS
@@ -32,10 +33,8 @@ export class AllTimeSheetsComponent implements OnInit {
     }
 
   this.timesheets = await this._timesheetService.getAllTimeSheets();
-
-
-
   }
+
 
   updateTS(tsToUpdate){
 

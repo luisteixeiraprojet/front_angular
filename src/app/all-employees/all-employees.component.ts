@@ -19,13 +19,12 @@ import { LocalStorageService } from './../services/local-storage.service';
 })
 export class AllEmployeesComponent implements OnInit{
 
-
-
   verifyRole;
 
   //employees: Employee[]; //com mock
   employees:any;
 
+  //to searcBar and filter
   searchText:string;
 
   constructor(private _betweenService: BetweenComponentsService, private _loginService:LoginService ,private employeesService : EmployeesService, private _localStorageService: LocalStorageService, private _router: Router, private betweenComponents:BetweenComponentsService, private _Activatedroute:ActivatedRoute, private _location: Location ) { }

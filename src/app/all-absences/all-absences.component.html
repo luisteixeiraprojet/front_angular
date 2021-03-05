@@ -1,6 +1,6 @@
-<div class=" container">
-  <h1 class="title ">Absences</h1>
-  <div class="row ">
+<div class="container">
+  <h1 class="title">Absences</h1>
+  <div class="row">
     <div class="d-flex flex-row flex-md-column col-12 col-md-2">
       <button class="button retour firstButton mb-2" [routerLink]="['/']">
         Retour <br />
@@ -10,62 +10,89 @@
     </div>
 
     <div class="col-12 col-md-10">
-<!-------------------------------------------------->
+      <div class="searchContainer  pl-0 col-12 d-flex flex-column flex-md-row mb-1">
 
- <!--1. SearchBar by employee name : filterAbsences: searchText-->
- <div class="md-form">
-  <input type="search" [(ngModel)]="searchText" placeholder="Search text">
-</div>
 
-<!-------------------------------------------------->
+        <i class="icone col-1 fas fa-search fa-2x fa-flip-horizontal"></i>
+        <!-- 1. Search form by employee name-->
+        <div class="md-form col-12 col-md-5 p-0">
+          <label for="status">Rechercher par Employee</label>
+          <input class="searchInput col-12 searchBar eachEmployee" type="text" [(ngModel)]="searchText"
+            placeholder="Prénom ou NOM" />
+        </div>
 
-<label for="typeOfAbsence" >Type d'Absence</label>
-<select name="typeOfAbsence" [(ngModel)]="typeAbs">
-  <option value="" selected>Toutes</option>
-  <option value="Congés">Congés</option>
-  <option value="Exceptionnelle">Exceptionnelle</option>
-</select> <p> ---{{typeAbs}}</p>
+        <!-- 2. Search form by type abs-->
+        <div class="col-12 col-md-3 ">
+          <label for="typeOfAbsence">Type d'Absence</label>
+          <select class="col-12 searchInput" name="typeOfAbsence" [(ngModel)]="typeAbs">
+            <option value="" selected>Toutes</option>
+            <option value="Congés">Congés</option>
+            <option value="Exceptionnelle">Exceptionnelle</option>
+          </select>
+        </div>
 
-<!-- search by status-->
-<label for="status">Status</label>
-<select name="status" id="status" [(ngModel)]="status">
-  <option value="">Toutes</option>
-  <option value="accepted">Acceptée</option>
-  <option value="refused">Réfusée</option>
-  <option value="en attente" selected>En Attente</option>
-</select>
+        <!-- 3. Search form by status-->
+        <div class="col-12 col-md-3  p-0">
+          <label for="status" >Status</label>
+          <select class="col-12 searchInput" name="status" id="status" [(ngModel)]="status">
+            <option value="">Toutes</option>
+            <option value="accepted">Acceptée</option>
+            <option value="refused">Réfusée</option>
+            <option value="en attente" selected>En Attente</option>
+          </select>
+        </div>
+      </div>
 
-<!-------- <p>ttttype  {{abs.typeOfAbsence}} </p>  <p>sssstatus{{abs.status}} </p>-------------------------------------------->
+      <!--List of abs-->
       <ul>
-        <li class="eachAbs" *ngFor="let abs of absences | filterAbsences: searchText: status : typeAbs">
-
-            <div class="d-flex flex-column flex-md-row justify-content-between">
-              <div class="d-flex flex-column justify-content-around">
-                <div class="nomAndDate"> {{ abs.firstName | titlecase }} {{abs.lastName | uppercase }}</div>
-                <div> Type d'absence <span class="nomAndDate "> {{abs.typeOfAbsence | titlecase  }} </span></div>
-                <div> Du <span class="nomAndDate "> {{abs.startDate.split('T')[0] }} </span> au <span
-                    class="nomAndDate "> {{ abs.endDate.split('T')[0] }} </span> </div>
-
-                <div>Demandé le: {{ abs.requestDate.split('T')[0] }}</div>
+        <li class="eachAbs" *ngFor="
+            let abs of absences | filterAbsences: searchText:status:typeAbs
+          ">
+          <div class="d-flex flex-column flex-md-row justify-content-between">
+            <div class="d-flex flex-column justify-content-around">
+              <div class="nomAndDate">
+                {{ abs.firstName | titlecase }} {{ abs.lastName | uppercase }}
+              </div>
+              <div>
+                Type d'absence
+                <span class="nomAndDate">
+                  {{ abs.typeOfAbsence | titlecase }}
+                </span>
+              </div>
+              <div>
+                Du
+                <span class="nomAndDate">
+                  {{ abs.startDate.split("T")[0] }}
+                </span>
+                au
+                <span class="nomAndDate">
+                  {{ abs.endDate.split("T")[0] }}
+                </span>
               </div>
 
-              <div class="d-flex flex-column justify-content-center" >
-
-
-                <div class=" threeButtons d-flex flex-row justify-content-around ">
-                  <span class="nomAndDate mr-5 d-flex flex-column justify-content-center" *ngIf="isDecided(abs)">
-                    <span >  Status </span>
-
-                    <i class="far fa-check-square fa-2x  align-self-center" *ngIf="abs.status=='accepted'"></i>
-                    <i class="far fa-times-circle fa-2x  align-self-center"  *ngIf="abs.status=='refused'"></i>
-                  </span>
-                  <button class="btnAction" (click)="acceptAbs(abs)" *ngIf="!isDecided(abs)"><i class="far fa-check-square fa-2x"></i> </button>
-                  <button class="btnAction" (click)="denyAbs(abs)" *ngIf="!isDecided(abs)"><i class="far fa-times-circle fa-2x"></i></button>
-                  <button class="btnAction" (click)="deleteAbs(abs.Id_absence)"><i class="far fa-trash-alt fa-2x"></i></button>
-                </div>
-              </div>
+              <div>Demandé le: {{ abs.requestDate.split("T")[0] }}</div>
             </div>
 
+            <div class="d-flex flex-column justify-content-center">
+              <div class="threeButtons d-flex flex-row justify-content-around">
+                <span class="nomAndDate mr-5 d-flex flex-column justify-content-center" *ngIf="isDecided(abs)">
+                  <span> Status </span>
+
+                  <i class="far fa-check-square fa-2x align-self-center" *ngIf="abs.status == 'accepted'"></i>
+                  <i class="far fa-times-circle fa-2x align-self-center" *ngIf="abs.status == 'refused'"></i>
+                </span>
+                <button class="btnAction" (click)="acceptAbs(abs)" *ngIf="!isDecided(abs)">
+                  <i class="far fa-check-square fa-2x"></i>
+                </button>
+                <button class="btnAction" (click)="denyAbs(abs)" *ngIf="!isDecided(abs)">
+                  <i class="far fa-times-circle fa-2x"></i>
+                </button>
+                <button class="btnAction" (click)="deleteAbs(abs.Id_absence)">
+                  <i class="far fa-trash-alt fa-2x"></i>
+                </button>
+              </div>
+            </div>
+          </div>
         </li>
       </ul>
     </div>

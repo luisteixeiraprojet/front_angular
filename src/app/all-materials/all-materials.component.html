@@ -17,8 +17,15 @@
     </div>
 
     <div class="col-12 col-md-10">
+
+        <!-- 1. Search  by name material-->
+        <div class="searchContainer col-12 d-flex flex-md-row mb-1 ">
+          <i class=" icone col-1 fas fa-search fa-2x fa-flip-horizontal"></i>
+          <input class="searchInput col-12 col-md-11 searchBar eachEmployee" type="text" [(ngModel)]="searchText" placeholder="Rechercher par MATERIEL ou par FOURNISSEUR">
+        </div>
+
       <ul>
-        <li class="eachAbs" *ngFor="let mat of materials">
+        <li class="eachMat" *ngFor="let mat of materials | filterMaterials: searchText">
 
             <div class="d-flex flex-column flex-md-row justify-content-between">
               <div class="d-flex flex-column ">

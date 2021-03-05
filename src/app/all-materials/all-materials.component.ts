@@ -14,6 +14,9 @@ export class AllMaterialsComponent implements OnInit {
   verifyRole;
   materials : any;
 
+  //to searcBar and filter
+  searchText:string;
+
   constructor(private _loginService:LoginService ,private _router: Router, private _betweenService: BetweenComponentsService,private _matService:MaterialsService ) { }
 
   async ngOnInit() {

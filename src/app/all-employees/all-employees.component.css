@@ -1,29 +1,22 @@
 
-.active-pink input[type=search] {
-  border-bottom: 1px solid #f48fb1;
-  box-shadow: 0 1px 0 0 #f48fb1;
-  }
-
-  .active-purple-2 input[type=search]:focus:not([readonly]) {
-  border-bottom: 1px solid #ce93d8;
-  box-shadow: 0 1px 0 0 #ce93d8;
-  }
-
-  .active-purple input[type=search] {
-  border-bottom: 1px solid #ce93d8;
-  box-shadow: 0 1px 0 0 #ce93d8;
-  }
-
-/*____________________________________*/
 .title{
   color:#6EAF59;
   font-weight: bold;
 }
 
+
+::placeholder{
+  color: #6EAF59;
+}
+
+
+
+/*button____________________________________*/
 .button{
   margin-bottom: 0.5em;
 }
 
+/*listemployee and searchBar_______________*/
 .eachEmployee{
   border: 3.5px solid #6EAF59;
   border-radius:0.5em;
@@ -31,6 +24,18 @@
   margin-left:0;
   margin-right: 0;
   margin-bottom: 0.5em;
+}
+
+.eachEmployee:hover{
+  background-color: white;
+
+  box-shadow:  0 0 0.6em 0.03em #6EAF59;
+  outline:none;
+}
+
+/*do the searchBar doesnt have the same heith/padding as eachEmployee_______________*/
+.searchBar{
+  padding: 1em;
 }
 
 ul{
@@ -47,5 +52,4 @@ ul{
   }
 
 }
-
 

@@ -37,6 +37,9 @@ import { AllMyTimesheetsComponent } from './all-my-timesheets/all-my-timesheets.
 import { FormProfilComponent } from './form-profil/form-profil.component';
 import { FilterPipe } from './filter.pipe';
 import { FilterAbsencesPipe } from './filter-absences.pipe';
+import { FilterMaterialsPipe } from './filter-materials.pipe';
+import { FilterActivitiesPipe } from './filter-activities.pipe';
+import { FilterTimeSheetsPipe } from './filter-time-sheets.pipe';
 
 
 
@@ -69,6 +72,9 @@ import { FilterAbsencesPipe } from './filter-absences.pipe';
     FormProfilComponent,
     FilterPipe,
     FilterAbsencesPipe,
+    FilterMaterialsPipe,
+    FilterActivitiesPipe,
+    FilterTimeSheetsPipe,
 
   ],
   imports: [

@@ -12,7 +12,7 @@ import { BetweenComponentsService } from '../services/between-components.service
 export class AllActivitiesComponent implements OnInit {
   verifyRole;
   activities:any;
-
+  searchText:string;
   constructor(private _router:Router, private _loginService:LoginService,  private _activitiesService: ActivitiesService, private _betweenService:BetweenComponentsService) { }
 
   async ngOnInit() {
