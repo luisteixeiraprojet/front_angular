@@ -17,10 +17,42 @@
     </div>
 
     <div class=" col-12 col-md-10">
+      <div class="searchContainer pl-md-0 col-12 d-flex flex-column flex-md-row mb-1">
+        <i class="icone col-1 fas fa-search fa-2x fa-flip-horizontal"></i>
+        <!-- 1. Search form by employee name-->
+        <div class="md-form col-12 col-md-5 p-md-0">
+          <label for="status">Rechercher par Date</label>
+          <input class="searchInput col-12 searchBar eachEmployee" type="text" [(ngModel)]="search"
+            placeholder="Rechercher par date" />
+        </div>
+
+        <!-- 2. Search form by type abs-->
+        <div class="col-12 col-md-3 pt-3 pt-md-0">
+          <label for="typeOfAbsence">Type d'Absence</label>
+          <select class="col-12 searchInput" name="typeOfAbsence" [(ngModel)]="typeAbs">
+            <option value="" selected>Toutes</option>
+            <option value="Congés">Congés</option>
+            <option value="Exceptionnelle">Exceptionnelle</option>
+          </select>
+        </div>
+
+        <!-- 3. Search form by status-->
+        <div class="col-12 col-md-3 pt-3 pt-md-0 p-md-0">
+          <label for="status" >Status</label>
+          <select class="col-12 searchInput" name="status" id="status" [(ngModel)]="status">
+            <option value="" selected >Toutes</option>
+            <option value="accepted">Acceptée</option>
+            <option value="refused" >Réfusée</option>
+            <option value="en attente" >En Attente</option>
+          </select>
+        </div>
+      </div>
+
+      <!--List of my absences -->
       <ul>
         <li
           class="eachAbsence d-flex justify-content-around flex-column flex-md-row"
-          *ngFor="let abs of myAbsences"
+          *ngFor="let abs of myAbsences | filterMyAbsences: search:status:typeAbs"
         >
         <div class="col-12 col-md-10 d-flex flex-column">
           <span class="typeAndStatus mb-1 "> Absence: {{ abs.typeOfAbsence | titlecase}}</span>
@@ -36,12 +68,12 @@
           <span class="mb-2" *ngIf="isDecided(abs)"> Décision transmise le: {{ abs.statusDate.split('T')[0]}}</span>
         </div>
 
-        <div class="col-12 col-md-2 d-flex justify-content-center align-self-center">
-          <button class="btnAction" (click)="updateAbsence(abs)"  *ngIf="!isDecided(abs)"><i class="far fa-edit "></i></button>
-          <button class="btnAction" (click)="deleteAbsence(abs.Id_absence)"><i class="far fa-trash-alt"></i></button>
+        <div class="col-12 col-md-2 d-flex justify-content-around align-self-center">
+          <button class="btnAction" (click)="updateAbsence(abs)"  *ngIf="!isDecided(abs)"><i class="far fa-edit fa-2x"></i></button>
+          <button class="btnAction" (click)="deleteAbsence(abs.Id_absence)"><i class="far fa-trash-alt fa-2x"></i></button>
         </div>
         </li>
       </ul>
     </div>
-  </div>
+
 </div>

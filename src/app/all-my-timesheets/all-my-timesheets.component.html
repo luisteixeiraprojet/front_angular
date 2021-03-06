@@ -4,7 +4,7 @@
   <div class="row">
     <div class="d-flex flex-row flex-md-column col-12 col-md-2">
 
-      <button class="button retour firstButton mb-2" [routerLink]="['/']">
+      <button class="button retour firstButton mb-2 col-12" [routerLink]="['/']">
         Retour <br />
         au <br />
         Menu
@@ -12,22 +12,29 @@
     </div>
 
     <div class="col-12 col-md-10">
+
+        <!-- 1. Search  by date and activity-->
+        <div class="searchContainer col-12 d-flex flex-md-row mb-1 pl--md-0 ml-md-0">
+          <i class=" icone col-1 fas fa-search fa-2x fa-flip-horizontal"></i>
+          <input class="searchInput col-12 col-md-11 searchBar " type="text" [(ngModel)]="searchText" placeholder="Rechercher par DATE ou par ACTIVITE">
+        </div>
+
+        <!--Lista of my absences-->
       <ul>
-        <li class="eachAbs" *ngFor="let ts of myTimesheets">
-          <!--.split('T')[0]  -->
-          <div class="d-flex flex-column flex-md-row justify-content-between">
-            <div >
-              <div > Du  <span class="nomAndDate">{{ ts.beginningDate.split("T")[0] }}   </span> au <span class="nomAndDate">  {{ ts.finishDate.split("T")[0] }} </span></div>
-              <div> Activité: <span class="nomAndDate"> {{ ts.name | titlecase }} </span> </div>
+        <li class="eachAbs" *ngFor="let ts of myTimesheets  | filterMyTimesheets: searchText">
+          <h3 class="text-center pt-3 mb-3"> Pointage  du   <span class="nomAndDate">{{ ts.beginningDate.split("T")[0] }}   </span> au   <span class="nomAndDate">  {{ ts.finishDate.split("T")[0] }} </span></h3>
+
+
+          <div class="d-flex flex-column flex-md-row justify-content-between mt-3">
+            <div class="mb-3 ml-3" >
+              <div class="mb-1 mb-md-0">Nombre d'heures effectuées: <span class="nomAndDate"> {{ ts.totalHours }} h</span></div>
+              <div class="mb-1 mb-md-0">Prix de l'heure: <span class="nomAndDate">  {{ ts.priceHour }} </span> €</div>
+              <div > Activité: <span class="nomAndDate"> {{ ts.name | titlecase }} </span> </div>
             </div>
 
-
-            <div class="4">
-              <div>Nombre d'heures effectuées: <span class="nomAndDate"> {{ ts.totalHours }} </span></div>
-              <div>Prix de l'heure: <span class="nomAndDate">  {{ ts.priceHour }} </span> €</div>
-              <div>Total: <span class="nomAndDate">  {{ ts.priceHour * ts.totalHours}} </span> €</div>
+            <div>
+              <div class="mr-3 mb-3 pl-2 pl-md-0  mb-md-0" >Total brut: <span class="nomAndDate">  {{ ts.priceHour * ts.totalHours}} </span> €</div>
             </div>
-
 
           </div>
         </li>

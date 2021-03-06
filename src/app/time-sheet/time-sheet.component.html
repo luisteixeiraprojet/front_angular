@@ -32,7 +32,7 @@
             <label class="input-group-text" for="Id_employee">Salarié</label>
           </div>
           <select
-          class="custom-select form-control"
+          class="custom-select form-control "
           id="Id_employee"
           required
           [(ngModel)]="timeSheet.Id_employee"
@@ -51,6 +51,7 @@
         <div class="form-items col-12 col-md-6 my-3">
           <label for="beginningDate">Début</label>
           <input
+
           required
           [(ngModel)]="timeSheet.beginningDate"
           name="beginningDate"
@@ -66,6 +67,7 @@
         <div class="form-items col-12 col-md-6">
           <label for="finishDate">Fin</label>
           <input
+
           required
           [(ngModel)]="timeSheet.finishDate"
           name="finishDate"
@@ -81,7 +83,7 @@
           <div class="form-items d-flex-row col-12 my-3">
             <label for="Id_activity">Activité</label>
             <select
-            class="custom-select form-control"
+            class="custom-select form-control "
             id="Id_activity"
             required
             [(ngModel)]="timeSheet.Id_activity"
@@ -92,13 +94,14 @@
             [disabled]="isSubmiting"
             [ngClass]="{ invalid: Id_activity.invalid }"
             >
-              <option [value]="act.Id_activity" *ngFor="let act of allActivities" >{{act.name}} // DEBUT: {{act.startDate.split('T')[0]}} // FIN: {{act.endDate.split('T')[0]}}</option>
+              <option [value]="act.Id_activity" *ngFor="let act of allActivities" >{{act.name}}  -  DU {{act.startDate.split('T')[0]}}  AU {{act.endDate.split('T')[0]}}</option>
             </select>
           </div>
 
           <div class="form-items col-12 col-md-6 my-3">
           <label for="totalHours">Heures Effectuées</label>
             <input
+
             required
             [(ngModel)]="timeSheet.totalHours"
              name="totalHours"
@@ -118,6 +121,7 @@
             <span class="input-group-text">€</span>
           </div>
           <input
+
           required
           [(ngModel)]="timeSheet.priceHour"
            name="priceHour"

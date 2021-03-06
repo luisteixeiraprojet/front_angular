@@ -19,7 +19,7 @@
     <div class="col-12 col-md-10">
 
           <!-- 1. Search  by name and mobile employee-->
-          <div class="searchContainer col-12 d-flex flex-md-row mb-1 pl-0 ml-0">
+          <div class="searchContainer col-12 d-flex flex-md-row mb-1 pl-md-0 ml-md-0">
             <i class=" icone col-1 fas fa-search fa-2x fa-flip-horizontal"></i>
             <input class="searchInput col-12 col-md-11 searchBar " type="text" [(ngModel)]="searchText" placeholder="Rechercher par NOM ou par PORTABLE">
           </div>
@@ -34,7 +34,7 @@
                 <div> Date de Fin: <span class="nomAndDate "> {{act.endDate.split('T')[0] }} </span></div>
               </div>
 
-              <div class="d-flex flex-column justify-content-center" >
+              <div class="d-flex flex-md-column justify-content-around " >
                   <button class="btnAction" (click)="updateAct(act)"><i class="far fa-edit fa-2x"></i></button>
                   <button class="btnAction" (click)="deleteAct(act.Id_activity)"><i class="far fa-trash-alt fa-2x"></i></button>
             </div>

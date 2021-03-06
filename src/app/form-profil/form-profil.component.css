@@ -16,6 +16,11 @@
   margin-top:1em;
 }
 
+input:focus{
+  outline:none;
+  box-shadow: 0.1em 0.1em  0.1em 0.1em  #6EAF59;
+}
+
 .firstButton{
 
   margin-bottom: 0.5em;
@@ -53,4 +58,10 @@
   .box{
     margin-top: 1em;
   }
+
+  .title{
+    margin-top:0;
+  }
+
+
 }

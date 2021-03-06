@@ -40,6 +40,8 @@ import { FilterAbsencesPipe } from './filter-absences.pipe';
 import { FilterMaterialsPipe } from './filter-materials.pipe';
 import { FilterActivitiesPipe } from './filter-activities.pipe';
 import { FilterTimeSheetsPipe } from './filter-time-sheets.pipe';
+import { FilterMyTimesheetsPipe } from './filter-my-timesheets.pipe';
+import { FilterMyAbsencesPipe } from './filter-my-absences.pipe';
 
 
 
@@ -75,6 +77,8 @@ import { FilterTimeSheetsPipe } from './filter-time-sheets.pipe';
     FilterMaterialsPipe,
     FilterActivitiesPipe,
     FilterTimeSheetsPipe,
+    FilterMyTimesheetsPipe,
+    FilterMyAbsencesPipe,
 
   ],
   imports: [

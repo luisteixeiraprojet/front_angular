@@ -3,11 +3,18 @@
   font-weight: bold;
 }
 
+.dates{
+  color:#FFFFFF;
+  font-weight: bold;
+  font-size: large;
+}
 .nomAndDate{
   color:#6EAF59;
   font-weight: bold;
   font-size: large;
 }
+
+
 
 .btnAction{
   width: 3.2em;
@@ -20,15 +27,10 @@
 .eachAbs{
   border: 3.5px solid #6EAF59;
   border-radius:0.5em;
-  padding: 1em;
-  margin-left:0;
-  margin-right: 0;
-  margin-bottom: 0.5em;
+
 }
 
-li div div div{
-  margin-bottom: 1em;
-}
+
 
 ul{
   list-style-type: none;

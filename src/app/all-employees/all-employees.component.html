@@ -22,7 +22,7 @@
         <!-- 1. Search  by name and phone-->
 
         <!-- 1. Search  by name and mobile employee-->
-        <div class="searchContainer col-12 d-flex flex-md-row mb-1 pl-0 ml-0">
+        <div class="searchContainer col-12 d-flex flex-md-row mb-1 pl-md-0 ml-md-0">
           <i class=" icone col-1 fas fa-search fa-2x fa-flip-horizontal"></i>
           <input class="searchInput col-12 col-md-11 searchBar " type="text" [(ngModel)]="searchText" placeholder="Rechercher par NOM ou par PORTABLE">
         </div>
@@ -31,13 +31,24 @@
         <!-- 2. employees list-->
       <ul>
         <li
-          class="eachEmployee d-flex justify-content-around flex-column flex-md-row"
+          class="eachEmployee p-3"
           *ngFor="let empl of employees | filter: searchText"
-          [routerLink]="['/employees', empl.Id_employee]"
         >
-          <span> Prénom: {{ empl.firstName | titlecase }} </span>
-          <span> Nom: {{ empl.lastName | uppercase }} </span>
-          <span> Portable: {{ empl.mobilePhone }}</span>
+        <div class="d-flex flex-column flex-md-row justify-content-between">
+          <div class="d-flex flex-column justify-content-between ">
+          <span class="mb-2 mb-md-0"> Prénom: <span class="nomAndDate ">{{ empl.firstName | titlecase }}</span> </span>
+          <span > Nom: <span class="nomAndDate ">{{ empl.lastName | uppercase }} </span> </span>
+        </div>
+
+        <div class="d-flex flex-column justify-content-between mt-3 mt-md-0">
+          <span class="mb-2 mb-md-0" > Portable: <span class="nomAndDate ">{{ empl.mobilePhone }}</span> </span>
+          <span> Email: <span class="nomAndDate ">{{ empl.email }}</span> </span>
+        </div>
+
+          <button class="btnAction mt-3 mt-md-0" [routerLink]="['/employees', empl.Id_employee]" >
+            <span><i class="fas fa-user fa-2x"></i></span>
+          </button>
+          </div>
         </li>
       </ul>
     </div>

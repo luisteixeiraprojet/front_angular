@@ -38,6 +38,7 @@ export class AllEmployeesComponent implements OnInit{
    }
    //get all employees
     this.employees =  await this.employeesService.getAllEmployees();
+    console.log("this.emplouyees ", this.employees);
   }
 
 

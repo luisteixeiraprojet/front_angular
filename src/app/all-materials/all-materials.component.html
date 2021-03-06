@@ -40,7 +40,7 @@
                 <div>Total: <span class="nomAndDate">  {{ mat.quantity * mat.unitaryPrice}} </span> €</div>
               </div>
 
-             <div class="d-flex flex-md-column justify-content-center" >
+             <div class="d-flex flex-md-column justify-content-around" >
                   <button class="btnAction" (click)="updateMat(mat)"><i class="far fa-edit fa-2x"></i></button>
                   <button class="btnAction" (click)="deleteMat(mat.Id_material)"><i class="far fa-trash-alt fa-2x"></i></button>
             </div>

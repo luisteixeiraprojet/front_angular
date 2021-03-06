@@ -2,7 +2,7 @@
   <h1 class="title">Absences</h1>
   <div class="row">
     <div class="d-flex flex-row flex-md-column col-12 col-md-2">
-      <button class="button retour firstButton mb-2" [routerLink]="['/']">
+      <button class="button retour firstButton mb-2 col-12" [routerLink]="['/']">
         Retour <br />
         au <br />
         Menu
@@ -15,9 +15,9 @@
 
         <i class="icone col-1 fas fa-search fa-2x fa-flip-horizontal"></i>
         <!-- 1. Search form by employee name-->
-        <div class="md-form col-12 col-md-5 p-0">
+        <div class="md-form col-12 col-md-5 p-md-0 ">
           <label for="status">Rechercher par Employee</label>
-          <input class="searchInput col-12 searchBar eachEmployee" type="text" [(ngModel)]="searchText"
+          <input class="searchInput col-12 searchBar eachEmployee" type="text" [(ngModel)]="search"
             placeholder="Prénom ou NOM" />
         </div>
 
@@ -32,7 +32,7 @@
         </div>
 
         <!-- 3. Search form by status-->
-        <div class="col-12 col-md-3  p-0">
+        <div class="col-12 col-md-3  p-md-0 ">
           <label for="status" >Status</label>
           <select class="col-12 searchInput" name="status" id="status" [(ngModel)]="status">
             <option value="">Toutes</option>
@@ -46,7 +46,7 @@
       <!--List of abs-->
       <ul>
         <li class="eachAbs" *ngFor="
-            let abs of absences | filterAbsences: searchText:status:typeAbs
+            let abs of absences | filterAbsences: search:status:typeAbs
           ">
           <div class="d-flex flex-column flex-md-row justify-content-between">
             <div class="d-flex flex-column justify-content-around">
@@ -73,9 +73,9 @@
               <div>Demandé le: {{ abs.requestDate.split("T")[0] }}</div>
             </div>
 
-            <div class="d-flex flex-column justify-content-center">
-              <div class="threeButtons d-flex flex-row justify-content-around">
-                <span class="nomAndDate mr-5 d-flex flex-column justify-content-center" *ngIf="isDecided(abs)">
+            <div class="d-flex flex-column justify-content-center ">
+              <div class="threeButtons d-flex flex-row justify-content-around mb-0">
+                <span class="nomAndDate mr-5 d-flex flex-column justify-content-center " *ngIf="isDecided(abs)">
                   <span> Status </span>
 
                   <i class="far fa-check-square fa-2x align-self-center" *ngIf="abs.status == 'accepted'"></i>

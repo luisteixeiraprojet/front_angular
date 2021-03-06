@@ -16,6 +16,14 @@
   margin-bottom: 0.5em;
 }
 
+.btnAction{
+  width: 3.2em;
+  height: 3.2em;
+  padding: 0.5em;
+  align-self: center;
+  margin: 0.1em;
+}
+
 /*listemployee and searchBar_______________*/
 .eachEmployee{
   border: 3.5px solid #6EAF59;
@@ -26,11 +34,11 @@
   margin-bottom: 0.5em;
 }
 
-.eachEmployee:hover{
-  background-color: white;
 
-  box-shadow:  0 0 0.6em 0.03em #6EAF59;
-  outline:none;
+.nomAndDate{
+  color:#6EAF59;
+  font-weight: bold;
+  font-size: large;
 }
 
 /*do the searchBar doesnt have the same heith/padding as eachEmployee_______________*/

@@ -12,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class AllMyTimesheetsComponent implements OnInit {
 
   idEmployee;
+  searchText:string;
 
   constructor(private _localStorage: LocalStorageService, private _timeSService:TimesheetServiceService, private _router:Router, private _betweenService: BetweenComponentsService) { }
 

@@ -24,7 +24,11 @@
   margin-bottom: 2.5em ;
 }
 
-
+input:focus{
+  outline:none;
+  color:#6EAF59;
+  box-shadow: 0.03 0 0 0.03em #6EAF59;
+}
 
 .submit{
   background-color:#6EAF59 ;

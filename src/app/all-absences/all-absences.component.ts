@@ -13,7 +13,7 @@ import { RequestsApiService } from '../services/requests-api.service' ;
 })
 
 export class AllAbsencesComponent implements OnInit {
-  searchText;
+  search;
   status="en attente" ;
   typeAbs="";
 
