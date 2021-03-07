@@ -10,6 +10,12 @@
   margin: 0.1em;
 }
 
+.nomAndDate{
+  color:#6EAF59;
+  font-weight: bold;
+  font-size: large;
+}
+
 .typeAndStatus{
   color:#6EAF59;
   font-weight: bold;

@@ -19,7 +19,7 @@ export class FilterActivitiesPipe implements PipeTransform {
 
   return items.filter(function (it) {
 
-    return it.name.toLocaleLowerCase().includes(searchText);
+    return it.name.toLocaleLowerCase().includes(searchText) || it.startDate.includes(searchText) || it.endDate.includes(searchText);
   });
 }
 

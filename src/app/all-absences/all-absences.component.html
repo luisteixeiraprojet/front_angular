@@ -18,7 +18,7 @@
         <div class="md-form col-12 col-md-5 p-md-0 ">
           <label for="status">Rechercher par Employee</label>
           <input class="searchInput col-12 searchBar eachEmployee" type="text" [(ngModel)]="search"
-            placeholder="Prénom ou NOM" />
+            placeholder="Rechercher par PRENOM ou NOM ou DATE" />
         </div>
 
         <!-- 2. Search form by type abs-->
@@ -87,7 +87,7 @@
                 <button class="btnAction" (click)="denyAbs(abs)" *ngIf="!isDecided(abs)">
                   <i class="far fa-times-circle fa-2x"></i>
                 </button>
-                <button class="btnAction" (click)="deleteAbs(abs.Id_absence)">
+                <button class="btnAction" (click)="deleteAbs(abs.Id_absence)" *ngIf="isDecided(abs)" >
                   <i class="far fa-trash-alt fa-2x"></i>
                 </button>
               </div>

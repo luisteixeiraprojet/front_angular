@@ -70,7 +70,16 @@
 
         <div class="col-12 col-md-2 d-flex justify-content-around align-self-center">
           <button class="btnAction" (click)="updateAbsence(abs)"  *ngIf="!isDecided(abs)"><i class="far fa-edit fa-2x"></i></button>
-          <button class="btnAction" (click)="deleteAbsence(abs.Id_absence)"><i class="far fa-trash-alt fa-2x"></i></button>
+          <button class="btnAction" (click)="deleteAbsence(abs.Id_absence)" *ngIf="!isDecided(abs)" ><i class="far fa-trash-alt fa-2x"></i></button>
+
+          <span class="nomAndDate mr-5 d-flex flex-column justify-content-center " *ngIf="isDecided(abs)">
+            <span> Status </span>
+            <i class="far fa-check-square fa-2x align-self-center" *ngIf="abs.status == 'accepted'"></i>
+            <i class="far fa-times-circle fa-2x align-self-center" *ngIf="abs.status == 'refused'"></i>
+          </span>
+
+
+
         </div>
         </li>
       </ul>

@@ -15,7 +15,7 @@ export class FilterAbsencesPipe implements PipeTransform {
       search = search.toLocaleLowerCase();
 
       return items.filter(function (it) {
-        let conditionName =it.firstName.toLocaleLowerCase().includes(search) || it.lastName.toLocaleLowerCase().includes(search);
+        let conditionNameAndDate =it.firstName.toLocaleLowerCase().includes(search) || it.lastName.toLocaleLowerCase().includes(search) || it.startDate.includes(search) || it.endDate.includes(search);
         let conditionStatus;
         let conditionType = it.typeOfAbsence.includes(typeAbs);
 
@@ -29,7 +29,7 @@ export class FilterAbsencesPipe implements PipeTransform {
         conditionStatus= true;
        }
        //only returns items wehre condition is true
-        return conditionName && conditionStatus && conditionType;
+        return conditionNameAndDate && conditionStatus && conditionType;
     });
   }
 
