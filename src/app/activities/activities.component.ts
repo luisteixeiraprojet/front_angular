@@ -125,7 +125,7 @@ export class ActivitiesComponent implements OnInit {
       console.log("Error update Act ", error.message);
     }
     setTimeout(() => {
-      this._router.navigate(['/allmaterials/']);
+      this._router.navigate(['/allactivities/']);
     }, 500);
   };
 

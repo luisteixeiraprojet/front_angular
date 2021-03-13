@@ -46,15 +46,18 @@ label{
   margin-left:0;
   margin-right: 0;
   margin-bottom: 0.5em;
+  background-color: #ffffff;
 }
 
 li div div div{
   margin-bottom: 1em;
+
 }
 
 ul{
   list-style-type: none;
   padding:0 !important;
+
 }
 
 /*buttons*/

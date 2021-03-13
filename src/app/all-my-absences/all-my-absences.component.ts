@@ -24,7 +24,8 @@ export class AllMyAbsencesComponent implements OnInit {
     let getIdEmployee = await this._localStorage.getFromLocalStorage("employeeInfos");
     this.idEmployee = getIdEmployee.Id_employee;
     this.myAbsences = await this._absenceService.getMyAbsences(this.idEmployee);
-    console.log(" this.myAbsences ",  this.myAbsences)
+    console.log("myAbsences ------ ", this.myAbsences);
+    console.log(" this.myAbsences ",  this.myAbsences);
   }
 
 //_______________________________________________

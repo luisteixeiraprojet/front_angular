@@ -121,7 +121,7 @@ async matCreateOrUpdate(){
     console.log("mmmmmmm -----2. ver o k tem this.activity ", this.material.toSimplifyObject());
   this.updatedMat = await this._matService.updateMat(this.material.toSimplifyObject());
   }else{
-    this._router.navigate(['/allactivities/']);
+    this._router.navigate(['/allmaterials/']);
   }
 }
   } catch (error) {

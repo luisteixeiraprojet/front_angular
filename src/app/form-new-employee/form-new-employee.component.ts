@@ -106,9 +106,10 @@ export class FormNewEmployeeComponent implements OnInit {
         bool = confirm("Les coordonées de ce salarié seront changées. Êtes-vous sûr de vouloir continuer? ");
         if(bool == true){
           let simpleEmplObj= this.employee.toSimplifyObject();
-          await this.employeesService.updateEmployee(
+         let x = await this.employeesService.updateEmployee(
           this.employeeObject.Id_employee,
           simpleEmplObj)
+          console.log("let x ", x);
 
       }else{
         id = this.employeeObject.Id_employee;
