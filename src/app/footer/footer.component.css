@@ -9,5 +9,13 @@ footer{
   height:5em;
 }
 
+@media (max-width: 768px) {
 
+  .sep{
+   display:none;
+  }
+
+
+
+}
 

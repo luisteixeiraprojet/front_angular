@@ -23,7 +23,6 @@
         <li class="eachAbs" *ngFor="let ts of myTimesheets  | filterMyTimesheets: searchText">
           <h3 class="text-center pt-3 mb-3"> Pointage  du   <span class="nomAndDate">{{ ts.beginningDate.split("T")[0] }}   </span> au   <span class="nomAndDate">  {{ ts.finishDate.split("T")[0] }} </span></h3>
 
-
           <div class="d-flex flex-column flex-md-row justify-content-between mt-3">
             <div class="mb-3 ml-3" >
               <div class="mb-1 mb-md-0">Nombre d'heures effectuées: <span class="nomAndDate"> {{ ts.totalHours }} h</span></div>

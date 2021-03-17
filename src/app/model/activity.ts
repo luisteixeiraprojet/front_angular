@@ -1,10 +1,9 @@
 export class Activity {
-  private _Id_activity
+  private _Id_activity;
   private _name;
   private _startDate;
   private _endDate;
   private _materials;
-
 
   constructor(){}
 

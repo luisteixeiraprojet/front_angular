@@ -17,7 +17,6 @@ export class AllAbsencesComponent implements OnInit {
   status="en attente" ;
   typeAbs="";
 
-
   verifyRole;
   absences:any;
   employeeName;
@@ -25,8 +24,6 @@ export class AllAbsencesComponent implements OnInit {
   constructor(private _absenceService:AbsencesService, private _loginService:LoginService ,private _router:Router, private _localStroage:LocalStorageService) { }
 
   async ngOnInit(){
-
-
 
    //so the employees can not access boss views
    this.verifyRole = this._loginService.isAdmin();
@@ -54,7 +51,6 @@ isDecided(absence){
     let x = await this._absenceService.updateAbsence(selectedAbs);
     }
   }
-
 //________________________________________________
   async denyAbs(selectedAbs){
     let bool;
@@ -65,7 +61,6 @@ isDecided(absence){
     await this._absenceService.updateAbsence(selectedAbs);
     }
   }
-
 //________________________________________________
 async deleteAbs(idAbs){
       let bool;
@@ -75,5 +70,4 @@ async deleteAbs(idAbs){
          this.absences = await this._absenceService.getAllAbsences();
       }
 }
-
 }//closes class

@@ -4,6 +4,7 @@ import { ActivitiesService } from './../services/activities.service';
 import { Component, OnInit } from '@angular/core';
 import { BetweenComponentsService } from '../services/between-components.service';
 
+
 @Component({
   selector: 'app-all-activities',
   templateUrl: './all-activities.component.html',
@@ -21,9 +22,7 @@ export class AllActivitiesComponent implements OnInit {
      if(this.verifyRole == false){
        this._router.navigate(['/employeeAccount']);
      }
-
     this.activities = await this._activitiesService.getAllActivities();
-
   }
 
 //_________________________________________________
